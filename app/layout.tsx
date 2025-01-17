@@ -1,8 +1,8 @@
-import GlobalStyles from "@/library/GlobalStyles";
 import StyledComponentsRegistry from "@/library/registry";
 import { Metadata } from "next";
 import { MainLayout } from "@/components/styled";
 import Header from "./header";
+import GlobalThemeWrapper from "@/library/GlobalTheme";
 
 export const metadata: Metadata = {
   title: "Demis Rincon Portfolio",
@@ -18,12 +18,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <GlobalStyles />
         <StyledComponentsRegistry>
-          <MainLayout>
-            <Header></Header>
-            {children}
-          </MainLayout>
+          <GlobalThemeWrapper>
+            <MainLayout>
+              <Header />
+              {children}
+            </MainLayout>
+          </GlobalThemeWrapper>
         </StyledComponentsRegistry>
       </body>
     </html>

@@ -2,7 +2,7 @@
 import { breakpoints } from "@/library/GlobalStyles";
 import Link from "next/link";
 import styled from "styled-components";
-
+import { GiHamburgerMenu } from "react-icons/gi";
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
@@ -32,18 +32,26 @@ const NavigatorContainer = styled.div`
 `;
 
 const Header = () => {
+  const navigationLinks = [
+    { href: "#home", label: "Home" },
+    { href: "#about", label: "About" },
+    { href: "#services", label: "Services" },
+    { href: "#projects", label: "Projects" },
+    { href: "#contact", label: "Contact" },
+  ];
   return (
     <Container>
       <TitleContainer>
         <Title>Demis Rincon</Title>
       </TitleContainer>
       <NavigatorContainer>
-        <Link href="#home">Home</Link>
-        <Link href="#about">About</Link>
-        <Link href="#services">Services</Link>
-        <Link href="#projects">Projects</Link>
-        <Link href="#contact">Contact</Link>
+        {navigationLinks.map((link) => (
+          <Link key={link.href} href={link.href}>
+            {link.label}
+          </Link>
+        ))}
       </NavigatorContainer>
+      <GiHamburgerMenu />
     </Container>
   );
 };
