@@ -1,7 +1,8 @@
+"use client";
 import { ThemeProvider } from "styled-components";
-import StyledComponentsRegistry from "./registry";
-import defaultTheme from "./defaultTheme";
-import GlobalSyles from "./globalStyles";
+import StyledComponentsRegistry from "./styles/registry";
+import defaultTheme from "./styles/defaultTheme";
+import GlobalSyles from "./styles/globalStyles";
 
 interface ProvidersProps {
   children: React.ReactNode;
@@ -10,7 +11,7 @@ interface ProvidersProps {
 const Providers = ({ children }: ProvidersProps) => {
   return (
     <StyledComponentsRegistry>
-      <ThemeProvider theme={{ defaultTheme }}>
+      <ThemeProvider theme={defaultTheme}>
         <GlobalSyles />
         {children}
       </ThemeProvider>
