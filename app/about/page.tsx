@@ -6,7 +6,9 @@ import React from "react";
 const About = () => {
   return (
     <PageContainer>
-      <h1>About</h1>
+      <WrapperFadeIn>
+        <h1>About</h1>
+      </WrapperFadeIn>
     </PageContainer>
   );
 };

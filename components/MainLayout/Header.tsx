@@ -13,12 +13,18 @@ const Header: React.FC = () => {
     </HeaderContainer>
   );
 };
-
 const HeaderContainer = styled.header`
+  position: fixed;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
 const Title = styled.h2`

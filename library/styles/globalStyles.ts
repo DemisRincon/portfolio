@@ -18,11 +18,11 @@ const GlobalSyles = createGlobalStyle`
         font-size: 3rem;
         strong {
         color: transparent;
-        text-shadow: 0 0 0 3px ${(props) => props.theme.colors.black};
+        text-shadow: 0 0 0 1px ${(props) => props.theme.colors.black};
         @supports (
             -webkit-text-stroke: 1px ${(props) => props.theme.colors.black}) {
             -webkit-text-fill-color: transparent;
-            -webkit-text-stroke: 3px ${(props) => props.theme.colors.black};
+            -webkit-text-stroke: 1px ${(props) => props.theme.colors.black};
             }
         }    
     }
