@@ -25,6 +25,7 @@ const HeaderContainer = styled.header`
   left: 0;
   right: 0;
   background-color: ${({ theme }) => theme.colors.white};
+  z-index: 1000;
 `;
 
 const Title = styled.h2`

@@ -1,9 +1,9 @@
 "use client";
 import { PageContainer } from "@/components/styled";
 import WrapperFadeIn from "@/components/WrapperFadeIn";
-import { motion } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -55,31 +55,39 @@ const data = {
 };
 
 const Home = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const translateY = useTransform(
+    scrollYProgress,
+    // Map x from these values:
+    [0, 1],
+    // Into these values:
+    ["50%", "-50%"]
+  );
+
   return (
-    <PageContainer>
-      <Container>
-        <TextContainer>
-          <SubHeading>{data.subHeading}</SubHeading>
-          <Heading>
-            {data.heading}
-            <strong>{data.endHeading[0]}</strong>
-          </Heading>
-        </TextContainer>
-        <ProfileImage
-          src={data.photo}
-          alt="Profile Photo"
-          initial={{ y: -10 }}
-          animate={{ y: 10 }}
-          transition={{
-            type: "spring",
-            stiffness: 50,
-            damping: 10,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-        />
-      </Container>
-    </PageContainer>
+    <>
+      <PageContainer>
+        <Container ref={ref}>
+          <TextContainer>
+            <SubHeading>{data.subHeading}</SubHeading>
+            <Heading>
+              {data.heading}
+              <strong>{data.endHeading[0]}</strong>
+            </Heading>
+          </TextContainer>
+
+          <ProfileImage
+            src={data.photo}
+            alt="Profile Photo"
+            style={{ translateY: translateY }}
+          />
+        </Container>
+      </PageContainer>
+    </>
   );
 };
 
