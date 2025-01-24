@@ -3,7 +3,7 @@ import React, { ReactNode, Suspense } from "react";
 import styled from "styled-components";
 import Header from "./Header";
 import Footer from "./Footer";
-import LoadingSpinner from "../LoadingSpiner";
+import Loading from "@/app/loading";
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -12,7 +12,7 @@ interface MainLayoutProps {
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <LayoutContainer>
-      <Suspense fallback={<LoadingSpinner />}>
+      <Suspense fallback={<Loading />}>
         <Header />
         <MainContent>{children}</MainContent>
         <Footer />

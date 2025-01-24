@@ -6,9 +6,7 @@ import React from "react";
 const Projects = () => {
   return (
     <PageContainer>
-      <WrapperFadeIn fromTop>
-        <h1>Projects</h1>
-      </WrapperFadeIn>
+      <h1>Projects</h1>
     </PageContainer>
   );
 };

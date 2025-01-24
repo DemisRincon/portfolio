@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
-import { useViewport } from "@/library/hooks/useViewport";
 import useIsMobile from "@/library/hooks/useIsMobile";
 import styled from "styled-components";
 

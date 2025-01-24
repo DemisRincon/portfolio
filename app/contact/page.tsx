@@ -6,9 +6,7 @@ import React from "react";
 const Contact = () => {
   return (
     <PageContainer>
-      <WrapperFadeIn fromTop>
-        <h1>Contact</h1>
-      </WrapperFadeIn>
+      <h1>Contact</h1>
     </PageContainer>
   );
 };

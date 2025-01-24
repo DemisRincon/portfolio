@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 
@@ -7,9 +8,7 @@ const Footer: React.FC = () => {
   return (
     <FooterContainer>
       <FooterWrapper>
-        <p>
-          &copy; {new Date().getFullYear()} Your Company. All rights reserved.
-        </p>
+        <p>&copy; 2025 Your Company. All rights reserved.</p>
         <nav>
           <FooterNavList>
             <FooterNavItem>

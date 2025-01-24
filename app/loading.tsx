@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
@@ -32,7 +33,7 @@ const LoadingText = styled.h1`
   letter-spacing: 0.5rem;
 `;
 
-const LoadingSpinner: React.FC = () => {
+const Loading: React.FC = () => {
   return (
     <SpinnerContainer>
       <Spinner
@@ -44,4 +45,4 @@ const LoadingSpinner: React.FC = () => {
   );
 };
 
-export default LoadingSpinner;
+export default Loading;
