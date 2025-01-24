@@ -1,18 +1,14 @@
+"use client";
 import styled from "styled-components";
 import Menu from "./Menu";
-import WrapperFadeIn from "../WrapperFadeIn";
 
 const name = "Demis Rincon";
 
 const Header: React.FC = () => {
   return (
     <HeaderContainer>
-      <WrapperFadeIn fromTop>
-        <Title>{name}</Title>
-      </WrapperFadeIn>
-      <WrapperFadeIn fromTop>
-        <Menu />
-      </WrapperFadeIn>
+      <Title>{name}</Title>
+      <Menu />
     </HeaderContainer>
   );
 };
@@ -24,9 +20,9 @@ const HeaderContainer = styled.header`
   padding: 1rem;
 `;
 
-const Title = styled.h1`
+const Title = styled.h2`
   margin: 0;
-  font-size: 1.5rem;
+
   color: ${({ theme }) => theme.colors.black};
 `;
 

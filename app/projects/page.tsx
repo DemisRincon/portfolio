@@ -3,14 +3,14 @@ import { PageContainer } from "@/components/styled";
 import WrapperFadeIn from "@/components/WrapperFadeIn";
 import React from "react";
 
-const About = () => {
+const Projects = () => {
   return (
     <PageContainer>
       <WrapperFadeIn fromTop>
-        <h1>About</h1>
+        <h1>Projects</h1>
       </WrapperFadeIn>
     </PageContainer>
   );
 };
 
-export default About;
+export default Projects;
