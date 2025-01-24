@@ -1,11 +1,18 @@
 import styled from "styled-components";
 import Menu from "./Menu";
+import WrapperFadeIn from "../WrapperFadeIn";
+
+const name = "Demis Rincon";
 
 const Header: React.FC = () => {
   return (
     <HeaderContainer>
-      <Title>My Portfolio</Title>
-      <Menu />
+      <WrapperFadeIn fromTop>
+        <Title>{name}</Title>
+      </WrapperFadeIn>
+      <WrapperFadeIn fromTop>
+        <Menu />
+      </WrapperFadeIn>
     </HeaderContainer>
   );
 };

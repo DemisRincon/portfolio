@@ -20,8 +20,18 @@ const NavList = styled.ul`
   justify-content: space-around;
 `;
 
-const NavItem = styled.li`
+const NavItem = styled(motion.li)`
   margin: 0.5rem 0;
+  text-decoration: none;
+  font-weight: bold;
+  color: ${(props) => props.theme.colors.white};
+  font-size: 1.5rem;
+  &:hover {
+    color: #0070f3;
+  }
+  @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
+    color: ${(props) => props.theme.colors.black};
+  }
 `;
 
 const NavLink = styled(motion.a)`
@@ -73,10 +83,10 @@ const FloatingNavList = styled(NavList)`
 `;
 
 const links = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#contact", label: "Contact" },
+  { href: "/", label: "Home" },
+  { href: "/projects", label: "Projects" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 const FloatingMenu = ({ onClose }: { onClose: () => void }) => {
@@ -86,12 +96,19 @@ const FloatingMenu = ({ onClose }: { onClose: () => void }) => {
     controls.start("visible");
   }, [controls]);
 
-  const handleClose = () => {
-    controls.start("hidden").then(onClose);
+  const handleClose = (href?: string) => {
+    controls
+      .start("hidden")
+      .then(onClose)
+      .then(() => {
+        if (href) {
+          window.location.href = href;
+        }
+      });
   };
 
-  const handleLinkClick = () => {
-    handleClose();
+  const handleLinkClick = (href: string) => {
+    handleClose(href);
   };
 
   return (
@@ -99,9 +116,9 @@ const FloatingMenu = ({ onClose }: { onClose: () => void }) => {
       as={motion.div}
       initial={{ opacity: 0, x: "100%" }}
       animate={{ opacity: 1, x: 0, transition: { duration: 0.3 } }}
-      exit={{ opacity: 0, x: "100%", transition: { duration: 0.3 } }}
+      exit={{ opacity: 0, x: "100%", transition: { duration: 0.5 } }}
     >
-      <CloseIcon onClick={handleClose}>
+      <CloseIcon onClick={() => handleClose()}>
         <FaTimes size={24} />
       </CloseIcon>
       <FloatingNavList>
@@ -109,8 +126,6 @@ const FloatingMenu = ({ onClose }: { onClose: () => void }) => {
           {links.map((link, index) => (
             <NavItem
               key={link.href}
-              as={NavLink}
-              href={link.href}
               initial={{ opacity: 0, y: "-20%", x: "100%" }}
               animate={controls}
               transition={{ delay: 0.3 + index * 0.1 }}
@@ -123,7 +138,7 @@ const FloatingMenu = ({ onClose }: { onClose: () => void }) => {
                   transition: { duration: 0.2 },
                 },
               }}
-              onClick={handleLinkClick}
+              onClick={() => handleLinkClick(link.href)}
             >
               {link.label}
             </NavItem>
