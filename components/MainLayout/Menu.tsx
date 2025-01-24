@@ -1,15 +1,15 @@
 "use client";
-import { motion, AnimatePresence, useAnimation } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import useIsMobile from "@/library/hooks/useIsMobile";
-import React, { useState, useEffect } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaBars } from "react-icons/fa";
 import styled from "styled-components";
-import { usePathname } from "next/navigation";
+import withClientValidation from "@/library/hoc/ClientComponent";
+import FloatingMenu from "./FloatingMenu";
 
 const Container = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
+  display: flex;
+
   padding: 1rem;
   z-index: 1000;
   @media (max-width: ${(props) => props.theme.breakpoints.lg}) {
@@ -54,7 +54,6 @@ const NavLink = styled(motion.a)<{ $isActive?: boolean }>`
       `
       color: ${props.theme.colors.teal};
       font-size: 1.2rem;
- 
     `}
     &:after {
       content: "";
@@ -77,34 +76,6 @@ const MenuIcon = styled.div`
     display: block;
   }
 `;
-
-const FloatingMenuContainer = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: ${(props) => props.theme.colors.teal};
-  color: ${(props) => props.theme.colors.white};
-`;
-
-const CloseIcon = styled.div`
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  cursor: pointer;
-`;
-
-const FloatingNavList = styled(NavList)`
-  flex-direction: column;
-  align-items: center;
-`;
-
 const links = [
   { href: "/", label: "Home" },
   { href: "/projects", label: "Projects" },
@@ -112,75 +83,7 @@ const links = [
   { href: "/contact", label: "Contact" },
 ];
 
-const FloatingMenu = ({ onClose }: { onClose: () => void }) => {
-  const pathname = usePathname();
-  const controls = useAnimation();
-
-  useEffect(() => {
-    controls.start("visible");
-  }, [controls]);
-
-  const handleClose = (href?: string) => {
-    controls
-      .start("hidden")
-      .then(onClose)
-      .then(() => {
-        if (href) {
-          window.location.href = href;
-        }
-      });
-  };
-
-  const handleLinkClick = (href: string) => {
-    handleClose(href);
-  };
-
-  return (
-    <FloatingMenuContainer
-      as={motion.div}
-      initial={{ opacity: 0, width: 0 }}
-      animate={controls}
-      variants={{
-        visible: { opacity: 1, width: "100%", transition: { duration: 0.2 } },
-        hidden: { opacity: 0, width: 0, transition: { duration: 0.2 } },
-      }}
-    >
-      <>
-        <CloseIcon onClick={() => handleClose()}>
-          <FaTimes size={24} />
-        </CloseIcon>
-        <FloatingNavList>
-          <AnimatePresence>
-            {links.map((link, index) => (
-              <NavItem
-                $isActive={pathname === link.href}
-                key={link.href}
-                initial={{ opacity: 0, y: "-20%", x: "100%" }}
-                animate={controls}
-                transition={{ delay: 0.3 + index * 0.1 }}
-                variants={{
-                  visible: { opacity: 1, y: 0, x: 0 },
-                  hidden: {
-                    opacity: 0,
-                    y: "-20%",
-                    x: "200%",
-                    transition: { duration: 0.2 },
-                  },
-                }}
-                onClick={() => handleLinkClick(link.href)}
-              >
-                {link.label}
-              </NavItem>
-            ))}
-          </AnimatePresence>
-        </FloatingNavList>
-      </>
-    </FloatingMenuContainer>
-  );
-};
-
 const Menu: React.FC = () => {
-  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -193,7 +96,7 @@ const Menu: React.FC = () => {
     return (
       <>
         <MenuIcon onClick={toggleMenu}>
-          <FaBars />
+          <FaBars size={25} />
         </MenuIcon>
         <AnimatePresence>
           {menuOpen && <FloatingMenu onClose={toggleMenu} />}
@@ -202,28 +105,24 @@ const Menu: React.FC = () => {
     );
   }
 
+  const linklist = links.map((link) => (
+    <NavItem
+      key={link.href}
+      whileHover={{
+        scale: 1.1,
+        y: -5,
+        transition: { duration: 0.2 },
+      }}
+    >
+      <NavLink href={link.href}>{link.label}</NavLink>
+    </NavItem>
+  ));
+
   return (
     <Container>
-      <NavList>
-        {links.map((link) => {
-          return (
-            <NavItem
-              key={link.href}
-              whileHover={{
-                scale: 1.1,
-                y: -5,
-                transition: { duration: 0.2 },
-              }}
-            >
-              <NavLink $isActive={pathname === link.href} href={link.href}>
-                {link.label}
-              </NavLink>
-            </NavItem>
-          );
-        })}
-      </NavList>
+      <NavList>{linklist}</NavList>
     </Container>
   );
 };
 
-export default Menu;
+export default withClientValidation(Menu);

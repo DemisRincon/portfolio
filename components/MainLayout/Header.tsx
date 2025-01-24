@@ -1,6 +1,7 @@
 "use client";
 import styled from "styled-components";
 import Menu from "./Menu";
+import withClientValidation from "@/library/hoc/ClientComponent";
 
 const name = "Demis Rincon";
 
@@ -26,4 +27,4 @@ const Title = styled.h2`
   color: ${({ theme }) => theme.colors.black};
 `;
 
-export default Header;
+export default withClientValidation(Header);
