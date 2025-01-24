@@ -27,7 +27,7 @@ const HeaderContainer = styled.header`
 const Title = styled.h1`
   margin: 0;
   font-size: 1.5rem;
-  color: #343a40;
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 export default Header;
