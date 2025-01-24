@@ -1,19 +1,22 @@
 "use client";
+import WrapperFadeIn from "@/components/Motion/WrapperFadeIn";
+import ParallaxWrapper from "@/components/Motion/WrapperParallax";
 import { PageContainer } from "@/components/styled";
-import WrapperFadeIn from "@/components/WrapperFadeIn";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-
-import React, { useRef } from "react";
+import { motion } from "framer-motion";
+import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: column-reverse;
   height: 100vh;
   width: 80%;
   padding: 20px;
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    flex-direction: row;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -26,10 +29,13 @@ const ProfileImage = styled(motion.img)`
   width: 300px;
   height: 300px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    width: 500px;
+    height: 500px;
+  }
 `;
 
 const Heading = styled.h1`
-  font-size: 2.5rem;
   color: #333;
   margin-bottom: 10px;
 `;
@@ -55,38 +61,31 @@ const data = {
 };
 
 const Home = () => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const translateY = useTransform(
-    scrollYProgress,
-    // Map x from these values:
-    [0, 1],
-    // Into these values:
-    ["50%", "-50%"]
-  );
-
   return (
     <>
       <PageContainer>
-        <Container ref={ref}>
+        <Container>
           <TextContainer>
-            <SubHeading>{data.subHeading}</SubHeading>
-            <Heading>
-              {data.heading}
-              <strong>{data.endHeading[0]}</strong>
-            </Heading>
+            <ParallaxWrapper end="50%">
+              <WrapperFadeIn>
+                <SubHeading>{data.subHeading}</SubHeading>
+                <Heading>
+                  {data.heading}
+                  <strong>{data.endHeading[0]}</strong>
+                </Heading>
+              </WrapperFadeIn>
+            </ParallaxWrapper>
           </TextContainer>
-
-          <ProfileImage
-            src={data.photo}
-            alt="Profile Photo"
-            style={{ translateY: translateY }}
-          />
+          <ParallaxWrapper start="50%">
+            <ProfileImage src={data.photo} alt="Profile Photo" />
+          </ParallaxWrapper>
         </Container>
       </PageContainer>
+      <PageContainer></PageContainer>
+      <PageContainer></PageContainer>
+      <PageContainer></PageContainer>
+      <PageContainer></PageContainer>
+      <PageContainer></PageContainer>
     </>
   );
 };
