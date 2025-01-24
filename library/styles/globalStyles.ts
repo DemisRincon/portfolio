@@ -1,10 +1,17 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalSyles = createGlobalStyle`
-    h1{
+    body{
+        background-color: ${(props) => props.theme.colors.white};
+        box-sizing: border-box;
+        font-family: ${(props) => props.theme.fonts.body};
+        margin: 0;
+    }
+    
+    h1,h2,h3,h4,h5,h6{
         font-family: ${(props) => props.theme.fonts.heading};
-        color: blue;
         font-size: 5rem;
     }
+
 `;
 export default GlobalSyles;

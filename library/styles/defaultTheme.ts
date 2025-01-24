@@ -15,7 +15,7 @@ const poppins = Poppins({
 const defaultTheme = {
   colors: {
     white: "#F2EFE7",
-    black: "#1A1A1A",
+    black: "#333333",
     light: "#F2F2F2",
     lightGreen: "#9ACBD0",
     teal: "#48A6A7",
@@ -24,6 +24,12 @@ const defaultTheme = {
   fonts: {
     heading: bebasNeue.style.fontFamily,
     body: poppins.style.fontFamily,
+  },
+  breakpoints: {
+    sm: "640px",
+    md: "768px",
+    lg: "1024px",
+    xl: "1280px",
   },
 };
 export default defaultTheme;

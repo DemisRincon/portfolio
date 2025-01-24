@@ -8,16 +8,6 @@ interface MainLayoutProps {
   children: ReactNode;
 }
 
-const LayoutContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-`;
-
-const MainContent = styled.main`
-  flex: 1;
-`;
-
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <LayoutContainer>
@@ -27,5 +17,15 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     </LayoutContainer>
   );
 };
+
+const LayoutContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
+
+const MainContent = styled.main`
+  flex: 1;
+`;
 
 export default MainLayout;
