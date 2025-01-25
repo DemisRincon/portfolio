@@ -4,6 +4,7 @@ import React, {
   useContext,
   useEffect,
   useState,
+  useCallback,
 } from "react";
 
 export enum EScreenSize {
@@ -19,7 +20,7 @@ interface IViewport {
   screenSize: EScreenSize;
 }
 
-const getScreenSizeFromWidth = (width: number) => {
+const getScreenSizeFromWidth = (width: number): EScreenSize => {
   if (width < 576) return EScreenSize.XS;
   if (width < 768) return EScreenSize.SM;
   if (width < 992) return EScreenSize.MD;
@@ -45,18 +46,18 @@ export const ViewportProvider: FC<ViewportProviderProps> = ({ children }) => {
     )
   );
 
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenSize(getScreenSizeFromWidth(window.innerWidth));
-    };
+  const handleResize = useCallback(() => {
+    setScreenSize(getScreenSizeFromWidth(window.innerWidth));
+  }, []);
 
+  useEffect(() => {
     handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [handleResize]);
 
   return (
     <ViewportContext.Provider value={{ screenSize }}>
@@ -65,6 +66,6 @@ export const ViewportProvider: FC<ViewportProviderProps> = ({ children }) => {
   );
 };
 
-export function useViewport() {
+export const useViewport = (): IViewport => {
   return useContext<IViewport>(ViewportContext);
-}
+};

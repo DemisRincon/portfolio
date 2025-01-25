@@ -12,25 +12,32 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 
-const defaultTheme = {
-  colors: {
-    white: "#F2EFE7",
-    black: "#333333",
-    light: "#F2F2F2",
-    lightGreen: "#9ACBD0",
-    teal: "#48A6A7",
-    blue: "#2973B2",
-    grey: "#666",
-  },
-  fonts: {
-    heading: bebasNeue.style.fontFamily,
-    body: poppins.style.fontFamily,
-  },
-  breakpoints: {
-    sm: "640px",
-    md: "768px",
-    lg: "1024px",
-    xl: "1280px",
-  },
+const colors = {
+  white: "#F2EFE7",
+  black: "#333333",
+  light: "#F2F2F2",
+  lightGreen: "#9ACBD0",
+  teal: "#48A6A7",
+  blue: "#2973B2",
+  grey: "#666",
 };
+
+const fonts = {
+  heading: bebasNeue.style.fontFamily,
+  body: poppins.style.fontFamily,
+};
+
+const breakpoints = {
+  sm: "640px",
+  md: "768px",
+  lg: "1024px",
+  xl: "1280px",
+};
+
+const defaultTheme = {
+  colors,
+  fonts,
+  breakpoints,
+};
+
 export default defaultTheme;

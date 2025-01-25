@@ -1,7 +1,11 @@
 "use client";
 import styled from "styled-components";
 
-export const PageContainer = styled.div<{ $bgColor?: string }>`
+interface PageContainerProps {
+  $bgColor?: string;
+}
+
+export const PageContainer = styled.div<PageContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
