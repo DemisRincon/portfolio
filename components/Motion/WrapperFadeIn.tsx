@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 export const MotionDiv = styled(motion.div)``;
 
-interface IWrapperFadeInProps {
+interface WrapperFadeInProps {
   children?: React.ReactNode;
   delay?: number;
   conditionWrapper?: boolean;
@@ -16,7 +16,7 @@ interface IWrapperFadeInProps {
   fromTop?: boolean;
 }
 
-const WrapperFadeIn: React.FC<IWrapperFadeInProps> = ({
+const WrapperFadeIn: React.FC<WrapperFadeInProps> = ({
   children,
   delay = 0.1,
   conditionWrapper,
@@ -26,9 +26,7 @@ const WrapperFadeIn: React.FC<IWrapperFadeInProps> = ({
   fromTop = false,
 }) => {
   const controls = useAnimation();
-
   const { ref, inView } = useInView({ threshold });
-
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -61,4 +59,5 @@ const WrapperFadeIn: React.FC<IWrapperFadeInProps> = ({
     </MotionDiv>
   );
 };
+
 export default WrapperFadeIn;
