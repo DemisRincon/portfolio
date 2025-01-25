@@ -3,7 +3,7 @@ import { PageContainer } from "@/components/styled";
 import WrapperFadeIn from "@/components/Motion/WrapperFadeIn";
 import React from "react";
 
-const About = () => {
+const About: React.FC = () => {
   return (
     <PageContainer>
       <WrapperFadeIn>
