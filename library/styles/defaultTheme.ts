@@ -20,6 +20,7 @@ const defaultTheme = {
     lightGreen: "#9ACBD0",
     teal: "#48A6A7",
     blue: "#2973B2",
+    grey: "#666",
   },
   fonts: {
     heading: bebasNeue.style.fontFamily,

@@ -14,7 +14,7 @@ const Container = styled.div`
   height: 100vh;
   width: 80%;
   padding: 20px;
-  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     flex-direction: row;
   }
 `;
@@ -29,25 +29,36 @@ const ProfileImage = styled(motion.img)`
   width: 300px;
   height: 300px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     width: 500px;
     height: 500px;
   }
 `;
 
-const Heading = styled.h1`
-  color: #333;
-  margin-bottom: 10px;
+const Heading = styled.h1<{ $color?: string }>`
+  color: ${({ theme, $color }) =>
+    $color ? theme.colors[$color] : theme.colors.black};
+  box-sizing: border-box;
 `;
 
 const SubHeading = styled.p`
-  font-size: 1.25rem;
-  color: #666;
+  font-size: 1.5rem;
+  color: ${({ theme }) => theme.colors.grey};
+`;
+
+const Button = styled.button`
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.white};
+  font-size: 1.2rem;
+  cursor: pointer;
 `;
 
 const data = {
   heading: "I'm a ",
-  endHeading: [
+  middleHeading: [
     "software engineer",
     "software developer",
     "web developer",
@@ -59,7 +70,12 @@ const data = {
   subHeading: "This is my portfolio",
   photo: "/photo.jpg",
 };
-
+const data2 = {
+  heading: "Come on all, take a look at the ",
+  middleHeading: "projects",
+  endHeading: " I have been involved in.",
+  subHeading: "Projects",
+};
 const Home = () => {
   return (
     <>
@@ -71,17 +87,32 @@ const Home = () => {
                 <SubHeading>{data.subHeading}</SubHeading>
                 <Heading>
                   {data.heading}
-                  <strong>{data.endHeading[0]}</strong>
+                  <strong>{data.middleHeading[0]}</strong>
                 </Heading>
               </WrapperFadeIn>
             </ParallaxWrapper>
           </TextContainer>
           <ParallaxWrapper start="50%">
-            <ProfileImage src={data.photo} alt="Profile Photo" />
+            <WrapperFadeIn>
+              <ProfileImage src={data.photo} alt="Profile Photo" />
+            </WrapperFadeIn>
           </ParallaxWrapper>
         </Container>
       </PageContainer>
-      <PageContainer></PageContainer>
+      <PageContainer $bgColor="teal">
+        <Container>
+          <WrapperFadeIn>
+            <Button onClick={() => alert("Button clicked!")}>Click Me</Button>
+          </WrapperFadeIn>
+          <WrapperFadeIn>
+            <Heading $color="white">
+              {data2.heading}
+              <strong>{data2.middleHeading}</strong>
+              {data2.endHeading}
+            </Heading>
+          </WrapperFadeIn>
+        </Container>
+      </PageContainer>
       <PageContainer></PageContainer>
       <PageContainer></PageContainer>
       <PageContainer></PageContainer>
