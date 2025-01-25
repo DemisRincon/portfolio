@@ -9,7 +9,6 @@ import FloatingMenu from "./FloatingMenu";
 
 const Container = styled.div`
   display: flex;
-
   padding: 1rem;
   z-index: 1000;
   @media (max-width: ${(props) => props.theme.breakpoints.lg}) {
@@ -76,6 +75,7 @@ const MenuIcon = styled.div`
     display: block;
   }
 `;
+
 const links = [
   { href: "/", label: "Home" },
   { href: "/projects", label: "Projects" },
@@ -105,22 +105,22 @@ const Menu: React.FC = () => {
     );
   }
 
-  const linklist = links.map((link) => (
-    <NavItem
-      key={link.href}
-      whileHover={{
-        scale: 1.1,
-        y: -5,
-        transition: { duration: 0.2 },
-      }}
-    >
-      <NavLink href={link.href}>{link.label}</NavLink>
-    </NavItem>
-  ));
-
   return (
     <Container>
-      <NavList>{linklist}</NavList>
+      <NavList>
+        {links.map((link) => (
+          <NavItem
+            key={link.href}
+            whileHover={{
+              scale: 1.1,
+              y: -5,
+              transition: { duration: 0.2 },
+            }}
+          >
+            <NavLink href={link.href}>{link.label}</NavLink>
+          </NavItem>
+        ))}
+      </NavList>
     </Container>
   );
 };

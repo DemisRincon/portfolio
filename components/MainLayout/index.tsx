@@ -19,14 +19,12 @@ const MainContent = styled.main`
   flex: 1;
 `;
 
-const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
-  return (
-    <LayoutContainer>
-      <Header />
-      <MainContent>{children}</MainContent>
-      <Footer />
-    </LayoutContainer>
-  );
-};
+const MainLayout: React.FC<MainLayoutProps> = ({ children }) => (
+  <LayoutContainer>
+    <Header />
+    <MainContent>{children}</MainContent>
+    <Footer />
+  </LayoutContainer>
+);
 
 export default withClientValidation(MainLayout);

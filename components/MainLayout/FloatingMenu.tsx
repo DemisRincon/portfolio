@@ -70,14 +70,12 @@ const FloatingMenu = ({ onClose }: { onClose: () => void }) => {
   }, [controls]);
 
   const handleClose = (href?: string) => {
-    controls
-      .start("hidden")
-      .then(onClose)
-      .then(() => {
-        if (href) {
-          window.location.href = href;
-        }
-      });
+    controls.start("hidden").then(() => {
+      onClose();
+      if (href) {
+        window.location.href = href;
+      }
+    });
   };
 
   const handleLinkClick = (href: string) => {

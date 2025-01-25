@@ -5,14 +5,13 @@ import withClientValidation from "@/library/hoc/ClientComponent";
 
 const name = "Demis Rincon";
 
-const Header: React.FC = () => {
-  return (
-    <HeaderContainer>
-      <Title>{name}</Title>
-      <Menu />
-    </HeaderContainer>
-  );
-};
+const Header: React.FC = () => (
+  <HeaderContainer>
+    <Title>{name}</Title>
+    <Menu />
+  </HeaderContainer>
+);
+
 const HeaderContainer = styled.header`
   position: fixed;
   width: 100%;
@@ -30,7 +29,6 @@ const HeaderContainer = styled.header`
 
 const Title = styled.h2`
   margin: 0;
-
   color: ${({ theme }) => theme.colors.black};
 `;
 

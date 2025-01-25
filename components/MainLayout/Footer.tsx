@@ -15,42 +15,7 @@ const Footer = () => {
     setIsClient(true);
   }, []);
 
-  return <> {isClient && <FooterContainer>hello</FooterContainer>} </>;
+  return isClient ? <FooterContainer>hello</FooterContainer> : null;
 };
+
 export default withClientValidation(Footer);
-// "use client";
-
-// import styled from "styled-components";
-
-// const FooterWrapper = styled.div`
-//   max-width: 1200px;
-//   margin: 0 auto;
-//   padding: 0 20px;
-// `;
-
-// const FooterNavList = styled.ul`
-//   list-style: none;
-//   padding: 0;
-//   display: flex;
-//   justify-content: center;
-//   margin: 20px 0 0;
-// `;
-
-// const FooterNavItem = styled.li`
-//   margin: 0 15px;
-// `;
-
-// const FooterLink = styled.a`
-//   color: #007bff;
-//   text-decoration: none;
-
-//   &:hover {
-//     text-decoration: underline;
-//   }
-// `;
-
-// const Footer: React.FC = () => {
-//   return <FooterContainer>hello</FooterContainer>;
-// };
-
-// export default Footer;
