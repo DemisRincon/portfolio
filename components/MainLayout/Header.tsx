@@ -2,10 +2,11 @@
 import styled from "styled-components";
 import Menu from "./Menu";
 import withClientValidation from "@/library/hoc/ClientComponent";
+import { FC } from "react";
 
 const name = "Demis Rincon";
 
-const Header: React.FC = () => (
+const Header: FC = () => (
   <HeaderContainer>
     <Title>{name}</Title>
     <Menu />

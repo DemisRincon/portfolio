@@ -1,9 +1,9 @@
 "use client";
 import { PageContainer } from "@/components/styled";
 import WrapperFadeIn from "@/components/Motion/WrapperFadeIn";
-import React from "react";
+import { FC } from "react";
 
-const Contact: React.FC = () => (
+const Contact: FC = () => (
   <PageContainer>
     <WrapperFadeIn>
       <h1>Contact</h1>

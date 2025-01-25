@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import { FC } from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
@@ -33,7 +33,7 @@ const LoadingText = styled.h1`
   letter-spacing: 0.5rem;
 `;
 
-const Loading: React.FC = () => {
+const Loading: FC = () => {
   return (
     <SpinnerContainer>
       <Spinner

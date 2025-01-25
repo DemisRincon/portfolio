@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactNode } from "react";
+import { ReactNode, FC } from "react";
 import styled from "styled-components";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -19,7 +19,7 @@ const MainContent = styled.main`
   flex: 1;
 `;
 
-const MainLayout: React.FC<MainLayoutProps> = ({ children }) => (
+const MainLayout: FC<MainLayoutProps> = ({ children }) => (
   <LayoutContainer>
     <Header />
     <MainContent>{children}</MainContent>

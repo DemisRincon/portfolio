@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, FC, ReactNode } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
 import useIsMobile from "@/library/hooks/useIsMobile";
@@ -7,7 +7,7 @@ import styled from "styled-components";
 export const MotionDiv = styled(motion.div)``;
 
 interface WrapperFadeInProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
   delay?: number;
   conditionWrapper?: boolean;
   className?: string;
@@ -16,7 +16,7 @@ interface WrapperFadeInProps {
   fromTop?: boolean;
 }
 
-const WrapperFadeIn: React.FC<WrapperFadeInProps> = ({
+const WrapperFadeIn: FC<WrapperFadeInProps> = ({
   children,
   delay = 0.1,
   conditionWrapper,

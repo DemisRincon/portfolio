@@ -1,7 +1,7 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import useIsMobile from "@/library/hooks/useIsMobile";
-import React, { useState } from "react";
+import { useState, FC } from "react";
 import { FaBars } from "react-icons/fa";
 import styled from "styled-components";
 import withClientValidation from "@/library/hoc/ClientComponent";
@@ -83,7 +83,7 @@ const links = [
   { href: "/contact", label: "Contact" },
 ];
 
-const Menu: React.FC = () => {
+const Menu: FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {

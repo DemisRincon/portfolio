@@ -3,7 +3,6 @@ import WrapperFadeIn from "@/components/Motion/WrapperFadeIn";
 import ParallaxWrapper from "@/components/Motion/WrapperParallax";
 import { PageContainer } from "@/components/styled";
 import { motion } from "framer-motion";
-import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
