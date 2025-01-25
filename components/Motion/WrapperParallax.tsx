@@ -1,8 +1,5 @@
-import { useScroll } from "framer-motion";
-import { useRef } from "react";
-import { motion } from "framer-motion";
-import { useTransform } from "framer-motion";
-import { ReactNode } from "react";
+import { useScroll, motion, useTransform } from "framer-motion";
+import { useRef, ReactNode } from "react";
 
 interface ParallaxWrapperProps {
   children: ReactNode;
@@ -15,7 +12,7 @@ const ParallaxWrapper = ({
   start = "10%",
   end = "-10%",
 }: ParallaxWrapperProps) => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],

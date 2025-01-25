@@ -70,12 +70,14 @@ const data = {
   subHeading: "This is my portfolio",
   photo: "/photo.jpg",
 };
+
 const data2 = {
   heading: "Come on all, take a look at the ",
   middleHeading: "projects",
   endHeading: " I have been involved in.",
   subHeading: "Projects",
 };
+
 const Home = () => {
   return (
     <>
@@ -113,10 +115,6 @@ const Home = () => {
           </WrapperFadeIn>
         </Container>
       </PageContainer>
-      <PageContainer></PageContainer>
-      <PageContainer></PageContainer>
-      <PageContainer></PageContainer>
-      <PageContainer></PageContainer>
     </>
   );
 };
