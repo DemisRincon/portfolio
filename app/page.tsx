@@ -4,7 +4,7 @@ import ParallaxWrapper from "@/components/Motion/WrapperParallax";
 import { PageContainer } from "@/components/styled";
 import useIsMobile from "@/library/hooks/useIsMobile";
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -12,15 +12,14 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column-reverse;
-  width: 80%;
+  width: 100%;
+  height: 100%;
   max-width: ${({ theme }) => theme.breakpoints.lg};
-  padding: 20px;
-
+  padding: 0;
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     flex-direction: row;
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    height: 100vh;
     justify-content: space-between;
   }
   .full-width {
@@ -28,7 +27,10 @@ const Container = styled.div`
   }
 `;
 
-const TextContainer = styled.div``;
+const TextContainer = styled.div`
+  background-color: gainsboro;
+  width: 100%;
+`;
 
 const ProfileImage = styled(motion.img)`
   border-radius: 50%;
@@ -96,6 +98,14 @@ const Strong = styled(motion.strong)`
   margin: 0 0 0 0.5rem;
 `;
 
+const ImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;
+
 const data = {
   heading: "I'm a ",
   middleHeading: [
@@ -131,38 +141,37 @@ const Home = () => {
   }, []);
 
   const isMobile = useIsMobile();
-
+  const givenRef = useRef<HTMLDivElement>(null!);
   return (
     <>
-      <PageContainer>
-        <Container>
-          <ParallaxWrapper className="full-width" start="30%" end="-70%">
-            <WrapperFadeIn className="full-width">
-              <TextContainer>
-                <SubHeading>{data.subHeading}</SubHeading>
-                <Heading>
-                  {data.heading}{" "}
-                  <AnimatePresence mode="wait">
-                    <Strong
-                      key={data.middleHeading[middleHeadingIndex]}
-                      initial={{ opacity: 0, y: isMobile ? -10 : -50 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: isMobile ? 10 : 100 }}
-                      transition={{ duration: 0.1, ease: "linear" }}
-                    >
-                      {data.middleHeading[middleHeadingIndex]}
-                    </Strong>
-                  </AnimatePresence>
-                </Heading>
-              </TextContainer>
-            </WrapperFadeIn>
-          </ParallaxWrapper>
-          <WrapperFadeIn>
-            <ParallaxWrapper start="-50%" end="50%">
-              <ProfileImage src={data.photo} alt="Profile Photo" />
+      <PageContainer ref={givenRef}>
+        <WrapperFadeIn className="full-width">
+          <Container>
+            <TextContainer>
+              <SubHeading>{data.subHeading}</SubHeading>
+              <Heading>
+                {data.heading}{" "}
+                <AnimatePresence mode="wait">
+                  <Strong
+                    key={data.middleHeading[middleHeadingIndex]}
+                    initial={{ opacity: 0, y: isMobile ? -10 : -50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: isMobile ? 10 : 100 }}
+                    transition={{ duration: 0.1, ease: "linear" }}
+                  >
+                    {data.middleHeading[middleHeadingIndex]}
+                  </Strong>
+                </AnimatePresence>
+              </Heading>
+            </TextContainer>
+
+            <ParallaxWrapper givenRef={givenRef}>
+              <ImageContainer>
+                <ProfileImage src={data.photo} alt="Profile Photo" />
+              </ImageContainer>
             </ParallaxWrapper>
-          </WrapperFadeIn>
-        </Container>
+          </Container>
+        </WrapperFadeIn>
       </PageContainer>
       <PageContainer $bgColor="teal">
         <Container>
@@ -170,11 +179,7 @@ const Home = () => {
             <Button onClick={() => alert("Button clicked!")}>Click Me</Button>
           </WrapperFadeIn>
           <WrapperFadeIn>
-            <Heading $color="white">
-              {data2.heading}
-              <strong>{data2.middleHeading}</strong>
-              {data2.endHeading}
-            </Heading>
+            <Heading $color="white"></Heading>
           </WrapperFadeIn>
         </Container>
       </PageContainer>

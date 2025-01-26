@@ -4,7 +4,15 @@ import { motion, useAnimation } from "motion/react";
 import useIsMobile from "@/library/hooks/useIsMobile";
 import styled from "styled-components";
 
-export const MotionDiv = styled(motion.div)``;
+export const MotionDiv = styled(motion.div)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+`;
 
 interface WrapperFadeInProps {
   children?: ReactNode;

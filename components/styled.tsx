@@ -11,6 +11,8 @@ export const PageContainer = styled.div<PageContainerProps>`
   align-items: center;
   height: 100vh;
   width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
   ${({ $bgColor, theme }) =>
     $bgColor && `background-color: ${theme.colors[$bgColor]};`}
 `;
