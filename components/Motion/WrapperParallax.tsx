@@ -1,5 +1,5 @@
 "use client";
-import { FC, ReactNode, useEffect, useRef, useState } from "react";
+import { FC, ReactNode } from "react";
 import {
   motion,
   useMotionValueEvent,
@@ -26,37 +26,29 @@ interface ParallaxWrapperProps {
   children: ReactNode;
   className?: string;
   givenRef?: React.RefObject<HTMLDivElement>;
+  array1?: number[];
+  array2?: number[];
 }
 
 const ParallaxWrapper: FC<ParallaxWrapperProps> = ({
   children,
   className,
   givenRef,
+  array1 = [0, 1],
+  array2 = [0, 400],
 }) => {
-  const ref = useRef<HTMLDivElement>(null!);
-  const [newRef, setNewRef] = useState<React.RefObject<HTMLDivElement> | null>(
-    null
-  );
   const { scrollYProgress } = useScroll({
-    target: givenRef ?? ref,
+    target: givenRef,
   });
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     console.log(latest);
   });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 400]);
+  const y = useTransform(scrollYProgress, array1, array2);
 
-  useEffect(() => {
-    if (givenRef) {
-      return setNewRef(givenRef);
-    }
-    setNewRef(ref);
-  }, [givenRef]);
-  if (!newRef) return null;
+  if (!givenRef) return <>{children}</>;
   return (
     <Container className={className}>
-      <ParallaxDiv ref={newRef} style={{ y }}>
-        {children}
-      </ParallaxDiv>
+      <ParallaxDiv style={{ y }}>{children}</ParallaxDiv>
     </Container>
   );
 };
