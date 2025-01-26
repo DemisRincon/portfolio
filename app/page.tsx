@@ -2,26 +2,32 @@
 import WrapperFadeIn from "@/components/Motion/WrapperFadeIn";
 import ParallaxWrapper from "@/components/Motion/WrapperParallax";
 import { PageContainer } from "@/components/styled";
-import { motion } from "framer-motion";
+import useIsMobile from "@/library/hooks/useIsMobile";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column-reverse;
+  flex-direction: column;
   height: 100vh;
   width: 80%;
+  max-width: ${({ theme }) => theme.breakpoints.lg};
   padding: 20px;
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     flex-direction: row;
   }
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    justify-content: space-between;
+  }
+  .full-width {
+    width: 100%;
+  }
 `;
 
-const TextContainer = styled.div`
-  margin-right: 40px;
-  max-width: 500px;
-`;
+const TextContainer = styled.div``;
 
 const ProfileImage = styled(motion.img)`
   border-radius: 50%;
@@ -29,8 +35,8 @@ const ProfileImage = styled(motion.img)`
   height: 300px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
   }
 `;
 
@@ -38,6 +44,33 @@ const Heading = styled.h1<{ $color?: string }>`
   color: ${({ theme, $color }) =>
     $color ? theme.colors[$color] : theme.colors.black};
   box-sizing: border-box;
+  display: flex;
+  justify-content: start;
+  font-size: 2.3rem;
+  width: 100%;
+  text-align: left;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding-top: 30px;
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: -2.3rem;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: ${(props) => props.theme.colors.white};
+    }
+    &:before {
+      content: " ";
+      position: absolute;
+      bottom: 7rem;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: ${(props) => props.theme.colors.white};
+    }
+  }
 `;
 
 const SubHeading = styled.p`
@@ -55,16 +88,20 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const Strong = styled(motion.strong)`
+  margin: 0 0 0 1rem;
+`;
+
 const data = {
   heading: "I'm a ",
   middleHeading: [
-    "software engineer",
-    "software developer",
-    "web developer",
-    "full stack developer",
-    "front end developer",
-    "back end developer",
-    "mobile developer",
+    " software engineer",
+    " software developer",
+    " web developer",
+    " full stack developer",
+    " front end developer",
+    " back end developer",
+    " mobile developer",
   ],
   subHeading: "This is my portfolio",
   photo: "/photo.jpg",
@@ -76,24 +113,47 @@ const data2 = {
   endHeading: " I have been involved in.",
   subHeading: "Projects",
 };
-
 const Home = () => {
+  const [middleHeadingIndex, setMiddleHeadingIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMiddleHeadingIndex(
+        (prevIndex) => (prevIndex + 1) % data.middleHeading.length
+      );
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const isMobile = useIsMobile();
+
   return (
     <>
       <PageContainer>
         <Container>
-          <TextContainer>
-            <ParallaxWrapper end="50%">
-              <WrapperFadeIn>
+          <ParallaxWrapper className="full-width" start="50%">
+            <WrapperFadeIn className="full-width">
+              <TextContainer>
                 <SubHeading>{data.subHeading}</SubHeading>
                 <Heading>
-                  {data.heading}
-                  <strong>{data.middleHeading[0]}</strong>
+                  {data.heading}{" "}
+                  <AnimatePresence mode="wait">
+                    <Strong
+                      key={data.middleHeading[middleHeadingIndex]}
+                      initial={{ opacity: 0, y: isMobile ? -10 : -50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: isMobile ? 10 : 100 }}
+                      transition={{ duration: 0.1, ease: "linear" }}
+                    >
+                      {data.middleHeading[middleHeadingIndex]}
+                    </Strong>
+                  </AnimatePresence>
                 </Heading>
-              </WrapperFadeIn>
-            </ParallaxWrapper>
-          </TextContainer>
-          <ParallaxWrapper start="50%">
+              </TextContainer>
+            </WrapperFadeIn>
+          </ParallaxWrapper>
+          <ParallaxWrapper end="50%">
             <WrapperFadeIn>
               <ProfileImage src={data.photo} alt="Profile Photo" />
             </WrapperFadeIn>

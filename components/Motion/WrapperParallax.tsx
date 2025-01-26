@@ -5,12 +5,14 @@ interface ParallaxWrapperProps {
   children: ReactNode;
   start?: string;
   end?: string;
+  className?: string;
 }
 
 const ParallaxWrapper: FC<ParallaxWrapperProps> = ({
   children,
   start = "10%",
   end = "-10%",
+  className,
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
@@ -20,7 +22,7 @@ const ParallaxWrapper: FC<ParallaxWrapperProps> = ({
   const translateY = useTransform(scrollYProgress, [0, 1], [start, end]);
 
   return (
-    <motion.div ref={ref} style={{ translateY }}>
+    <motion.div className={className} ref={ref} style={{ translateY }}>
       {children}
     </motion.div>
   );
