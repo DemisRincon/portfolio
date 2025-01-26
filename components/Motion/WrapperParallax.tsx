@@ -1,4 +1,4 @@
-import { useScroll, motion, useTransform } from "framer-motion";
+import { useScroll, motion, useTransform } from "motion/react";
 import { useRef, ReactNode, FC } from "react";
 
 interface ParallaxWrapperProps {
@@ -19,7 +19,7 @@ const ParallaxWrapper: FC<ParallaxWrapperProps> = ({
     target: ref,
     offset: ["start end", "end start"],
   });
-  const translateY = useTransform(scrollYProgress, [0, 1], [start, end]);
+  const translateY = useTransform(scrollYProgress, [0, "300%"], [0, -100]);
 
   return (
     <motion.div className={className} ref={ref} style={{ translateY }}>

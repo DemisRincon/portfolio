@@ -1,5 +1,5 @@
 "use client";
-import { AnimatePresence, motion, useAnimation } from "framer-motion";
+import { AnimatePresence, motion, useAnimation } from "motion/react";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import styled from "styled-components";

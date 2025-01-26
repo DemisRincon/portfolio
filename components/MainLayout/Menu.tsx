@@ -1,5 +1,5 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import useIsMobile from "@/library/hooks/useIsMobile";
 import { useState, FC } from "react";
 import { FaBars } from "react-icons/fa";

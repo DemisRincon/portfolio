@@ -3,7 +3,7 @@ import WrapperFadeIn from "@/components/Motion/WrapperFadeIn";
 import ParallaxWrapper from "@/components/Motion/WrapperParallax";
 import { PageContainer } from "@/components/styled";
 import useIsMobile from "@/library/hooks/useIsMobile";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -11,15 +11,16 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  height: 100vh;
+  flex-direction: column-reverse;
   width: 80%;
   max-width: ${({ theme }) => theme.breakpoints.lg};
   padding: 20px;
+
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     flex-direction: row;
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    height: 100vh;
     justify-content: space-between;
   }
   .full-width {
@@ -31,8 +32,8 @@ const TextContainer = styled.div``;
 
 const ProfileImage = styled(motion.img)`
   border-radius: 50%;
-  width: 300px;
-  height: 300px;
+  max-width: 80vw;
+  height: auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     width: 400px;
@@ -46,11 +47,14 @@ const Heading = styled.h1<{ $color?: string }>`
   box-sizing: border-box;
   display: flex;
   justify-content: start;
-  font-size: 2.3rem;
+  font-size: 10vw;
   width: 100%;
   text-align: left;
+  white-space: nowrap;
+  text-overflow: clip;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: ${({ theme }) => theme.fontSizes.h1};
     padding-top: 30px;
     &:after {
       content: "";
@@ -89,7 +93,7 @@ const Button = styled.button`
 `;
 
 const Strong = styled(motion.strong)`
-  margin: 0 0 0 1rem;
+  margin: 0 0 0 0.5rem;
 `;
 
 const data = {
@@ -132,7 +136,7 @@ const Home = () => {
     <>
       <PageContainer>
         <Container>
-          <ParallaxWrapper className="full-width" start="50%">
+          <ParallaxWrapper className="full-width" start="30%" end="-70%">
             <WrapperFadeIn className="full-width">
               <TextContainer>
                 <SubHeading>{data.subHeading}</SubHeading>
@@ -153,11 +157,11 @@ const Home = () => {
               </TextContainer>
             </WrapperFadeIn>
           </ParallaxWrapper>
-          <ParallaxWrapper end="50%">
-            <WrapperFadeIn>
+          <WrapperFadeIn>
+            <ParallaxWrapper start="-50%" end="50%">
               <ProfileImage src={data.photo} alt="Profile Photo" />
-            </WrapperFadeIn>
-          </ParallaxWrapper>
+            </ParallaxWrapper>
+          </WrapperFadeIn>
         </Container>
       </PageContainer>
       <PageContainer $bgColor="teal">

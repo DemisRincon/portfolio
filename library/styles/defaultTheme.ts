@@ -27,6 +27,15 @@ const fonts = {
   body: poppins.style.fontFamily,
 };
 
+const fontSizes = {
+  h1: "4rem",
+  h2: "3rem",
+  h3: "2rem",
+  h4: "1.5rem",
+  h5: "1.25rem",
+  h6: "1rem",
+  body: "1rem",
+};
 const breakpoints = {
   sm: "640px",
   md: "768px",
@@ -38,6 +47,7 @@ const defaultTheme = {
   colors,
   fonts,
   breakpoints,
+  fontSizes,
 };
 
 export default defaultTheme;

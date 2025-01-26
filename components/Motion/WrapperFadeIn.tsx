@@ -1,6 +1,6 @@
 import { useEffect, FC, ReactNode } from "react";
 import { useInView } from "react-intersection-observer";
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation } from "motion/react";
 import useIsMobile from "@/library/hooks/useIsMobile";
 import styled from "styled-components";
 
