@@ -9,7 +9,7 @@ const SpinnerContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   left: 0;
   width: 100%;

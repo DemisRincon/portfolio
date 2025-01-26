@@ -2,6 +2,7 @@
 import WrapperFadeIn from "@/components/Motion/WrapperFadeIn";
 import ParallaxWrapper from "@/components/Motion/WrapperParallax";
 import { PageContainer } from "@/components/styled";
+import withClientValidation from "@/library/hoc/ClientComponent";
 import useIsMobile from "@/library/hooks/useIsMobile";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
@@ -60,7 +61,7 @@ const Heading = styled.h1<{ $color?: string }>`
     padding-top: 30px;
     &:after {
       content: "";
-      position: absolute;
+      /* position: absolute; */
       bottom: -2.3rem;
       left: 0;
       width: 100%;
@@ -69,7 +70,7 @@ const Heading = styled.h1<{ $color?: string }>`
     }
     &:before {
       content: " ";
-      position: absolute;
+      /* position: absolute; */
       bottom: 7rem;
       left: 0;
       width: 100%;
@@ -187,4 +188,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default withClientValidation(Home);

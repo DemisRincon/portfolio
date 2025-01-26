@@ -28,7 +28,7 @@ const NavItem = styled(motion.li)<{ $isActive?: boolean }>`
   }
 `;
 const FloatingMenuContainer = styled.div`
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   right: 0;
   width: 100%;

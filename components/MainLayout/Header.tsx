@@ -14,7 +14,7 @@ const Header: FC = () => (
 );
 
 const HeaderContainer = styled.header`
-  position: fixed;
+  /* position: fixed; */
   width: 100vw;
   display: flex;
   justify-content: space-between;

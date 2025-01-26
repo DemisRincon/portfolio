@@ -39,17 +39,11 @@ const ParallaxWrapper: FC<ParallaxWrapperProps> = ({
   );
   const { scrollYProgress } = useScroll({
     target: givenRef ?? ref,
-
-    layoutEffect: false,
   });
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     console.log(latest);
   });
-  const scale = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.5, 0.8, 1],
-    [1, 0.8, 0.7, 0.6, 0.5]
-  );
+  const y = useTransform(scrollYProgress, [0, 1], [0, 400]);
 
   useEffect(() => {
     if (givenRef) {
@@ -60,7 +54,7 @@ const ParallaxWrapper: FC<ParallaxWrapperProps> = ({
   if (!newRef) return null;
   return (
     <Container className={className}>
-      <ParallaxDiv ref={newRef} style={{ scale }}>
+      <ParallaxDiv ref={newRef} style={{ y }}>
         {children}
       </ParallaxDiv>
     </Container>
