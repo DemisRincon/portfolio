@@ -2,6 +2,7 @@
 import WrapperFadeIn from "@/components/Motion/WrapperFadeIn";
 import ParallaxWrapper from "@/components/Motion/WrapperParallax";
 import { PageContainer } from "@/components/styled";
+import useParallax from "@/hooks/useParallax";
 import withClientValidation from "@/library/hoc/ClientComponent";
 import useIsMobile from "@/library/hooks/useIsMobile";
 import { AnimatePresence, motion } from "motion/react";
@@ -28,8 +29,7 @@ const Container = styled.div`
   }
 `;
 
-const TextContainer = styled.div`
-  background-color: gainsboro;
+const TextContainer = styled(motion.div)`
   width: 100%;
 `;
 
@@ -142,13 +142,15 @@ const Home = () => {
   }, []);
 
   const isMobile = useIsMobile();
-  const givenRef = useRef<HTMLDivElement>(null!);
+  const { y: yImage } = useParallax([0, 1], [0, -200]);
+  const { y: yText } = useParallax([0, 1], [0, -400]);
+
   return (
     <>
-      <PageContainer ref={givenRef}>
+      <PageContainer>
         <WrapperFadeIn className="full-width">
           <Container>
-            <TextContainer>
+            <TextContainer style={{ y: yText }}>
               <SubHeading>{data.subHeading}</SubHeading>
               <Heading>
                 {data.heading}{" "}
@@ -166,11 +168,15 @@ const Home = () => {
               </Heading>
             </TextContainer>
 
-            <ParallaxWrapper givenRef={givenRef}>
-              <ImageContainer>
-                <ProfileImage src={data.photo} alt="Profile Photo" />
-              </ImageContainer>
-            </ParallaxWrapper>
+            {/* <ParallaxWrapper givenRef={givenRef}> */}
+            <ImageContainer>
+              <ProfileImage
+                src={data.photo}
+                alt="Profile Photo"
+                style={{ y: yImage }}
+              />
+            </ImageContainer>
+            {/* </ParallaxWrapper> */}
           </Container>
         </WrapperFadeIn>
       </PageContainer>

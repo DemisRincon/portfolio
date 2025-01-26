@@ -1,6 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
+html {
+  position: relative;
+}
   body {
     background-color: ${(props) => props.theme.colors.white};
     color: ${(props) => props.theme.colors.black};

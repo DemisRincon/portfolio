@@ -8,6 +8,7 @@ import withClientValidation from "@/library/hoc/ClientComponent";
 import FloatingMenu from "./FloatingMenu";
 
 const Container = styled.div`
+  position: fixed;
   display: flex;
   padding: 1rem;
   z-index: 1000;
