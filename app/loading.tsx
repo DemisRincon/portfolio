@@ -1,17 +1,19 @@
 "use client";
 import { FC } from "react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import styled from "styled-components";
 
-const SpinnerContainer = styled.div`
+const SpinnerContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  /* position: absolute; */
+  position: absolute;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
   background-color: white;
   z-index: 1000;
@@ -35,13 +37,19 @@ const LoadingText = styled.h1`
 
 const Loading: FC = () => {
   return (
-    <SpinnerContainer>
-      <Spinner
-        animate={{ rotate: 360 }}
-        transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-      />
-      <LoadingText>Loading...</LoadingText>
-    </SpinnerContainer>
+    <AnimatePresence mode="wait">
+      <SpinnerContainer
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0, transition: { duration: 0.5 } }}
+      >
+        <Spinner
+          animate={{ rotate: 360 }}
+          transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+        />
+        <LoadingText>Loading...</LoadingText>
+      </SpinnerContainer>
+    </AnimatePresence>
   );
 };
 

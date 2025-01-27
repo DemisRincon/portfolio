@@ -37,7 +37,18 @@ query{
               middleHeadColor
               button
             }
-
+            ...on IconWall{
+              _id
+              __typename
+              orderInPage
+              title
+              slug
+              collection
+              name
+              bgColor
+              showName
+              fontColor
+            }
 
             
 
