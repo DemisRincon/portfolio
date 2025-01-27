@@ -11,74 +11,61 @@ const Container = styled.div`
   justify-content: center;
   flex-direction: column-reverse;
   width: 100%;
+  min-width: 100%;
   height: 100%;
   max-width: ${({ theme }) => theme.breakpoints.lg};
   padding: 0;
-
+  white-space: nowrap;
+  text-overflow: clip;
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    justify-content: space-between;
-  }
-  .full-width {
-    width: 100%;
+    justify-content: space-around;
+    flex-direction: row;
   }
 `;
 
 const TextContainer = styled(motion.div)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 100%;
   height: 50%;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    height: 100%;
+    width: 40%;
+  }
+  @media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
+    width: 30%;
+  }
 `;
 
-const ProfileImage = styled(motion.img)`
-  border-radius: 50%;
-  max-width: 80%;
-  height: auto;
-  width: auto;
-  max-height: 80%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+const SubHeading = styled.p`
+  font-size: 1.8rem;
+  color: ${({ theme }) => theme.colors.grey};
+  text-align: center;
+  width: 100%;
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: 2rem;
+  }
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    text-align: justify;
+    font-size: 2.2rem;
+  }
 `;
 
 const Heading = styled.h1<{ $color?: string }>`
   color: ${({ theme, $color }) =>
     $color ? theme.colors[$color] : theme.colors.black};
   box-sizing: border-box;
-  font-size: 3em;
+  font-size: 2.3rem;
   width: 100%;
-  text-align: left;
   display: flex;
-  /* white-space: nowrap;
-  text-overflow: clip; */
-
+  white-space: nowrap;
+  text-overflow: clip;
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     font-size: ${({ theme }) => theme.fontSizes.h1};
     padding-top: 30px;
-  }
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    /* &:after {
-      content: "";
-      position: absolute;
-      bottom: -2.3rem;
-      left: 0;
-      width: 100%;
-      height: 100px;
-      background: ${(props) => props.theme.colors.white};
-    }
-    &:before {
-      content: " ";
-      position: absolute;
-      bottom: 7rem;
-      left: 0;
-      width: 100%;
-      height: 50px;
-      background: ${(props) => props.theme.colors.white};
-    } */
-  }
-`;
-
-const SubHeading = styled.p`
-  font-size: 1.5rem;
-  color: ${({ theme }) => theme.colors.grey};
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    font-size: 2rem;
   }
 `;
 
@@ -95,6 +82,19 @@ const ImageContainer = styled.div`
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     height: 70%;
   }
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    height: 100%;
+    width: 40%;
+  }
+`;
+
+const ProfileImage = styled(motion.img)`
+  border-radius: 50%;
+  max-width: 80%;
+  height: auto;
+  width: auto;
+  max-height: 80%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
 interface Image {
@@ -118,7 +118,7 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
 }) => {
   const [middleHeadingIndex, setMiddleHeadingIndex] = useState(0);
 
-  const { y: yImage } = useParallax([0, 1], [0, -200]);
+  const { y: yImage } = useParallax([0, 1], [0, 200]);
 
   useEffect(() => {
     const interval = setInterval(() => {

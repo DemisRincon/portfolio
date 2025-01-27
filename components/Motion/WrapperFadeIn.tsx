@@ -10,7 +10,6 @@ export const MotionDiv = styled(motion.div)`
   align-items: center;
   width: 100%;
   height: 100%;
-
   box-sizing: border-box;
 `;
 

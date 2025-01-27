@@ -12,11 +12,9 @@ const Container = styled.div`
   height: 100%;
   max-width: ${({ theme }) => theme.breakpoints.lg};
   padding: 0;
+
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     justify-content: space-between;
-  }
-  .full-width {
-    width: 100%;
   }
 `;
 
@@ -91,7 +89,7 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
   return (
     <PageContainer $isFirstElement={orderInPage === 1} $bgColor={bgColor}>
       <Container>
-        <WrapperFadeIn>
+        <WrapperFadeIn className="full-width">
           <ButtonContainer>
             <Button onClick={() => alert("Button clicked!")}>
               {subHeading}
