@@ -27,7 +27,12 @@ interface PageBuilderProps {
             endHeading?: string;
             fontColor?: string;
             orderInPage: number;
-            button?: JSON;
+            button?: {
+              text: string;
+              bgColor: string;
+              url: string;
+              color: string;
+            };
           }[];
         };
       }[];
@@ -51,7 +56,12 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
             endHeading?: string;
             fontColor?: string;
             orderInPage: number;
-            button?: JSON;
+            button?: {
+              text: string;
+              bgColor: string;
+              url: string;
+              color: string;
+            };
           }[];
         };
       }[];
@@ -93,7 +103,9 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
               endHeading={rest.endHeading || ""}
               orderInPage={rest.orderInPage}
               fontColor={rest.fontColor}
-              button={rest.button}
+              button={
+                rest.button || { text: "", bgColor: "", url: "", color: "" }
+              }
             />
           );
         default:
