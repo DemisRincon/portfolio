@@ -3,7 +3,6 @@ import { PageContainer } from "./styled";
 import WrapperFadeIn from "./Motion/WrapperFadeIn";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
-import useIsMobile from "@/library/hooks/useIsMobile";
 import useParallax from "@/library/hooks/useParallax";
 
 const Container = styled.div`
@@ -42,20 +41,19 @@ const Heading = styled.h1<{ $color?: string }>`
   color: ${({ theme, $color }) =>
     $color ? theme.colors[$color] : theme.colors.black};
   box-sizing: border-box;
-  display: flex;
-  justify-content: start;
-  font-size: 2em;
+  font-size: 3em;
   width: 100%;
   text-align: left;
-  white-space: nowrap;
-  text-overflow: clip;
+  display: flex;
+  /* white-space: nowrap;
+  text-overflow: clip; */
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     font-size: ${({ theme }) => theme.fontSizes.h1};
     padding-top: 30px;
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    &:after {
+    /* &:after {
       content: "";
       position: absolute;
       bottom: -2.3rem;
@@ -72,7 +70,7 @@ const Heading = styled.h1<{ $color?: string }>`
       width: 100%;
       height: 50px;
       background: ${(props) => props.theme.colors.white};
-    }
+    } */
   }
 `;
 
@@ -119,7 +117,7 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
   orderInPage,
 }) => {
   const [middleHeadingIndex, setMiddleHeadingIndex] = useState(0);
-  const isMobile = useIsMobile();
+
   const { y: yImage } = useParallax([0, 1], [0, -200]);
 
   useEffect(() => {
@@ -131,7 +129,7 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
 
     return () => clearInterval(interval);
   }, [middleHeading.length]);
-  console.log(orderInPage);
+
   return (
     <PageContainer $isFirstElement={orderInPage === 1 ? true : false}>
       <WrapperFadeIn>
@@ -141,15 +139,15 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
             <Heading>
               {heading}{" "}
               <AnimatePresence mode="wait">
-                <Strong
-                  key={middleHeadingIndex}
-                  initial={{ opacity: 0, y: isMobile ? -10 : -50 }}
+                <motion.div
+                  key={middleHeading[middleHeadingIndex]}
+                  initial={{ opacity: 0, y: -30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: isMobile ? 10 : 100 }}
-                  transition={{ duration: 0.1, ease: "linear" }}
+                  exit={{ opacity: 0, y: 30 }}
+                  transition={{ duration: 0.1 }}
                 >
-                  {middleHeading[middleHeadingIndex]}
-                </Strong>
+                  <Strong>{middleHeading[middleHeadingIndex]}</Strong>
+                </motion.div>
               </AnimatePresence>
             </Heading>
           </TextContainer>
