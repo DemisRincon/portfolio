@@ -1,12 +1,14 @@
 "use client";
 import WrapperFadeIn from "@/components/Motion/WrapperFadeIn";
-import ParallaxWrapper from "@/components/Motion/WrapperParallax";
+import PageBuilder from "@/components/PageBuilder";
 import { PageContainer } from "@/components/styled";
-import useParallax from "@/hooks/useParallax";
+import useParallax from "@/library/hooks/useParallax";
+import fetchTool, { FetchType } from "@/library/contentful/fetchTool";
+import { getPageBySlug } from "@/library/contentful/querys";
 import withClientValidation from "@/library/hoc/ClientComponent";
 import useIsMobile from "@/library/hooks/useIsMobile";
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -107,7 +109,7 @@ const ImageContainer = styled.div`
   height: 100%;
 `;
 
-const data = {
+const data3 = {
   heading: "I'm a ",
   middleHeading: [
     " software engineer",
@@ -128,18 +130,20 @@ const data2 = {
   endHeading: " I have been involved in.",
   subHeading: "Projects",
 };
+
 const Home = () => {
+  const data = fetchTool(getPageBySlug("/"), FetchType.dynamicData);
   const [middleHeadingIndex, setMiddleHeadingIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setMiddleHeadingIndex(
-        (prevIndex) => (prevIndex + 1) % data.middleHeading.length
-      );
-    }, 3000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setMiddleHeadingIndex(
+  //       (prevIndex) => (prevIndex + 1) % data.middleHeading.length
+  //     );
+  //   }, 3000);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   const isMobile = useIsMobile();
   const { y: yImage } = useParallax([0, 1], [0, -200]);
@@ -147,37 +151,9 @@ const Home = () => {
 
   return (
     <>
-      <PageContainer>
-        <WrapperFadeIn className="full-width">
-          <Container>
-            <TextContainer style={{ y: yText }}>
-              <SubHeading>{data.subHeading}</SubHeading>
-              <Heading>
-                {data.heading}{" "}
-                <AnimatePresence mode="wait">
-                  <Strong
-                    key={data.middleHeading[middleHeadingIndex]}
-                    initial={{ opacity: 0, y: isMobile ? -10 : -50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: isMobile ? 10 : 100 }}
-                    transition={{ duration: 0.1, ease: "linear" }}
-                  >
-                    {data.middleHeading[middleHeadingIndex]}
-                  </Strong>
-                </AnimatePresence>
-              </Heading>
-            </TextContainer>
+      <PageBuilder data={data} />
 
-            {/* <ParallaxWrapper givenRef={givenRef}> */}
-            <ImageContainer>
-              <ProfileImage
-                src={data.photo}
-                alt="Profile Photo"
-                style={{ y: yImage }}
-              />
-            </ImageContainer>
-            {/* </ParallaxWrapper> */}
-          </Container>
+      {/* </Container>
         </WrapperFadeIn>
       </PageContainer>
       <PageContainer $bgColor="teal">
@@ -189,7 +165,7 @@ const Home = () => {
             <Heading $color="white"></Heading>
           </WrapperFadeIn>
         </Container>
-      </PageContainer>
+      </PageContainer> */}
     </>
   );
 };

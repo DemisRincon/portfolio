@@ -20,6 +20,7 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  height: 80px;
   box-sizing: border-box;
   top: 0;
   left: 0;

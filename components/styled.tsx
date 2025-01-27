@@ -3,9 +3,11 @@ import styled from "styled-components";
 
 interface PageContainerProps {
   $bgColor?: string;
+  $isFirstElement?: boolean;
 }
 
 export const PageContainer = styled.div<PageContainerProps>`
+  ${({ $isFirstElement }) => $isFirstElement && `margin-top: 100px;`}
   display: flex;
   justify-content: center;
   align-items: center;
