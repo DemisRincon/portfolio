@@ -27,6 +27,9 @@ const HeaderContainer = styled.header`
   right: 0;
   background-color: ${({ theme }) => theme.colors.white};
   z-index: 1000;
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    padding: 1rem 2rem;
+  }
 `;
 
 const Title = styled.h2`

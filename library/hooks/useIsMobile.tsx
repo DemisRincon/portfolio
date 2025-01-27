@@ -4,7 +4,7 @@ const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   const handleResize = useCallback(() => {
-    setIsMobile(window.innerWidth <= 768);
+    setIsMobile(window.innerWidth <= 1024);
   }, []);
 
   useEffect(() => {

@@ -35,6 +35,7 @@ query{
               bgColor
               fontColor
               middleHeadColor
+              button
             }
 
 
