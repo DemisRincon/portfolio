@@ -19,7 +19,13 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  box-sizing: border-box;
+  max-width: 100%;
+`;
+
+const Header = styled.h1`
+  color: ${({ theme }) => theme.colors.black};
+  font-size: 2rem;
+  text-align: center;
 `;
 
 const CarrouseImageWithLink: React.FC<CarrouseImageWithLinkProps> = ({
@@ -44,7 +50,7 @@ const CarrouseImageWithLink: React.FC<CarrouseImageWithLinkProps> = ({
     <PageContainerAdjusted>
       <WrapperFadeIn>
         <Container title={title}>
-          <h1>{name}</h1>
+          <Header>{name}</Header>
           {data && <InfiniteCarousel data={data} />}
         </Container>
       </WrapperFadeIn>

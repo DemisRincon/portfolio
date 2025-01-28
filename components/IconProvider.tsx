@@ -31,7 +31,9 @@ const Wrapper = styled.div`
 
 const Name = styled.h4<{ color?: string; size: string }>`
   color: ${({ color, theme }) => theme.colors[color || "black"]};
+  margin: 0;
   margin-left: 0.5rem;
+
   font-size: ${({ size }) => size};
   white-space: nowrap;
   text-overflow: clip;

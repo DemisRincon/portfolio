@@ -26,11 +26,21 @@ const Header = styled.h1<{ color?: string }>`
   text-align: center;
 `;
 
+const ContainerGrid = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+`;
+
 const IconsGrid = styled(motion.div)`
   display: grid;
   justify-content: center;
   align-items: center;
-  grid-template-columns: repeat(2, 1fr);
+  box-sizing: border-box;
+  grid-template-columns: repeat(1, 1fr);
   grid-gap: 1rem;
   width: 100%;
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
@@ -59,16 +69,18 @@ const IconWall: React.FC<IconWallProps> = React.memo(
           <HeaderContainer>
             <Header color={fontColor}>{name}</Header>
           </HeaderContainer>
-          <IconsGrid style={{ scale }}>
-            {collection.map((icon, index) => (
-              <IconProvider
-                key={index}
-                name={icon}
-                $showName={showName}
-                $color={fontColor}
-              />
-            ))}
-          </IconsGrid>
+          <ContainerGrid>
+            <IconsGrid style={{ scale }}>
+              {collection.map((icon, index) => (
+                <IconProvider
+                  key={index}
+                  name={icon}
+                  $showName={showName}
+                  $color={fontColor}
+                />
+              ))}
+            </IconsGrid>
+          </ContainerGrid>
         </Container>
       </PageContainerAdjusted>
     );

@@ -40,12 +40,15 @@ const Button = styled(motion.button)<{ $bgColor?: string; $color?: string }>`
   padding: 10px 30px;
   border: none;
   border-radius: 5px;
-  font-size: 3rem;
+  font-size: 2rem;
   height: 100px;
   background-color: ${({ theme, $bgColor }) =>
     $bgColor ? theme.colors[$bgColor] : theme.colors.black};
   color: ${({ theme, $color }) =>
     $color ? theme.colors[$color] : theme.colors.white};
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    font-size: 3rem;
+  }
 `;
 
 const HeadingContainer = styled(motion.div)`
@@ -67,12 +70,11 @@ const Heading = styled.h1<{ $color?: string }>`
   box-sizing: border-box;
   display: block;
   font-size: 4rem;
-
   text-align: center;
   box-sizing: border-box;
   margin: 0;
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    font-size: 6rem;
+    font-size: 5rem;
     padding-top: 30px;
   }
 `;
