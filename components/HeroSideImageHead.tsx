@@ -107,6 +107,8 @@ interface HeroSideImageHeadProps {
   middleHeading: string[];
   image: Image;
   orderInPage: number;
+  bgColor: string;
+  fontColor: string;
 }
 
 const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
@@ -115,6 +117,8 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
   middleHeading,
   image: { url },
   orderInPage,
+  bgColor,
+  fontColor,
 }) => {
   const [middleHeadingIndex, setMiddleHeadingIndex] = useState(0);
 
@@ -130,9 +134,8 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
     return () => clearInterval(interval);
   }, [middleHeading.length]);
 
-  console.log("HeroSideImageHead", orderInPage === 1);
   return (
-    <PageContainer $isFirstElement={orderInPage === 1}>
+    <PageContainer $bgColor={bgColor} $isFirstElement={orderInPage === 1}>
       <WrapperFadeIn>
         <Container>
           <TextContainer>

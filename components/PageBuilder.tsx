@@ -82,7 +82,6 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
   if (!resolvedData) {
     return <div>hello</div>;
   }
-  console.log(resolvedData);
 
   const pages =
     resolvedData.pageCollection?.items[0].blocksCollection.items.map(
@@ -98,6 +97,8 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
                 middleHeading={rest.middleHeading || []}
                 image={rest.image}
                 orderInPage={rest.orderInPage}
+                bgColor={rest.bgColor || ""}
+                fontColor={rest.fontColor || ""}
               />
             );
 

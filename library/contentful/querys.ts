@@ -20,7 +20,22 @@ query{
               image{
                 url
               }
+              bgColor
+              fontColor
             }
+               ...on IconWall{
+              _id
+              __typename
+              orderInPage
+              title
+              slug
+              collection
+              name
+              bgColor
+              showName
+              fontColor
+            }
+
             ...on HeroWithTitleButton{
               _id
               __typename
@@ -37,21 +52,31 @@ query{
               middleHeadColor
               button
             }
-            ...on IconWall{
-              _id
-              __typename
-              orderInPage
-              title
-              slug
-              collection
-              name
-              bgColor
-              showName
-              fontColor
+            ... on ImageCarouselWithLinks {
+            _id
+            slug
+            title
+            name
             }
+          }
+        }
+      }
+    }
+  }
+}`;
 
-            
-
+export const getImageCarousel = (slug: string) => `
+query{
+  imageCarouselWithLinksCollection(where: {slug: "${slug}"}) {
+    items {
+      _id
+      slug
+      title
+      name
+      imagesCollection {
+        items {
+          ... on ImageWithContent {
+            _id
           }
         }
       }

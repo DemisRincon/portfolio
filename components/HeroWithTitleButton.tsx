@@ -34,13 +34,12 @@ const Button = styled(motion.button)<{ $bgColor?: string; $color?: string }>`
   padding: 10px 30px;
   border: none;
   border-radius: 5px;
+  font-size: 3rem;
+  height: 100px;
   background-color: ${({ theme, $bgColor }) =>
     $bgColor ? theme.colors[$bgColor] : theme.colors.black};
   color: ${({ theme, $color }) =>
     $color ? theme.colors[$color] : theme.colors.white};
-  font-size: 3rem;
-  cursor: pointer;
-  height: 100px;
 `;
 
 const HeadingContainer = styled(motion.div)`
@@ -73,10 +72,6 @@ const Heading = styled.h1<{ $color?: string }>`
 const Span = styled(motion.span)<{ $color?: string }>`
   color: ${({ theme, $color }) =>
     $color ? theme.colors[$color] : theme.colors.black};
-  &:hover {
-    cursor: pointer;
-    color: ${({ theme }) => theme.colors.blue};
-  }
 `;
 
 interface HeroWithTitleButtonProps {
@@ -102,8 +97,7 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
   orderInPage,
   button,
 }) => {
-  const { y } = useTransformOnScroll([0, 1], [80, -50]);
-  const { y: headingScale } = useTransformOnScroll([0, 0.7, 1], [1, 1.2, 0.6]);
+  const { y: headingScale } = useTransformOnScroll([0, 0.9, 1], [1, 1.2, 0.7]);
   const { y: yButton } = useTransformOnScroll([0, 0.7, 1], [0.5, 0.8, 1]);
   return (
     <PageContainer $isFirstElement={orderInPage === 1} $bgColor={bgColor}>
@@ -114,21 +108,21 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
               onClick={() => (window.location.href = button.url)}
               $bgColor={button.bgColor}
               $color={button.color}
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.2, cursor: "pointer" }}
               title={`Click to go to ${subHeading}`}
-              style={{ scale: yButton }}
+              style={{ y: yButton }}
             >
               {button.text}
             </Button>
           </ButtonContainer>
         </WrapperFadeIn>
         <WrapperFadeIn>
-          <HeadingContainer style={{ y, scale: headingScale }}>
+          <HeadingContainer style={{ scale: headingScale }}>
             <Heading $color={fontColor}>
               {heading}{" "}
               <Span
                 title={`Click to go to ${button.text}`}
-                whileHover={{ scale: 1.3, y: 20 }}
+                whileHover={{ scale: 1.3, y: 20, cursor: "pointer" }}
                 $color={middleHeadColor}
               >
                 {middleHeading[0]}
