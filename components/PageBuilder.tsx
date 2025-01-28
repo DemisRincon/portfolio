@@ -1,9 +1,8 @@
-import React, { Suspense } from "react";
+import React from "react";
 import HeroSideImageHead from "./HeroSideImageHead";
 import HeroWithTitleButton from "./HeroWithTitleButton";
 import IconWall from "./IconWall";
 import CarrouseImageWithLink from "./CarrouseImageWithLink";
-import Loading from "@/app/loading";
 
 type Image = {
   url: string;
@@ -147,6 +146,7 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
               />
             );
           default:
+            console.log("No component found", pageData);
             return null;
         }
       }

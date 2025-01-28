@@ -37,7 +37,7 @@ const LoadingText = styled.h1`
 
 const Loading: FC = () => {
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence>
       <SpinnerContainer
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

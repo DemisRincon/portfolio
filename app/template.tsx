@@ -1,8 +1,7 @@
 import { MainContent } from "@/components/MainLayout";
-import { PageContainer } from "@/components/styled";
 import React from "react";
 
-const template = ({ children }) => {
+const template: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return <MainContent>{children}</MainContent>;
 };
 

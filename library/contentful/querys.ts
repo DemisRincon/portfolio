@@ -1,6 +1,6 @@
 export const getPageBySlug = (slug: string) => `
-query{
-    pageCollection(where:{slug:"${slug}"}, limit: 1) {
+query {
+  pageCollection(where: { slug: "${slug}" }, limit: 1) {
     items {
       slug
       name
@@ -9,22 +9,22 @@ query{
           items {
             ... on HeroSideImageHead {
               _id
-               __typename
+              __typename
               orderInPage
               slug
-              name           
+              name
               heading
               endHeading
               middleHeading
               subHeading
               sliceText
-              image{
+              image {
                 url
               }
               bgColor
               fontColor
             }
-               ...on IconWall{
+            ... on IconWall {
               _id
               __typename
               orderInPage
@@ -36,8 +36,7 @@ query{
               showName
               fontColor
             }
-
-            ...on HeroWithTitleButton{
+            ... on HeroWithTitleButton {
               _id
               __typename
               name
@@ -54,11 +53,27 @@ query{
               button
             }
             ... on ImageCarouselWithLinks {
-            _id
-            __typename
-            slug
-            title
-            name
+              _id
+              __typename
+              slug
+              title
+              name
+            }
+            ... on ProfesionalProjectCard {
+              slug
+              title
+              name
+              bgColor
+              fontColor
+              url
+              description
+              enterprise
+              enterpriseImage {
+                url
+              }
+              productPhoto {
+                url
+              }
             }
           }
         }
@@ -68,18 +83,18 @@ query{
 }`;
 
 export const getImageCarousel = (slug: string) => `
-query{
-  imageCarouselWithLinks(id:"${slug}"){
-    imagesCollection{
-        items{
-          ...on ImageWithContent{
+query {
+  imageCarouselWithLinks(id: "${slug}") {
+    imagesCollection {
+      items {
+        ... on ImageWithContent {
+          url
+          name
+          image {
             url
-            name
-            image{
-              url
-            }
           }
         }
+      }
     }
   }
 }`;
