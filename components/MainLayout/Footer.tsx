@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PageContainerAdjusted, PageFreeSpace } from "../styled";
+import { PageFreeSpace } from "../styled";
 
 const FooterContainer = styled.div`
   display: grid;
