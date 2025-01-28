@@ -16,7 +16,7 @@ export const PageContainer = styled.div<PageContainerProps>`
   padding: 0 20px;
   margin: 0;
 
-  ${({ $isFirstElement }) => $isFirstElement && `margin-top: 100px;`}
+  ${({ $isFirstElement }) => $isFirstElement && `margin-top: 60px;`}
   ${({ $bgColor, theme }) =>
     $bgColor && `background-color: ${theme.colors[$bgColor]};`}
 `;

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { Suspense } from "react";
 import HeroSideImageHead from "./HeroSideImageHead";
 import HeroWithTitleButton from "./HeroWithTitleButton";
 import IconWall from "./IconWall";
 import CarrouseImageWithLink from "./CarrouseImageWithLink";
+import Loading from "@/app/loading";
 
 type Image = {
   url: string;
@@ -75,6 +76,7 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
             showName?: boolean;
             slug?: string;
             title?: string;
+            sliceText?: boolean;
           }[];
         };
       }[];
@@ -85,12 +87,8 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
     data.then(setResolvedData);
   }, [data]);
 
-  if (!resolvedData) {
-    return <div>hello</div>;
-  }
-
   const pages =
-    resolvedData.pageCollection?.items[0].blocksCollection.items.map(
+    resolvedData?.pageCollection?.items[0].blocksCollection.items.map(
       (pageData) => {
         const { __typename, _id, ...rest } = pageData;
         switch (__typename) {
@@ -105,6 +103,8 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
                 orderInPage={rest.orderInPage}
                 bgColor={rest.bgColor || ""}
                 fontColor={rest.fontColor || ""}
+                sliceText={rest.sliceText || false}
+                endHeading={rest.endHeading || ""}
               />
             );
 

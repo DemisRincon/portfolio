@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { PageContainer } from "./styled";
 import WrapperFadeIn from "./Motion/WrapperFadeIn";
 import { motion } from "framer-motion";
-import useTransformOnScroll from "@/library/hooks/useTransformOnScroll";
+import useTransformOnScroll from "@/library/hooks/useParallax";
 
 const Container = styled.div`
   display: flex;

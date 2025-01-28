@@ -41,8 +41,6 @@ const Carrusel = styled(motion.div)`
 const InfiniteCarousel: React.FC<{ data: ImageItemInterface[] }> = ({
   data,
 }) => {
-  console.log(data);
-
   const carouselData = data.map((item) => (
     <Card
       key={item.name}

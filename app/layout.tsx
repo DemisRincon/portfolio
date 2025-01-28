@@ -1,7 +1,8 @@
 import MainLayout from "@/components/MainLayout";
 import Providers from "@/library/providers";
 import type { Metadata } from "next";
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
+import Loading from "./loading";
 
 export const metadata: Metadata = {
   title: "Portfolio Demis Rincon",
@@ -11,11 +12,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body>
-        <Providers>
-          <MainLayout>{children}</MainLayout>
-        </Providers>
-      </body>
+      <Suspense fallback={<Loading />}>
+        <body>
+          <Providers>
+            <MainLayout>{children}</MainLayout>
+          </Providers>
+        </body>
+      </Suspense>
     </html>
   );
 }

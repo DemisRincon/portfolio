@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { PageContainerAdjusted } from "./styled";
 import IconProvider from "./IconProvider";
-import useTransformOnScroll from "@/library/hooks/useTransformOnScroll";
+import useTransformOnScroll from "@/library/hooks/useParallax";
 import { motion } from "framer-motion";
 
 const Container = styled.div`

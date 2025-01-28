@@ -17,6 +17,7 @@ query{
               endHeading
               middleHeading
               subHeading
+              sliceText
               image{
                 url
               }

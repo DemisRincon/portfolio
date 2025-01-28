@@ -3,7 +3,7 @@ import { PageContainer } from "./styled";
 import WrapperFadeIn from "./Motion/WrapperFadeIn";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
-import useTransformOnScroll from "../library/hooks/useTransformOnScroll";
+import useTransformOnScroll from "../library/hooks/useParallax";
 
 const Container = styled.div`
   display: flex;
@@ -54,7 +54,7 @@ const SubHeading = styled.p`
   }
 `;
 
-const Heading = styled.h1<{ $color?: string }>`
+const Heading = styled.h1<{ $color?: string; $sliceText?: boolean }>`
   color: ${({ theme, $color }) =>
     $color ? theme.colors[$color] : theme.colors.black};
   box-sizing: border-box;
@@ -63,6 +63,7 @@ const Heading = styled.h1<{ $color?: string }>`
   display: flex;
   white-space: nowrap;
   text-overflow: clip;
+  ${({ $sliceText }) => $sliceText && `flex-direction: column;`}
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     font-size: ${({ theme }) => theme.fontSizes.h1};
     padding-top: 30px;
@@ -89,12 +90,14 @@ const ImageContainer = styled.div`
 `;
 
 const ProfileImage = styled(motion.img)`
-  border-radius: 50%;
-  max-width: 80%;
-  height: auto;
-  width: auto;
-  max-height: 80%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  position: relative;
+  max-width: 80%;
+  max-height: 80%;
+  overflow: hidden;
+  border-radius: 50%;
+  object-fit: cover;
 `;
 
 interface Image {
@@ -109,6 +112,8 @@ interface HeroSideImageHeadProps {
   orderInPage: number;
   bgColor: string;
   fontColor: string;
+  sliceText?: boolean;
+  endHeading?: string;
 }
 
 const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
@@ -119,10 +124,12 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
   orderInPage,
   bgColor,
   fontColor,
+  sliceText,
+  endHeading,
 }) => {
   const [middleHeadingIndex, setMiddleHeadingIndex] = useState(0);
 
-  const { y: yImage } = useTransformOnScroll([0, 1], [1, 0]);
+  const { y: yImage } = useTransformOnScroll([0, 1], [1, 0.7]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -140,7 +147,7 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
         <Container>
           <TextContainer>
             <SubHeading>{subHeading}</SubHeading>
-            <Heading $color={fontColor}>
+            <Heading $color={fontColor} $sliceText={sliceText}>
               {heading}{" "}
               <AnimatePresence mode="wait">
                 <motion.div
@@ -152,7 +159,8 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
                 >
                   <Strong>{middleHeading[middleHeadingIndex]}</Strong>
                 </motion.div>
-              </AnimatePresence>
+              </AnimatePresence>{" "}
+              {endHeading}
             </Heading>
           </TextContainer>
 

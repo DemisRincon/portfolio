@@ -1,14 +1,16 @@
 "use client";
-import { PageContainer } from "@/components/styled";
-import WrapperFadeIn from "@/components/Motion/WrapperFadeIn";
-import { FC } from "react";
 
-const Projects: FC = () => (
-  <PageContainer>
-    <WrapperFadeIn>
-      <h1>Projects</h1>
-    </WrapperFadeIn>
-  </PageContainer>
-);
+import PageBuilder from "@/components/PageBuilder";
+import fetchTool, { FetchType } from "@/library/contentful/fetchTool";
+import { getPageBySlug } from "@/library/contentful/querys";
+import { Fragment } from "react";
+const Projects = () => {
+  const data = fetchTool(getPageBySlug("/projects"), FetchType.dynamicData);
+  return (
+    <Fragment>
+      <PageBuilder data={data} />
+    </Fragment>
+  );
+};
 
 export default Projects;
