@@ -11,6 +11,7 @@ interface ImageProps {
   width?: string;
   height?: string;
   $horizontalmargin?: string;
+  onClick?: () => void;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -19,9 +20,13 @@ const Card: React.FC<CardProps> = ({
   width,
   height,
   $horizontalmargin,
+  onClick,
 }) => {
   return (
-    <ImageContainer whileHover={{ scale: 1.1, cursor: "pointer", y: -30 }}>
+    <ImageContainer
+      whileHover={{ scale: 1.1, cursor: "pointer", y: -30 }}
+      onClick={onClick}
+    >
       <Image
         src={image}
         alt="Hapkido"

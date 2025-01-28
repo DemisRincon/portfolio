@@ -59,6 +59,7 @@ const InfiniteCarousel: React.FC<{ data: ImageItemInterface[] }> = ({
       $horizontalmargin="10px"
       width="200px"
       height="auto"
+      onClick={() => window.open(item.url)}
     />
   ));
 
