@@ -140,7 +140,7 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
         <Container>
           <TextContainer>
             <SubHeading>{subHeading}</SubHeading>
-            <Heading>
+            <Heading $color={fontColor}>
               {heading}{" "}
               <AnimatePresence mode="wait">
                 <motion.div

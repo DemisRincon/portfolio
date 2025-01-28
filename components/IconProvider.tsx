@@ -16,8 +16,10 @@ import styled from "styled-components";
 import cucumbericon from "@/library/assets/icons/cucumber.svg";
 import nightwatchicon from "@/library/assets/icons/nightwatch.svg";
 import SVG from "react-inlinesvg";
+import useIsMobile from "@/library/hooks/useIsMobile";
 
-const size = "2rem";
+const desktopSize = "2rem";
+const mobileSize = "2.5rem";
 
 const Wrapper = styled.div`
   display: flex;
@@ -27,10 +29,10 @@ const Wrapper = styled.div`
   box-sizing: border-box;
 `;
 
-const Name = styled.h4<{ color?: string }>`
+const Name = styled.h4<{ color?: string; size: string }>`
   color: ${({ color, theme }) => theme.colors[color || "black"]};
   margin-left: 0.5rem;
-  font-size: ${size};
+  font-size: ${({ size }) => size};
   white-space: nowrap;
   text-overflow: clip;
 `;
@@ -49,29 +51,33 @@ const Icon = styled(SVG)<{ size: string; color: string }>`
   }
 `;
 
-const iconMap: Record<string, (color: string) => JSX.Element> = {
-  react: (color) => <FaReact size={size} color={color} />,
-  next: (color) => <RiNextjsFill size={size} color={color} />,
-  "react native": (color) => <TbBrandReactNative size={size} color={color} />,
-  "styled components": (color) => (
+const iconMap: Record<string, (color: string, size: string) => JSX.Element> = {
+  react: (color, size) => <FaReact size={size} color={color} />,
+  next: (color, size) => <RiNextjsFill size={size} color={color} />,
+  "react native": (color, size) => (
+    <TbBrandReactNative size={size} color={color} />
+  ),
+  "styled components": (color, size) => (
     <SiStyledcomponents size={size} color={color} />
   ),
-  "framer motion": (color) => <TbBrandFramerMotion size={size} color={color} />,
-  node: (color) => <FaNodeJs size={size} color={color} />,
-  express: (color) => <SiExpress size={size} color={color} />,
-  mongodb: (color) => <SiMongodb size={size} color={color} />,
-  mysql: (color) => <GrMysql size={size} color={color} />,
-  postman: (color) => <SiPostman size={size} color={color} />,
-  newman: (color) => <SiPostman size={size} color={color} />,
-  SiCucumber: (color) => <SiPostman size={size} color={color} />,
-  jest: (color) => <SiJest size={size} color={color} />,
-  github: (color) => <FaGithub size={size} color={color} />,
-  netlify: (color) => <BiLogoNetlify size={size} color={color} />,
-  contentful: (color) => <SiContentful size={size} color={color} />,
-  cucumber: (color) => (
+  "framer motion": (color, size) => (
+    <TbBrandFramerMotion size={size} color={color} />
+  ),
+  node: (color, size) => <FaNodeJs size={size} color={color} />,
+  express: (color, size) => <SiExpress size={size} color={color} />,
+  mongodb: (color, size) => <SiMongodb size={size} color={color} />,
+  mysql: (color, size) => <GrMysql size={size} color={color} />,
+  postman: (color, size) => <SiPostman size={size} color={color} />,
+  newman: (color, size) => <SiPostman size={size} color={color} />,
+  SiCucumber: (color, size) => <SiPostman size={size} color={color} />,
+  jest: (color, size) => <SiJest size={size} color={color} />,
+  github: (color, size) => <FaGithub size={size} color={color} />,
+  netlify: (color, size) => <BiLogoNetlify size={size} color={color} />,
+  contentful: (color, size) => <SiContentful size={size} color={color} />,
+  cucumber: (color, size) => (
     <Icon src={cucumbericon.src} size={size} color={color} />
   ),
-  nightwatch: (color) => (
+  nightwatch: (color, size) => (
     <Icon src={nightwatchicon.src} size={size} color={color} />
   ),
 };
@@ -81,12 +87,21 @@ const IconProvider: React.FC<IconProviderProps> = ({
   $showName = false,
   $color = "black",
 }) => {
-  const icon = iconMap[name] ? iconMap[name]($color) : <span>📚</span>;
+  const isMobile = useIsMobile();
+  const icon = iconMap[name] ? (
+    iconMap[name]($color, isMobile ? mobileSize : desktopSize)
+  ) : (
+    <span>📚</span>
+  );
 
   return (
     <Wrapper>
       {icon}
-      {$showName && <Name color={$color}>{name}</Name>}
+      {$showName && (
+        <Name color={$color} size={isMobile ? mobileSize : desktopSize}>
+          {name}
+        </Name>
+      )}
     </Wrapper>
   );
 };

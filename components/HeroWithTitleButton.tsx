@@ -14,17 +14,23 @@ const Container = styled.div`
   height: 100%;
   max-width: ${({ theme }) => theme.breakpoints.lg};
   padding: 0;
-
+  box-sizing: border-box;
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     justify-content: space-between;
+  }
+  .full-width {
+    width: 100%;
+    height: 100%;
   }
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 30%;
+  height: 20%;
+
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     height: 50%;
   }
@@ -47,8 +53,9 @@ const HeadingContainer = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   width: 100%;
-  height: 70%;
+  height: 80%;
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     height: 50%;
   }
@@ -60,8 +67,9 @@ const Heading = styled.h1<{ $color?: string }>`
   box-sizing: border-box;
   display: block;
   font-size: 4rem;
-  width: 100%;
-  text-align: left;
+
+  text-align: center;
+  box-sizing: border-box;
   margin: 0;
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     font-size: 6rem;
@@ -102,8 +110,8 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
   return (
     <PageContainer $isFirstElement={orderInPage === 1} $bgColor={bgColor}>
       <Container>
-        <WrapperFadeIn className="full-width">
-          <ButtonContainer>
+        <ButtonContainer>
+          <WrapperFadeIn className="full-width">
             <Button
               onClick={() => (window.location.href = button.url)}
               $bgColor={button.bgColor}
@@ -114,10 +122,10 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
             >
               {button.text}
             </Button>
-          </ButtonContainer>
-        </WrapperFadeIn>
-        <WrapperFadeIn>
-          <HeadingContainer style={{ scale: headingScale }}>
+          </WrapperFadeIn>
+        </ButtonContainer>
+        <HeadingContainer style={{ scale: headingScale }}>
+          <WrapperFadeIn>
             <Heading $color={fontColor}>
               {heading}{" "}
               <Span
@@ -129,8 +137,8 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
               </Span>{" "}
               {endHeading}
             </Heading>
-          </HeadingContainer>
-        </WrapperFadeIn>
+          </WrapperFadeIn>
+        </HeadingContainer>
       </Container>
     </PageContainer>
   );

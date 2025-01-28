@@ -2,6 +2,7 @@ import React from "react";
 import HeroSideImageHead from "./HeroSideImageHead";
 import HeroWithTitleButton from "./HeroWithTitleButton";
 import IconWall from "./IconWall";
+import CarrouseImageWithLink from "./CarrouseImageWithLink";
 
 type Image = {
   url: string;
@@ -12,6 +13,7 @@ enum PageBuilderComponentType {
   HeroSideImageHead = "HeroSideImageHead",
   HeroWithTitleButton = "HeroWithTitleButton",
   IconWall = "IconWall",
+  ImageCarouselWithLinks = "ImageCarouselWithLinks",
 }
 interface PageBuilderProps {
   data: Promise<{
@@ -37,6 +39,8 @@ interface PageBuilderProps {
             };
             collection?: string[];
             name?: string;
+            slug?: string;
+            title?: string;
           }[];
         };
       }[];
@@ -69,6 +73,8 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
             collection?: string[];
             name?: string;
             showName?: boolean;
+            slug?: string;
+            title?: string;
           }[];
         };
       }[];
@@ -128,6 +134,16 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
                 fontColor={rest.fontColor || ""}
                 bgColor={rest.bgColor || ""}
                 showName={rest.showName || false}
+              />
+            );
+
+          case PageBuilderComponentType.ImageCarouselWithLinks:
+            return (
+              <CarrouseImageWithLink
+                key={_id}
+                title={rest.title || ""}
+                name={rest.name || ""}
+                slug={rest.slug || ""}
               />
             );
           default:

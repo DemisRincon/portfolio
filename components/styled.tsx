@@ -13,7 +13,7 @@ export const PageContainer = styled.div<PageContainerProps>`
   height: 100vh;
   width: 100%;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 0 20px;
   margin: 0;
   ${({ $isFirstElement }) => $isFirstElement && `margin-top: 100px;`}
   ${({ $bgColor, theme }) =>

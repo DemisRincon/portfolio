@@ -54,6 +54,7 @@ query{
             }
             ... on ImageCarouselWithLinks {
             _id
+            __typename
             slug
             title
             name
@@ -67,19 +68,17 @@ query{
 
 export const getImageCarousel = (slug: string) => `
 query{
-  imageCarouselWithLinksCollection(where: {slug: "${slug}"}) {
-    items {
-      _id
-      slug
-      title
-      name
-      imagesCollection {
-        items {
-          ... on ImageWithContent {
-            _id
+  imageCarouselWithLinks(id:"${slug}"){
+    imagesCollection{
+        items{
+          ...on ImageWithContent{
+            url
+            name
+            image{
+              url
+            }
           }
         }
-      }
     }
   }
 }`;

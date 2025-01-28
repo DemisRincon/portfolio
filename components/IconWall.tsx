@@ -52,7 +52,7 @@ interface IconWallProps {
 
 const IconWall: React.FC<IconWallProps> = React.memo(
   ({ name, collection, fontColor, showName = false, bgColor }) => {
-    const { y: scale } = useTransformOnScroll([0, 0.7, 1], [0.6, 0.8, 1]);
+    const { y: scale } = useTransformOnScroll([0, 0.7, 1], [0.6, 0.9, 1.2]);
     return (
       <PageContainerAdjusted $bgColor={bgColor}>
         <Container>
