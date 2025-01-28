@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { PageContainer } from "./styled";
 import WrapperFadeIn from "./Motion/WrapperFadeIn";
 import { motion } from "framer-motion";
-import useParallax from "@/library/hooks/useParallax";
+import useTransformOnScroll from "@/library/hooks/useTransformOnScroll";
 
 const Container = styled.div`
   display: flex;
@@ -102,9 +102,9 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
   orderInPage,
   button,
 }) => {
-  const { y } = useParallax([0, 1], [80, -50]);
-  const { y: headingScale } = useParallax([0, 0.7, 1], [1, 1.2, 0.6]);
-  const { y: yButton } = useParallax([0, 0.7, 1], [0.5, 0.8, 1]);
+  const { y } = useTransformOnScroll([0, 1], [80, -50]);
+  const { y: headingScale } = useTransformOnScroll([0, 0.7, 1], [1, 1.2, 0.6]);
+  const { y: yButton } = useTransformOnScroll([0, 0.7, 1], [0.5, 0.8, 1]);
   return (
     <PageContainer $isFirstElement={orderInPage === 1} $bgColor={bgColor}>
       <Container>

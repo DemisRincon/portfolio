@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { PageContainerAdjusted } from "./styled";
 import IconProvider from "./IconProvider";
+import useTransformOnScroll from "@/library/hooks/useTransformOnScroll";
+import { motion } from "framer-motion";
 
 const Container = styled.div`
   display: flex;
@@ -24,7 +26,7 @@ const Header = styled.h1<{ color?: string }>`
   text-align: center;
 `;
 
-const IconsGrid = styled.div`
+const IconsGrid = styled(motion.div)`
   display: grid;
   justify-content: center;
   align-items: center;
@@ -50,13 +52,14 @@ interface IconWallProps {
 
 const IconWall: React.FC<IconWallProps> = React.memo(
   ({ name, collection, fontColor, showName = false, bgColor }) => {
+    const { y: scale } = useTransformOnScroll([0, 0.7, 1], [0.6, 0.8, 1]);
     return (
       <PageContainerAdjusted $bgColor={bgColor}>
         <Container>
           <HeaderContainer>
             <Header color={fontColor}>{name}</Header>
           </HeaderContainer>
-          <IconsGrid>
+          <IconsGrid style={{ scale }}>
             {collection.map((icon, index) => (
               <IconProvider
                 key={index}

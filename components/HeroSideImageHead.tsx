@@ -3,7 +3,7 @@ import { PageContainer } from "./styled";
 import WrapperFadeIn from "./Motion/WrapperFadeIn";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
-import useParallax from "@/library/hooks/useParallax";
+import useTransformOnScroll from "../library/hooks/useTransformOnScroll";
 
 const Container = styled.div`
   display: flex;
@@ -118,7 +118,7 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
 }) => {
   const [middleHeadingIndex, setMiddleHeadingIndex] = useState(0);
 
-  const { y: yImage } = useParallax([0, 1], [0, 200]);
+  const { y: yImage } = useTransformOnScroll([0, 1], [1, 0]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -130,8 +130,9 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
     return () => clearInterval(interval);
   }, [middleHeading.length]);
 
+  console.log("HeroSideImageHead", orderInPage === 1);
   return (
-    <PageContainer $isFirstElement={orderInPage === 1 ? true : false}>
+    <PageContainer $isFirstElement={orderInPage === 1}>
       <WrapperFadeIn>
         <Container>
           <TextContainer>
@@ -153,7 +154,11 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
           </TextContainer>
 
           <ImageContainer>
-            <ProfileImage src={url} alt="Profile Photo" style={{ y: yImage }} />
+            <ProfileImage
+              src={url}
+              alt="Profile Photo"
+              style={{ scale: yImage }}
+            />
           </ImageContainer>
         </Container>
       </WrapperFadeIn>

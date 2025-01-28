@@ -68,9 +68,11 @@ const iconMap: Record<string, (color: string) => JSX.Element> = {
   github: (color) => <FaGithub size={size} color={color} />,
   netlify: (color) => <BiLogoNetlify size={size} color={color} />,
   contentful: (color) => <SiContentful size={size} color={color} />,
-  cucumber: (color) => <Icon src={cucumbericon} size={size} color={color} />,
+  cucumber: (color) => (
+    <Icon src={cucumbericon.src} size={size} color={color} />
+  ),
   nightwatch: (color) => (
-    <Icon src={nightwatchicon} size={size} color={color} />
+    <Icon src={nightwatchicon.src} size={size} color={color} />
   ),
 };
 

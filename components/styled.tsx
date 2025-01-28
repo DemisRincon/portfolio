@@ -7,7 +7,6 @@ interface PageContainerProps {
 }
 
 export const PageContainer = styled.div<PageContainerProps>`
-  ${({ $isFirstElement }) => $isFirstElement && `margin-top: 100px;`}
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,6 +15,7 @@ export const PageContainer = styled.div<PageContainerProps>`
   box-sizing: border-box;
   padding: 20px;
   margin: 0;
+  ${({ $isFirstElement }) => $isFirstElement && `margin-top: 100px;`}
   ${({ $bgColor, theme }) =>
     $bgColor && `background-color: ${theme.colors[$bgColor]};`}
 `;
