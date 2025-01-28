@@ -35,16 +35,7 @@ const Carrusel = styled(motion.div)`
   align-items: center;
   height: 300px;
   flex-shrink: 0;
-  background-color: ${({ theme }) => theme.colors.grey};
-  &::before {
-    content: "";
-    width: 4px;
-    height: 100%;
-    background-color: ${({ theme }) => theme.colors.grey};
-    position: absolute;
-    left: -2px;
-    z-index: 1;
-  }
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
 const InfiniteCarousel: React.FC<{ data: ImageItemInterface[] }> = ({

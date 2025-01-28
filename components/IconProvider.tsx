@@ -27,6 +27,10 @@ const Wrapper = styled.div`
   align-items: center;
   width: 100%;
   box-sizing: border-box;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    justify-content: center;
+  }
 `;
 
 const Name = styled.h4<{ color?: string; size: string }>`

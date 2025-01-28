@@ -26,6 +26,9 @@ const Header = styled.h1`
   color: ${({ theme }) => theme.colors.black};
   font-size: 2rem;
   text-align: center;
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: 4rem;
+  }
 `;
 
 const CarrouseImageWithLink: React.FC<CarrouseImageWithLinkProps> = ({

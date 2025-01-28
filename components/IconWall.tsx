@@ -44,7 +44,8 @@ const IconsGrid = styled(motion.div)`
   grid-gap: 1rem;
   width: 100%;
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    grid-template-columns: repeat(3, 1fr);
+    width: 90%;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
@@ -62,7 +63,7 @@ interface IconWallProps {
 
 const IconWall: React.FC<IconWallProps> = React.memo(
   ({ name, collection, fontColor, showName = false, bgColor }) => {
-    const { y: scale } = useTransformOnScroll([0, 0.7, 1], [0.6, 0.9, 1.2]);
+    const { y: scale } = useTransformOnScroll([0, 0.7, 1], [0.6, 0.9, 1.1]);
     return (
       <PageContainerAdjusted $bgColor={bgColor}>
         <Container>

@@ -15,7 +15,7 @@ export const PageContainer = styled.div<PageContainerProps>`
   box-sizing: border-box;
   padding: 0 20px;
   margin: 0;
-  max-height: 100vh;
+
   ${({ $isFirstElement }) => $isFirstElement && `margin-top: 100px;`}
   ${({ $bgColor, theme }) =>
     $bgColor && `background-color: ${theme.colors[$bgColor]};`}
@@ -24,4 +24,9 @@ export const PageContainer = styled.div<PageContainerProps>`
 export const PageContainerAdjusted = styled(PageContainer)`
   height: auto;
   overflow: hidden;
+`;
+
+export const PageFreeSpace = styled(PageContainer)`
+  max-height: none;
+  flex: 1;
 `;
