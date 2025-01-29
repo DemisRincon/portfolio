@@ -70,6 +70,7 @@ const NavLink = styled(motion.div)<{ $isActive?: boolean }>`
 `;
 
 const MenuIcon = styled.button`
+  background-color: transparent;
   outline: none;
   border: none;
   display: none;
@@ -113,30 +114,28 @@ const Menu: FC = () => {
 
   return (
     <Container>
-      {!isMobile && (
-        <NavList>
-          {links.map((link) => (
-            <NavItem
-              key={link.href}
-              whileHover={{
-                scale: 1.1,
-                y: -5,
-                transition: { duration: 0.2 },
-              }}
-            >
-              <NavLink>
-                <Link
-                  prefetch={true}
-                  href={link.href}
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  {link.label}
-                </Link>
-              </NavLink>
-            </NavItem>
-          ))}
-        </NavList>
-      )}
+      <NavList>
+        {links.map((link) => (
+          <NavItem
+            key={link.href}
+            whileHover={{
+              scale: 1.1,
+              y: -5,
+              transition: { duration: 0.2 },
+            }}
+          >
+            <NavLink>
+              <Link
+                prefetch={true}
+                href={link.href}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                {link.label}
+              </Link>
+            </NavLink>
+          </NavItem>
+        ))}
+      </NavList>
     </Container>
   );
 };

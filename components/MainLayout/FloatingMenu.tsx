@@ -67,7 +67,7 @@ interface FloatingMenuProps {
   menuOpen: boolean;
 }
 
-const FloatingMenu: React.FC<FloatingMenuProps> = ({ onClose, menuOpen }) => {
+const FloatingMenu: React.FC<FloatingMenuProps> = ({ onClose }) => {
   const pathname = usePathname();
   const controls = useAnimation();
   const router = useRouter();
@@ -85,16 +85,24 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ onClose, menuOpen }) => {
     });
   };
 
-  if (!menuOpen) return null;
-
   return (
     <FloatingMenuContainer
       as={motion.div}
-      initial={{ opacity: 0, width: 0 }}
+      initial={{ opacity: 0, width: 0, display: "none" }}
       animate={controls}
       variants={{
-        visible: { opacity: 1, width: "100%", transition: { duration: 0.2 } },
-        hidden: { opacity: 0, width: 0, transition: { duration: 0.2 } },
+        visible: {
+          opacity: 1,
+          width: "100%",
+          display: "flex",
+          transition: { duration: 0.2 },
+        },
+        hidden: {
+          opacity: 0,
+          width: 0,
+          display: "none",
+          transition: { duration: 0.2 },
+        },
       }}
     >
       <CloseIcon onClick={() => handleClose()}>
