@@ -64,7 +64,6 @@ const links = [
 
 interface FloatingMenuProps {
   onClose: () => void;
-  menuOpen: boolean;
 }
 
 const FloatingMenu: React.FC<FloatingMenuProps> = ({ onClose }) => {
@@ -79,28 +78,25 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ onClose }) => {
     controls.start("hidden").then(async () => {
       if (href) {
         router.prefetch(href);
-        onClose();
-        await router.push(href);
       }
+      onClose();
     });
   };
 
   return (
     <FloatingMenuContainer
       as={motion.div}
-      initial={{ opacity: 0, width: 0, display: "none" }}
+      initial={{ opacity: 0, width: 0 }}
       animate={controls}
       variants={{
         visible: {
           opacity: 1,
           width: "100%",
-          display: "flex",
           transition: { duration: 0.2 },
         },
         hidden: {
           opacity: 0,
           width: 0,
-          display: "none",
           transition: { duration: 0.2 },
         },
       }}

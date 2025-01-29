@@ -103,11 +103,9 @@ const Menu: FC = () => {
         <MenuIcon onClick={toggleMenu}>
           <FaBars size={25} />
         </MenuIcon>
-        {menuOpen && (
-          <AnimatePresence>
-            <FloatingMenu onClose={toggleMenu} menuOpen={menuOpen} />
-          </AnimatePresence>
-        )}
+        <AnimatePresence>
+          {menuOpen && <FloatingMenu onClose={toggleMenu} />}
+        </AnimatePresence>
       </>
     );
   }
