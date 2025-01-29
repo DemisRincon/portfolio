@@ -6,7 +6,7 @@ import { getPageBySlug } from "@/library/contentful/querys";
 import { Fragment } from "react";
 
 const Home = () => {
-  const data = fetchTool(getPageBySlug("/"), FetchType.dynamicData);
+  const data = fetchTool(getPageBySlug("/"), FetchType.staticData);
   return (
     <Fragment>
       <PageBuilder data={data} />

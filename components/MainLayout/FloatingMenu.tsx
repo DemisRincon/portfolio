@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { FaTimes } from "react-icons/fa";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const NavList = styled.ul`
   list-style: none;
@@ -62,7 +62,11 @@ const links = [
   { href: "/contact", label: "Contact" },
 ];
 
-const FloatingMenu = ({ onClose }: { onClose: () => void }) => {
+interface FloatingMenuProps {
+  onClose: () => void;
+}
+
+const FloatingMenu = ({ onClose }: FloatingMenuProps) => {
   const pathname = usePathname();
   const controls = useAnimation();
   const router = useRouter();
@@ -70,11 +74,12 @@ const FloatingMenu = ({ onClose }: { onClose: () => void }) => {
     controls.start("visible");
   }, [controls]);
 
-  const handleClose = async (href?: string) => {
-    await controls.start("hidden").then(() => {
-      onClose();
+  const handleClose = (href?: string) => {
+    controls.start("hidden").then(async () => {
       if (href) {
         router.prefetch(href);
+        onClose();
+        await router.push(href);
       }
     });
   };

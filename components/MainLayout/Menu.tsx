@@ -122,7 +122,7 @@ const Menu: FC = () => {
               <Link
                 prefetch={true}
                 href={link.href}
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none", color: "inherit" }}
               >
                 {link.label}
               </Link>

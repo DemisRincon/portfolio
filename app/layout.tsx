@@ -1,8 +1,7 @@
 import MainLayout from "@/components/MainLayout";
 import Providers from "@/library/providers";
 import type { Metadata } from "next";
-import { ReactNode, Suspense } from "react";
-import Loading from "./loading";
+import { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: "Portfolio Demis Rincon",
