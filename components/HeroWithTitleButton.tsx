@@ -109,6 +109,7 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
 }) => {
   const { y: headingScale } = useTransformOnScroll([0, 0.9, 1], [1, 1.2, 0.7]);
   const { y: yButton } = useTransformOnScroll([0, 0.7, 1], [0.5, 0.8, 1]);
+
   return (
     <PageContainer $isFirstElement={orderInPage === 1} $bgColor={bgColor}>
       <Container>
@@ -119,6 +120,7 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
               $bgColor={button.bgColor}
               $color={button.color}
               whileHover={{ scale: 1.2, cursor: "pointer" }}
+              whileTap={{ scale: 0.8 }}
               title={`Click to go to ${subHeading}`}
               style={{ y: yButton }}
             >
