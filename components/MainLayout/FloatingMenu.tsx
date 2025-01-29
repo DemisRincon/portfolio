@@ -79,8 +79,8 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ onClose }) => {
   }, [controls]);
 
   const handleClose = (href?: string) => {
-    controls.start("hidden").then(async () => {
-      await onClose();
+    controls.start("hidden").then(() => {
+      onClose();
       if (href) {
         router.push(href);
       }
