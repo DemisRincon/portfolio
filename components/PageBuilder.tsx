@@ -3,6 +3,7 @@ import HeroSideImageHead from "./HeroSideImageHead";
 import HeroWithTitleButton from "./HeroWithTitleButton";
 import IconWall from "./IconWall";
 import CarrouseImageWithLink from "./CarrouseImageWithLink";
+import ProfesionalProjectCard from "./ProfesionalProjectCard";
 
 type Image = {
   url: string;
@@ -14,6 +15,7 @@ enum PageBuilderComponentType {
   HeroWithTitleButton = "HeroWithTitleButton",
   IconWall = "IconWall",
   ImageCarouselWithLinks = "ImageCarouselWithLinks",
+  ProfesionalProjectCard = "ProfesionalProjectCard",
 }
 interface PageBuilderProps {
   data: Promise<{
@@ -41,6 +43,12 @@ interface PageBuilderProps {
             name?: string;
             slug?: string;
             title?: string;
+            description?: string[];
+            productPhoto?: Image;
+            enterprise?: string;
+            url?: string;
+            enterpriseImage?: Image;
+            buttonText?: string;
           }[];
         };
       }[];
@@ -74,8 +82,13 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
             name?: string;
             showName?: boolean;
             slug?: string;
-            title?: string;
             sliceText?: boolean;
+            title?: string;
+            description?: string[];
+            productPhoto?: Image;
+            enterprise?: string;
+            url?: string;
+            buttonText?: string;
           }[];
         };
       }[];
@@ -114,7 +127,7 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
                 heading={rest.heading}
                 subHeading={rest.subHeading}
                 middleHeading={rest.middleHeading || []}
-                bgColor={rest.bgColor}
+                bgColor={rest.bgColor || ""}
                 endHeading={rest.endHeading || ""}
                 orderInPage={rest.orderInPage}
                 fontColor={rest.fontColor}
@@ -145,7 +158,24 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
                 slug={rest.slug || ""}
               />
             );
+          case PageBuilderComponentType.ProfesionalProjectCard:
+            return (
+              <ProfesionalProjectCard
+                key={_id}
+                fontColor={rest.fontColor || ""}
+                name={rest.name || ""}
+                bgColor={rest.bgColor || ""}
+                description={
+                  Array.isArray(rest.description) ? rest.description : []
+                }
+                productPhoto={rest.productPhoto || { url: "" }}
+                enterprise={rest.enterprise || ""}
+                url={rest.url || ""}
+                buttonText={rest.buttonText || ""}
+              />
+            );
           default:
+            console.log("No component found", __typename);
             console.log("No component found", pageData);
             return null;
         }

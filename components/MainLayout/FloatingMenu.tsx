@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { FaTimes } from "react-icons/fa";
+import Link from "next/link";
 
 const NavList = styled.ul`
   list-style: none;
@@ -113,9 +114,10 @@ const FloatingMenu = ({ onClose }: { onClose: () => void }) => {
                   transition: { duration: 0.2 },
                 },
               }}
-              onClick={() => handleLinkClick(link.href)}
             >
-              {link.label}
+              <Link prefetch={true} href={link.href}>
+                {link.label}
+              </Link>
             </NavItem>
           ))}
         </AnimatePresence>

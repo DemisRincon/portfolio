@@ -6,11 +6,12 @@ import { FaBars } from "react-icons/fa";
 import styled from "styled-components";
 import withClientValidation from "@/library/hoc/ClientComponent";
 import FloatingMenu from "./FloatingMenu";
+import Link from "next/link";
 
 const Container = styled.div`
   display: flex;
   padding: 1rem;
-  z-index: 1000;
+  z-index: 10;
   @media (max-width: ${(props) => props.theme.breakpoints.lg}) {
     display: none;
   }
@@ -39,7 +40,7 @@ const NavItem = styled(motion.li)<{ $isActive?: boolean }>`
   }
 `;
 
-const NavLink = styled(motion.a)<{ $isActive?: boolean }>`
+const NavLink = styled(motion.div)<{ $isActive?: boolean }>`
   text-decoration: none;
   font-weight: bold;
   color: ${(props) => props.theme.colors.white};
@@ -117,7 +118,11 @@ const Menu: FC = () => {
               transition: { duration: 0.2 },
             }}
           >
-            <NavLink href={link.href}>{link.label}</NavLink>
+            <NavLink>
+              <Link prefetch={true} href={link.href}>
+                {link.label}
+              </Link>
+            </NavLink>
           </NavItem>
         ))}
       </NavList>

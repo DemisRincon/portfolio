@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <Suspense fallback={<Loading />}>
-        <body>
+        <body id="__next">
           <Providers>
             <MainLayout>{children}</MainLayout>
           </Providers>

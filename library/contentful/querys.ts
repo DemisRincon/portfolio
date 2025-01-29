@@ -60,6 +60,8 @@ query {
               name
             }
             ... on ProfesionalProjectCard {
+              _id
+              __typename
               slug
               title
               name
@@ -68,9 +70,7 @@ query {
               url
               description
               enterprise
-              enterpriseImage {
-                url
-              }
+              buttonText
               productPhoto {
                 url
               }
