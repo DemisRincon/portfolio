@@ -102,37 +102,41 @@ const Menu: FC = () => {
         <MenuIcon onClick={toggleMenu}>
           <FaBars size={25} />
         </MenuIcon>
-        <AnimatePresence>
-          {menuOpen && <FloatingMenu onClose={toggleMenu} />}
-        </AnimatePresence>
+        {menuOpen && (
+          <AnimatePresence>
+            <FloatingMenu onClose={toggleMenu} menuOpen={menuOpen} />
+          </AnimatePresence>
+        )}
       </>
     );
   }
 
   return (
     <Container>
-      <NavList>
-        {links.map((link) => (
-          <NavItem
-            key={link.href}
-            whileHover={{
-              scale: 1.1,
-              y: -5,
-              transition: { duration: 0.2 },
-            }}
-          >
-            <NavLink>
-              <Link
-                prefetch={true}
-                href={link.href}
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
-                {link.label}
-              </Link>
-            </NavLink>
-          </NavItem>
-        ))}
-      </NavList>
+      {!isMobile && (
+        <NavList>
+          {links.map((link) => (
+            <NavItem
+              key={link.href}
+              whileHover={{
+                scale: 1.1,
+                y: -5,
+                transition: { duration: 0.2 },
+              }}
+            >
+              <NavLink>
+                <Link
+                  prefetch={true}
+                  href={link.href}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  {link.label}
+                </Link>
+              </NavLink>
+            </NavItem>
+          ))}
+        </NavList>
+      )}
     </Container>
   );
 };

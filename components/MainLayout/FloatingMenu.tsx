@@ -1,7 +1,7 @@
 "use client";
 import { AnimatePresence, motion, useAnimation } from "motion/react";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { FaTimes } from "react-icons/fa";
 import { useRouter } from "next/navigation";
@@ -64,9 +64,10 @@ const links = [
 
 interface FloatingMenuProps {
   onClose: () => void;
+  menuOpen: boolean;
 }
 
-const FloatingMenu = ({ onClose }: FloatingMenuProps) => {
+const FloatingMenu: React.FC<FloatingMenuProps> = ({ onClose, menuOpen }) => {
   const pathname = usePathname();
   const controls = useAnimation();
   const router = useRouter();
@@ -83,6 +84,8 @@ const FloatingMenu = ({ onClose }: FloatingMenuProps) => {
       }
     });
   };
+
+  if (!menuOpen) return null;
 
   return (
     <FloatingMenuContainer
