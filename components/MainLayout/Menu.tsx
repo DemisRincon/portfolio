@@ -73,6 +73,7 @@ const MenuIcon = styled.button`
   outline: none;
   border: none;
   display: none;
+  padding: 0.5rem;
   cursor: pointer;
   @media (max-width: ${(props) => props.theme.breakpoints.lg}) {
     display: block;
