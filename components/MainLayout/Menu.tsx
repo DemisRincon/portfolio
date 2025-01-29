@@ -70,12 +70,12 @@ const NavLink = styled(motion.div)<{ $isActive?: boolean }>`
 `;
 
 const MenuIcon = styled.button`
-  background-color: transparent;
-  outline: none;
+  outline: 0;
   border: none;
   display: none;
   padding: 0.5rem;
-  cursor: pointer;
+  background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
   @media (max-width: ${(props) => props.theme.breakpoints.lg}) {
     display: block;
   }

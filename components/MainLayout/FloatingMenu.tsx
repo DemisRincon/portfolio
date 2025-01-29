@@ -47,7 +47,11 @@ const CloseIcon = styled.div`
   position: absolute;
   top: 1rem;
   right: 1rem;
-  cursor: pointer;
+  outline: 0;
+  border: none;
+  padding: 0.5rem;
+  background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 `;
 
 const FloatingNavList = styled(NavList)`
