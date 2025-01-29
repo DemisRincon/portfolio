@@ -69,7 +69,9 @@ const NavLink = styled(motion.div)<{ $isActive?: boolean }>`
   }
 `;
 
-const MenuIcon = styled.div`
+const MenuIcon = styled.button`
+  outline: none;
+  border: none;
   display: none;
   cursor: pointer;
   @media (max-width: ${(props) => props.theme.breakpoints.lg}) {
