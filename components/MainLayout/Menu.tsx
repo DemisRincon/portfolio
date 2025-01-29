@@ -119,7 +119,11 @@ const Menu: FC = () => {
             }}
           >
             <NavLink>
-              <Link prefetch={true} href={link.href}>
+              <Link
+                prefetch={true}
+                href={link.href}
+                style={{ textDecoration: "none" }}
+              >
                 {link.label}
               </Link>
             </NavLink>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { PageContainerAdjusted } from "./styled";
 import Modal from "react-modal";
 
@@ -111,17 +111,6 @@ const JobFunctions = styled.ul`
   flex-direction: column;
 `;
 const JobFunction = styled.li``;
-
-const ModalContainer = styled(Modal)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
 
 const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> = ({
   bgColor,

@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { FaTimes } from "react-icons/fa";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 const NavList = styled.ul`
   list-style: none;
@@ -65,22 +65,18 @@ const links = [
 const FloatingMenu = ({ onClose }: { onClose: () => void }) => {
   const pathname = usePathname();
   const controls = useAnimation();
-
+  const router = useRouter();
   useEffect(() => {
     controls.start("visible");
   }, [controls]);
 
-  const handleClose = (href?: string) => {
-    controls.start("hidden").then(() => {
+  const handleClose = async (href?: string) => {
+    await controls.start("hidden").then(() => {
       onClose();
       if (href) {
-        window.location.href = href;
+        router.prefetch(href);
       }
     });
-  };
-
-  const handleLinkClick = (href: string) => {
-    handleClose(href);
   };
 
   return (
@@ -114,10 +110,9 @@ const FloatingMenu = ({ onClose }: { onClose: () => void }) => {
                   transition: { duration: 0.2 },
                 },
               }}
+              onClick={() => handleClose(link.href)}
             >
-              <Link prefetch={true} href={link.href}>
-                {link.label}
-              </Link>
+              {link.label}
             </NavItem>
           ))}
         </AnimatePresence>
