@@ -1,10 +1,9 @@
 "use client";
+import React, { useEffect, useCallback } from "react";
 import { AnimatePresence, motion, useAnimation } from "motion/react";
-import { usePathname } from "next/navigation";
-import React, { useEffect } from "react";
 import styled from "styled-components";
 import { FaTimes } from "react-icons/fa";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 const NavList = styled.ul`
   list-style: none;
@@ -28,6 +27,7 @@ const NavItem = styled(motion.li)<{ $isActive?: boolean }>`
     margin: 0 1rem;
   }
 `;
+
 const FloatingMenuContainer = styled.div`
   position: fixed;
   top: 0;
@@ -72,26 +72,33 @@ interface FloatingMenuProps {
 
 const FloatingMenu: React.FC<FloatingMenuProps> = ({ onClose }) => {
   const pathname = usePathname();
-  const controls = useAnimation();
+  const animationControls = useAnimation();
   const router = useRouter();
-  useEffect(() => {
-    controls.start("visible");
-  }, [controls]);
 
-  const handleClose = (href?: string) => {
-    controls.start("hidden").then(() => {
-      onClose();
+  useEffect(() => {
+    animationControls.start("visible");
+  }, [animationControls]);
+
+  const handleClose = useCallback(
+    (href?: string): void => {
       if (href) {
         router.push(href);
+        window.scrollTo(0, 0);
+        animationControls.start("hidden");
+        onClose();
+      } else {
+        animationControls.start("hidden");
+        onClose();
       }
-    });
-  };
+    },
+    [animationControls, onClose, router]
+  );
 
   return (
     <FloatingMenuContainer
       as={motion.div}
       initial={{ opacity: 0, width: 0 }}
-      animate={controls}
+      animate={animationControls}
       variants={{
         visible: {
           opacity: 1,
@@ -115,7 +122,7 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ onClose }) => {
               $isActive={pathname === link.href}
               key={link.href}
               initial={{ opacity: 0, y: "-20%", x: "100%" }}
-              animate={controls}
+              animate={animationControls}
               transition={{ delay: 0.3 + index * 0.1 }}
               variants={{
                 visible: { opacity: 1, y: 0, x: 0 },
@@ -137,4 +144,4 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ onClose }) => {
   );
 };
 
-export default FloatingMenu;
+export default React.memo(FloatingMenu);

@@ -1,7 +1,5 @@
 import React from "react";
 import { PageContainerAdjusted } from "./styled";
-import Modal from "react-modal";
-
 import styled from "styled-components";
 import WrapperFadeIn from "./Motion/WrapperFadeIn";
 
@@ -193,6 +191,5 @@ const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> = ({
     </>
   );
 };
-Modal.setAppElement("#__next"); // or the appropriate root element of your app
 
 export default ProfesionalProjectCard;
