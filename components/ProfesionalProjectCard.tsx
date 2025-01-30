@@ -3,6 +3,7 @@ import { PageContainerAdjusted } from "./styled";
 import Modal from "react-modal";
 
 import styled from "styled-components";
+import WrapperFadeIn from "./Motion/WrapperFadeIn";
 
 interface ProfesionalProjectCardProps {
   bgColor: string;
@@ -155,24 +156,36 @@ const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> = ({
     <>
       <PageContainerAdjusted $bgColor={bgColor}>
         <MainContainer>
-          <ProductName color={fontColor}>{name}</ProductName>
-          <Owner color={fontColor}>{enterprise}</Owner>
+          <WrapperFadeIn>
+            <ProductName color={fontColor}>{name}</ProductName>
+          </WrapperFadeIn>
+          <WrapperFadeIn>
+            <Owner color={fontColor}>{enterprise}</Owner>{" "}
+          </WrapperFadeIn>
           <BottomContainer>
-            <ImageContainer>
-              <ProductImage src={productImg} alt={name} />
-            </ImageContainer>
+            <WrapperFadeIn>
+              <ImageContainer>
+                <ProductImage src={productImg} alt={name} />
+              </ImageContainer>
+            </WrapperFadeIn>
             <Container>
-              <Description color={fontColor}>{first}</Description>
-              <JobFunctions color={fontColor}>
-                {newArray.map((item, index) => (
-                  <JobFunction key={index}>
-                    <Description color={fontColor}>{item}</Description>
-                  </JobFunction>
-                ))}
-              </JobFunctions>
-              <Button onClick={() => (window.location.href = url)}>
-                {buttonText}
-              </Button>
+              <WrapperFadeIn>
+                <Description color={fontColor}>{first}</Description>
+              </WrapperFadeIn>
+              <WrapperFadeIn>
+                <JobFunctions color={fontColor}>
+                  {newArray.map((item, index) => (
+                    <JobFunction key={index}>
+                      <Description color={fontColor}>{item}</Description>
+                    </JobFunction>
+                  ))}
+                </JobFunctions>
+              </WrapperFadeIn>
+              <WrapperFadeIn>
+                <Button onClick={() => (window.location.href = url)}>
+                  {buttonText}
+                </Button>
+              </WrapperFadeIn>
             </Container>
           </BottomContainer>
         </MainContainer>
