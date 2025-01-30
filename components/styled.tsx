@@ -4,6 +4,7 @@ import styled from "styled-components";
 interface PageContainerProps {
   $bgColor?: string;
   $isFirstElement?: boolean;
+  $fontColor?: string;
 }
 
 export const PageContainer = styled.div<PageContainerProps>`

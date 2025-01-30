@@ -67,6 +67,7 @@ const Heading = styled.h1<{ $color?: string; $sliceText?: boolean }>`
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     font-size: ${({ theme }) => theme.fontSizes.h1};
     padding-top: 30px;
+    text-align: center;
   }
 `;
 
@@ -80,8 +81,9 @@ const ImageContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 50%;
+  max-width: 50vh;
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    height: 70%;
+    height: 60%;
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     height: 100%;

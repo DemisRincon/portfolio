@@ -3,7 +3,6 @@ import { PageContainerAdjusted } from "./styled";
 import Modal from "react-modal";
 
 import styled from "styled-components";
-import ModalImage from "./ModalImage";
 
 interface ProfesionalProjectCardProps {
   bgColor: string;
@@ -16,7 +15,7 @@ interface ProfesionalProjectCardProps {
   buttonText?: string;
 }
 
-const MainContainer = styled.div<{ $bgColor: string; $fontColor: string }>`
+const MainContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,21 +30,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    flex-direction: row;
-  }
-`;
-
-const InfoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  width: 100%;
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    flex-direction: row;
-  }
 `;
 
 const ImageContainer = styled.div`
@@ -53,8 +37,8 @@ const ImageContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    width: 50%;
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    align-items: start;
   }
 `;
 
@@ -64,23 +48,35 @@ const ProductImage = styled.img`
   object-fit: cover;
 `;
 
-const Owner = styled.h3`
+const Owner = styled.h3<{ color?: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   width: 100%;
+  ${({ color }) =>
+    color &&
+    `
+    color: ${color};
+  `}
+
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     width: 50%;
   }
 `;
 
-const ProductName = styled.h2`
+const ProductName = styled.h2<{ color?: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   width: 100%;
+  ${({ color }) =>
+    color &&
+    `
+    color: ${color};
+  `}
+
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     width: 50%;
   }
@@ -99,18 +95,41 @@ const Button = styled.button`
   background-color: ${({ theme }) => theme.colors.teal};
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.h5};
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    margin-top: 2rem;
+  }
 `;
 const Description = styled.p`
   color: ${({ color }) => color};
+  text-align: justify;
 `;
 
 const JobFunctions = styled.ul`
+  margin: 0 0 1rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  color: ${({ color }) => color};
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    align-items: start;
+  }
 `;
 const JobFunction = styled.li``;
+
+const BottomContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    flex-direction: row-reverse;
+    align-items: start;
+    gap: 2rem;
+    width: 80%;
+  }
+`;
 
 const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> = ({
   bgColor,
@@ -134,19 +153,17 @@ const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> = ({
 
   return (
     <>
-      <PageContainerAdjusted>
-        <MainContainer $bgColor={bgColor} $fontColor={fontColor}>
-          <ProductName>{name}</ProductName>
-          <Owner>{enterprise}</Owner>
-          <ModalImage productImg={productImg}>
+      <PageContainerAdjusted $bgColor={bgColor}>
+        <MainContainer>
+          <ProductName color={fontColor}>{name}</ProductName>
+          <Owner color={fontColor}>{enterprise}</Owner>
+          <BottomContainer>
             <ImageContainer>
               <ProductImage src={productImg} alt={name} />
             </ImageContainer>
-          </ModalImage>
-          <Container>
-            <InfoContainer>
+            <Container>
               <Description color={fontColor}>{first}</Description>
-              <JobFunctions>
+              <JobFunctions color={fontColor}>
                 {newArray.map((item, index) => (
                   <JobFunction key={index}>
                     <Description color={fontColor}>{item}</Description>
@@ -156,8 +173,8 @@ const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> = ({
               <Button onClick={() => (window.location.href = url)}>
                 {buttonText}
               </Button>
-            </InfoContainer>
-          </Container>
+            </Container>
+          </BottomContainer>
         </MainContainer>
       </PageContainerAdjusted>
     </>

@@ -74,8 +74,11 @@ const Heading = styled.h1<{ $color?: string }>`
   box-sizing: border-box;
   margin: 0;
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    font-size: 5rem;
+    font-size: 4rem;
     padding-top: 30px;
+  }
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    font-size: 5rem;
   }
 `;
 
