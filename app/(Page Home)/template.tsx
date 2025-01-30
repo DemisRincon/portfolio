@@ -1,3 +1,5 @@
+"use client";
+
 import { MainContent } from "@/components/MainLayout";
 import React from "react";
 

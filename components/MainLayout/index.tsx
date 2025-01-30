@@ -12,12 +12,10 @@ interface MainLayoutProps {
 const LayoutContainer = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 `;
 
-export const MainContent = styled.main`
+export const MainContent = styled.div`
   flex: 1;
-  min-height: 100vh;
 `;
 
 const MainLayout: FC<MainLayoutProps> = ({ children }) => (

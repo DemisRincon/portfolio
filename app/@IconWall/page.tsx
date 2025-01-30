@@ -1,9 +1,10 @@
+"use client";
 import React from "react";
 import styled from "styled-components";
-import { PageContainerAdjusted } from "./styled";
-import IconProvider from "../app/@IconWall/IconProvider";
+import IconProvider from "./IconProvider";
 import useTransformOnScroll from "@/library/hooks/useParallax";
 import { motion } from "framer-motion";
+import { PageContainerAdjusted } from "@/components/styled";
 
 const Container = styled.div`
   display: flex;

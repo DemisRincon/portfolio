@@ -4,6 +4,11 @@ export enum FetchType {
   revalidatedData = "revalidatedData",
 }
 
+export interface QueryInterface {
+  slug: string;
+  orderInPage: number;
+}
+
 const fetchTool = async (query: string, type: FetchType) => {
   let complement: RequestInit = { cache: "force-cache" as RequestCache };
   switch (type) {

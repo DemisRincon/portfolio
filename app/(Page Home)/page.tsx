@@ -6,12 +6,8 @@ import { getPageBySlug } from "@/library/contentful/querys";
 import { Fragment } from "react";
 
 const Home = () => {
-  const data = fetchTool(getPageBySlug("/"), FetchType.staticData);
-  return (
-    <Fragment>
-      <PageBuilder data={data} />
-    </Fragment>
-  );
+  //const data = fetchTool(getPageBySlug("/"), FetchType.staticData);
+  return null;
 };
 
 export default Home;

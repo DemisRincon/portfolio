@@ -9,7 +9,7 @@ const SpinnerContainer = styled(motion.div)`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  position: absolute;
+  position: fixed; /* Change to fixed to cover the entire viewport */
   top: 0;
   left: 0;
   right: 0;
@@ -18,6 +18,7 @@ const SpinnerContainer = styled(motion.div)`
   background-color: white;
   z-index: 1000;
   overflow: hidden;
+  touch-action: none; /* Prevent touch scrolling */
 `;
 
 const Spinner = styled(motion.div)`

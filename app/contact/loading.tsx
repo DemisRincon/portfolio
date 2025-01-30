@@ -1,31 +1,23 @@
-"use client";
+"use client"; // Ensure this component is rendered on the client side
+
 import { FC } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion } from "framer-motion";
 import styled from "styled-components";
 
 const SpinnerContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: white;
-  z-index: 1000;
-  overflow: hidden;
 `;
 
 const Spinner = styled(motion.div)`
-  border: 16px solid ${(props) => props.theme.colors.lightGrey};
-  border-top: 16px solid ${(props) => props.theme.colors.teal};
+  width: 50px;
+  height: 50px;
+  border: 5px solid ${(props) => props.theme.colors.teal};
+  border-top: 5px solid transparent;
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
 `;
 
 const LoadingText = styled.h1`
