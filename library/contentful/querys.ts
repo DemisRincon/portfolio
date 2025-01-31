@@ -75,6 +75,21 @@ query {
                 url
               }
             }
+            ... on  PersonalProjects{
+               _id
+              __typename
+              title
+              projectName
+              details
+              technologies
+              urlgithub
+              urlapp
+              image{
+                url
+              }
+            }
+
+
           }
         }
       }

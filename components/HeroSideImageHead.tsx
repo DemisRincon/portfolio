@@ -131,7 +131,7 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
 }) => {
   const [middleHeadingIndex, setMiddleHeadingIndex] = useState(0);
 
-  const { y: yImage } = useTransformOnScroll([0, 1], [1, 0.7]);
+  const { y: yImage } = useTransformOnScroll([0, 1], [1, 1.7]);
 
   useEffect(() => {
     const interval = setInterval(() => {

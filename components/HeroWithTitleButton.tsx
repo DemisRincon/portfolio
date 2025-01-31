@@ -16,7 +16,7 @@ const Container = styled.div`
   padding: 0;
   box-sizing: border-box;
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    justify-content: space-between;
+    justify-content: center;
   }
   .full-width {
     width: 100%;
@@ -47,7 +47,7 @@ const Button = styled(motion.button)<{ $bgColor?: string; $color?: string }>`
   color: ${({ theme, $color }) =>
     $color ? theme.colors[$color] : theme.colors.white};
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 `;
 
@@ -111,8 +111,7 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
   orderInPage,
   button,
 }) => {
-  const { y: headingScale } = useTransformOnScroll([0, 0.9, 1], [1, 1.2, 0.7]);
-  const { y: yButton } = useTransformOnScroll([0, 0.7, 1], [0.5, 0.8, 1]);
+  const { y: scale } = useTransformOnScroll([0, 0.7, 1], [1, 1.4, 1]);
 
   return (
     <PageContainer $isFirstElement={orderInPage === 1} $bgColor={bgColor}>
@@ -127,14 +126,14 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
                 whileHover={{ scale: 1.2, cursor: "pointer" }}
                 whileTap={{ scale: 0.8 }}
                 title={`Click to go to ${subHeading}`}
-                style={{ y: yButton }}
+                style={{ y: scale }}
               >
                 {button.text}
               </Button>
             </WrapperFadeIn>
           </ButtonContainer>
         )}
-        <HeadingContainer style={{ scale: headingScale }}>
+        <HeadingContainer style={{ scale: scale }}>
           <WrapperFadeIn>
             <Heading $color={fontColor}>
               {heading}{" "}

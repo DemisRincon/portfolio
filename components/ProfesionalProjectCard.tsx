@@ -27,24 +27,28 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   width: 100%;
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+  }
 `;
 
 const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   width: 100%;
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    align-items: start;
-  }
+  height: 100%;
+  cursor: pointer;
 `;
 
 const ProductImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    width: 80%;
+  }
 `;
 
 const Owner = styled.h3<{ color?: string }>`
@@ -60,7 +64,8 @@ const Owner = styled.h3<{ color?: string }>`
   `}
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    width: 50%;
+    width: 80%;
+    justify-content: start;
   }
 `;
 
@@ -70,14 +75,16 @@ const ProductName = styled.h2<{ color?: string }>`
   align-items: center;
   gap: 1rem;
   width: 100%;
+  text-align: right;
   ${({ color }) =>
     color &&
     `
-    color: ${color};
+  color: ${color};
   `}
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    width: 50%;
+    width: 80%;
+    justify-content: start;
   }
 `;
 
@@ -94,29 +101,31 @@ const Button = styled.button`
   background-color: ${({ theme }) => theme.colors.teal};
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.h5};
+  margin: 2rem 0;
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    margin-top: 2rem;
+    font-size: 1.8rem;
   }
 `;
 const Description = styled.p`
   color: ${({ color }) => color};
   text-align: justify;
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    margin-top: 0;
+    font-size: 1.2rem;
+  }
 `;
 
 const JobFunctions = styled.ul`
-  margin: 0 0 1rem 0;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: start;
   flex-direction: column;
   color: ${({ color }) => color};
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    align-items: start;
-  }
+  padding-left: 1.1rem;
 `;
 const JobFunction = styled.li``;
 
-const BottomContainer = styled.div`
+const MiddleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -127,6 +136,17 @@ const BottomContainer = styled.div`
     align-items: start;
     gap: 2rem;
     width: 80%;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    width: 80%;
+    justify-content: start;
   }
 `;
 
@@ -160,17 +180,15 @@ const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> = ({
           <WrapperFadeIn>
             <Owner color={fontColor}>{enterprise}</Owner>{" "}
           </WrapperFadeIn>
-          <BottomContainer>
+          <MiddleContainer>
             <WrapperFadeIn>
-              <ImageContainer>
+              <ImageContainer onClick={() => window.open(url, "_blank")}>
                 <ProductImage src={productImg} alt={name} />
               </ImageContainer>
             </WrapperFadeIn>
-            <Container>
-              <WrapperFadeIn>
+            <WrapperFadeIn>
+              <Container>
                 <Description color={fontColor}>{first}</Description>
-              </WrapperFadeIn>
-              <WrapperFadeIn>
                 <JobFunctions color={fontColor}>
                   {newArray.map((item, index) => (
                     <JobFunction key={index}>
@@ -178,14 +196,17 @@ const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> = ({
                     </JobFunction>
                   ))}
                 </JobFunctions>
-              </WrapperFadeIn>
-              <WrapperFadeIn>
-                <Button onClick={() => (window.location.href = url)}>
-                  {buttonText}
-                </Button>
-              </WrapperFadeIn>
-            </Container>
-          </BottomContainer>
+              </Container>
+            </WrapperFadeIn>
+          </MiddleContainer>
+
+          <WrapperFadeIn>
+            <ButtonContainer>
+              <Button onClick={() => window.open(url, "_blank")}>
+                {buttonText}
+              </Button>
+            </ButtonContainer>
+          </WrapperFadeIn>
         </MainContainer>
       </PageContainerAdjusted>
     </>

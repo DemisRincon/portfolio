@@ -4,6 +4,7 @@ import HeroWithTitleButton from "./HeroWithTitleButton";
 import IconWall from "./IconWall";
 import CarrouseImageWithLink from "./CarrouseImageWithLink";
 import ProfesionalProjectCard from "./ProfesionalProjectCard";
+import PersonalProject from "./PersonalProject";
 
 type Image = {
   url: string;
@@ -16,6 +17,7 @@ enum PageBuilderComponentType {
   IconWall = "IconWall",
   ImageCarouselWithLinks = "ImageCarouselWithLinks",
   ProfesionalProjectCard = "ProfesionalProjectCard",
+  PersonalProjects = "PersonalProjects",
 }
 interface PageBuilderProps {
   data: Promise<{
@@ -49,6 +51,11 @@ interface PageBuilderProps {
             url?: string;
             enterpriseImage?: Image;
             buttonText?: string;
+            projectName?: string;
+            details?: string;
+            technologies?: string;
+            urlgithub?: string;
+            urlapp?: string;
           }[];
         };
       }[];
@@ -89,6 +96,11 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
             enterprise?: string;
             url?: string;
             buttonText?: string;
+            projectName?: string;
+            details?: string;
+            technologies?: string;
+            urlgithub?: string;
+            urlapp?: string;
           }[];
         };
       }[];
@@ -172,6 +184,20 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
                 enterprise={rest.enterprise || ""}
                 url={rest.url || ""}
                 buttonText={rest.buttonText || ""}
+              />
+            );
+
+          case PageBuilderComponentType.PersonalProjects:
+            console.log("PersonalProjects", rest);
+            return (
+              <PersonalProject
+                key={_id}
+                projectName={rest.projectName || ""}
+                details={rest.details || ""}
+                technologies={rest.technologies || ""}
+                urlgithub={rest.urlgithub || ""}
+                urlapp={rest.urlapp || ""}
+                image={rest.image || { url: "" }}
               />
             );
           default:
