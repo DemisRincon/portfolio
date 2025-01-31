@@ -35,19 +35,28 @@ export const PageFreeSpace = styled(PageContainer)`
   flex: 1;
 `;
 
-export const Button = styled(motion.button)<{
+interface ButtonProps {
   $bgColor?: string;
   $color?: string;
-}>`
+}
+
+export const Button = styled(motion.button)<ButtonProps>`
   border: none;
   border-radius: 5px;
   font-size: 1.5rem;
   padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   background-color: ${({ theme, $bgColor }) =>
-    $bgColor ? theme.colors[$bgColor] : theme.colors.black};
+    $bgColor ? theme.colors[$bgColor] : theme.colors.teal};
   color: ${({ theme, $color }) =>
     $color ? theme.colors[$color] : theme.colors.white};
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     font-size: 1.7rem;
+  }
+  &:hover {
+    cursor: pointer;
   }
 `;

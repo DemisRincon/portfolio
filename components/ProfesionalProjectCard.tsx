@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState, useCallback } from "react";
 import styled from "styled-components";
-import { PageContainerAdjusted } from "./styled";
+import { PageContainerAdjusted, Button } from "./styled";
 import WrapperFadeIn from "./Motion/WrapperFadeIn";
 
 interface ProfesionalProjectCardProps {
@@ -97,25 +97,6 @@ const ProductName = styled.h2<{ color?: string }>`
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     width: 95%;
     justify-content: start;
-  }
-`;
-
-const Button = styled.button`
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: 0.3s;
-  background-color: ${({ theme }) => theme.colors.teal};
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.h5};
-  margin: 2rem 0;
-  font-size: 1.5rem;
-  &:hover {
-    transform: scale(1.1);
-  }
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    font-size: 1.8rem;
   }
 `;
 
@@ -232,7 +213,17 @@ const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> = ({
 
         <WrapperFadeIn>
           <ButtonContainer>
-            <Button onClick={handleButtonClick}>{buttonText}</Button>
+            <Button
+              whileHover={{
+                scale: 1.1,
+                transition: {
+                  duration: 0.3,
+                },
+              }}
+              onClick={handleButtonClick}
+            >
+              {buttonText}
+            </Button>
           </ButtonContainer>
         </WrapperFadeIn>
       </MainContainer>

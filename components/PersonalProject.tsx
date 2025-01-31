@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { FaGithub } from "react-icons/fa";
 import { MdWeb } from "react-icons/md";
-import { PageContainerAdjusted } from "./styled";
+import { PageContainerAdjusted, Button } from "./styled";
 
 interface PersonalProjectProps {
   projectName: string;
@@ -56,28 +56,6 @@ const ButtonsContainer = styled.div`
   gap: 1rem;
 `;
 
-const Button = styled.button`
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: 0.3s;
-  &:hover {
-    transform: scale(1.1);
-  }
-  background-color: ${({ theme }) => theme.colors.teal};
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.h5};
-  margin: 2rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    font-size: 1.8rem;
-  }
-`;
-
 const Paragraph = styled.p``;
 
 const ProductName = styled.h2<{ color?: string }>`
@@ -120,11 +98,27 @@ const PersonalProject: React.FC<PersonalProjectProps> = React.memo(
             <ProductImage src={image.url} alt={projectName} />
           </ImageContainer>
           <ButtonsContainer>
-            <Button onClick={() => window.open(urlGithub, "_blank")}>
+            <Button
+              whileHover={{
+                scale: 1.1,
+                transition: {
+                  duration: 0.3,
+                },
+              }}
+              onClick={() => window.open(urlGithub, "_blank")}
+            >
               <FaGithub size={32} />
               Github
             </Button>
-            <Button onClick={() => window.open(urlApp, "_blank")}>
+            <Button
+              whileHover={{
+                scale: 1.1,
+                transition: {
+                  duration: 0.3,
+                },
+              }}
+              onClick={() => window.open(urlApp, "_blank")}
+            >
               <MdWeb size={32} />
               App
             </Button>
