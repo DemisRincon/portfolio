@@ -84,6 +84,8 @@ query {
               technologies
               urlgithub
               urlapp
+              bgColor
+              fontColor
               image{
                 url
               }
