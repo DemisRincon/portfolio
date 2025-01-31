@@ -1,6 +1,6 @@
-import React from "react";
-import { PageContainerAdjusted } from "./styled";
+import React, { useEffect, useMemo, useState, useCallback } from "react";
 import styled from "styled-components";
+import { PageContainerAdjusted } from "./styled";
 import WrapperFadeIn from "./Motion/WrapperFadeIn";
 
 interface ProfesionalProjectCardProps {
@@ -102,40 +102,48 @@ const ProductName = styled.h2<{ color?: string }>`
 
 const Button = styled.button`
   padding: 1rem 2rem;
-  color: ${({ color }) => color};
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: 0.3s;
-  &:hover {
-    transform: scale(1.1);
-  }
   background-color: ${({ theme }) => theme.colors.teal};
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.h5};
   margin: 2rem 0;
   font-size: 1.5rem;
+  &:hover {
+    transform: scale(1.1);
+  }
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     font-size: 1.8rem;
   }
 `;
-const Description = styled.p`
-  color: ${({ color }) => color};
+
+const Description = styled.p<{ color?: string }>`
+  ${({ color }) =>
+    color &&
+    `
+    color: ${color};
+  `}
   text-align: justify;
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     margin-top: 0;
-    font-size: 1.2rem;
   }
 `;
 
-const JobFunctions = styled.ul`
+const JobFunctions = styled.ul<{ color?: string }>`
   display: flex;
   justify-content: center;
   align-items: start;
   flex-direction: column;
-  color: ${({ color }) => color};
+  ${({ color }) =>
+    color &&
+    `
+    color: ${color};
+  `}
   padding-left: 1.1rem;
 `;
+
 const JobFunction = styled.li``;
 
 const MiddleContainer = styled.div`
@@ -144,7 +152,7 @@ const MiddleContainer = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  font-size: 1.2rem;
+
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     flex-direction: row-reverse;
     align-items: start;
@@ -174,59 +182,63 @@ const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> = ({
   productPhoto: { url: productImg },
   buttonText,
 }) => {
-  const [newArray, setNewArray] = React.useState<string[]>([]);
-  const [first, setFirst] = React.useState<string>("");
-  React.useEffect(() => {
+  const [first, setFirst] = useState<string>("");
+
+  const newArray = useMemo(() => description?.slice(1) || [], [description]);
+
+  useEffect(() => {
     if (description) {
       setFirst(description[0]);
-      const newArray = description.slice(1);
-      setNewArray(newArray);
     }
   }, [description]);
 
+  const handleImageClick = useCallback(() => {
+    window.open(url, "_blank");
+  }, [url]);
+
+  const handleButtonClick = useCallback(() => {
+    window.open(url, "_blank");
+  }, [url]);
+
   return (
-    <>
-      <PageContainerAdjusted $bgColor={bgColor}>
-        <MainContainer>
-          <WrapperFadeIn>
-            <ProductName color={fontColor}>{name}</ProductName>
-          </WrapperFadeIn>
-          <MiddleContainer>
-            <ImageContainer onClick={() => window.open(url, "_blank")}>
-              <WrapperFadeIn>
-                <ProductImage src={productImg} alt={name} />
-              </WrapperFadeIn>
-            </ImageContainer>
+    <PageContainerAdjusted $bgColor={bgColor}>
+      <MainContainer>
+        <WrapperFadeIn>
+          <ProductName color={fontColor}>{name}</ProductName>
+        </WrapperFadeIn>
+        <MiddleContainer>
+          <ImageContainer onClick={handleImageClick}>
+            <WrapperFadeIn>
+              <ProductImage src={productImg} alt={name} />
+            </WrapperFadeIn>
+          </ImageContainer>
 
-            <Container>
-              <WrapperFadeIn>
-                <Owner color={fontColor}>{enterprise}</Owner>{" "}
-              </WrapperFadeIn>
-              <WrapperFadeIn>
-                <Description color={fontColor}>{first}</Description>
-              </WrapperFadeIn>
-              <JobFunctions color={fontColor}>
-                {newArray.map((item, index) => (
-                  <JobFunction key={index}>
-                    <WrapperFadeIn threshold={0.3}>
-                      <Description color={fontColor}>{item}</Description>
-                    </WrapperFadeIn>
-                  </JobFunction>
-                ))}
-              </JobFunctions>
-            </Container>
-          </MiddleContainer>
+          <Container>
+            <WrapperFadeIn>
+              <Owner color={fontColor}>{enterprise}</Owner>
+            </WrapperFadeIn>
+            <WrapperFadeIn>
+              <Description color={fontColor}>{first}</Description>
+            </WrapperFadeIn>
+            <JobFunctions color={fontColor}>
+              {newArray.map((item, index) => (
+                <JobFunction key={index}>
+                  <WrapperFadeIn threshold={0.3}>
+                    <Description color={fontColor}>{item}</Description>
+                  </WrapperFadeIn>
+                </JobFunction>
+              ))}
+            </JobFunctions>
+          </Container>
+        </MiddleContainer>
 
-          <WrapperFadeIn>
-            <ButtonContainer>
-              <Button onClick={() => window.open(url, "_blank")}>
-                {buttonText}
-              </Button>
-            </ButtonContainer>
-          </WrapperFadeIn>
-        </MainContainer>
-      </PageContainerAdjusted>
-    </>
+        <WrapperFadeIn>
+          <ButtonContainer>
+            <Button onClick={handleButtonClick}>{buttonText}</Button>
+          </ButtonContainer>
+        </WrapperFadeIn>
+      </MainContainer>
+    </PageContainerAdjusted>
   );
 };
 

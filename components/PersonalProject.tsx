@@ -1,14 +1,15 @@
 import React from "react";
-import { PageContainer, PageContainerAdjusted } from "./styled";
 import styled from "styled-components";
 import { FaGithub } from "react-icons/fa";
 import { MdWeb } from "react-icons/md";
+import { PageContainerAdjusted } from "./styled";
+
 interface PersonalProjectProps {
   projectName: string;
   details: string;
-  technologies: string[];
-  urlgithub: string;
-  urlapp: string;
+  technologies: string;
+  githubUrl: string;
+  appUrl: string;
   image: {
     url: string;
   };
@@ -22,7 +23,7 @@ const Container = styled.div<{ $textcolor: string }>`
   width: 100%;
   color: ${({ theme, $textcolor }) => theme.colors[$textcolor || "white"]};
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    width: 80%;
+    width: 95%;
   }
 `;
 
@@ -40,7 +41,7 @@ const ProductImage = styled.img`
   height: 100%;
   object-fit: cover;
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    width: 100%;
+    width: 50%;
   }
 `;
 
@@ -55,7 +56,6 @@ const ButtonsContainer = styled.div`
 
 const Button = styled.button`
   padding: 1rem 2rem;
-  color: ${({ color }) => color};
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
@@ -76,43 +76,52 @@ const Button = styled.button`
   }
 `;
 
-const Paragraph = styled.p`
+const Paragraph = styled.p``;
+
+const ProductName = styled.h2<{ color?: string }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  text-align: right;
+  ${({ color }) =>
+    color &&
+    `
+  color: ${color};
+  `}
+
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    font-size: 1.2rem;
+    width: 95%;
+    justify-content: start;
   }
 `;
 
-const PersonalProject: React.FC<PersonalProjectProps> = ({
-  projectName,
-  details,
-  technologies,
-  urlgithub,
-  urlapp,
-  image,
-}) => {
-  console.log(projectName, details, technologies, urlgithub, urlapp, image);
-  return (
-    <PageContainerAdjusted $bgColor="grey">
-      <Container $textcolor="white">
-        <h2>{projectName}</h2>
-        <Paragraph>Technologies used: {technologies}</Paragraph>
-        <Paragraph>{details}</Paragraph>
-        <ImageContainer onClick={() => window.open(urlapp, "_blank")}>
-          <ProductImage src={image.url} alt={projectName} />
-        </ImageContainer>
-        <ButtonsContainer>
-          <Button onClick={() => window.open(urlgithub, "_blank")}>
-            <FaGithub size={32} />
-            Github
-          </Button>
-          <Button onClick={() => window.open(urlapp, "_blank")}>
-            <MdWeb size={32} />
-            App
-          </Button>
-        </ButtonsContainer>
-      </Container>
-    </PageContainerAdjusted>
-  );
-};
+const PersonalProject: React.FC<PersonalProjectProps> = React.memo(
+  ({ projectName, details, technologies, githubUrl, appUrl, image }) => {
+    return (
+      <PageContainerAdjusted $bgColor="grey">
+        <Container $textcolor="white">
+          <ProductName>{projectName}</ProductName>
+          <Paragraph>Technologies used: {technologies}</Paragraph>
+          <Paragraph>{details}</Paragraph>
+          <ImageContainer onClick={() => window.open(appUrl, "_blank")}>
+            <ProductImage src={image.url} alt={projectName} />
+          </ImageContainer>
+          <ButtonsContainer>
+            <Button onClick={() => window.open(githubUrl, "_blank")}>
+              <FaGithub size={32} />
+              Github
+            </Button>
+            <Button onClick={() => window.open(appUrl, "_blank")}>
+              <MdWeb size={32} />
+              App
+            </Button>
+          </ButtonsContainer>
+        </Container>
+      </PageContainerAdjusted>
+    );
+  }
+);
 
 export default PersonalProject;
