@@ -1,8 +1,12 @@
+import React, { FC, ReactNode } from "react";
 import { MainContent } from "@/components/MainLayout";
-import React from "react";
 
-const template: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+interface TemplateProps {
+  children: ReactNode;
+}
+
+const Template: FC<TemplateProps> = ({ children }) => {
   return <MainContent>{children}</MainContent>;
 };
 
-export default template;
+export default Template;

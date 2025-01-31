@@ -56,9 +56,9 @@ type PageCollection = {
 };
 
 type PageBuilderProps = {
-  data: Promise<{
+  data: {
     pageCollection: PageCollection;
-  }>;
+  };
 };
 
 enum PageBuilderComponentType {
@@ -71,16 +71,8 @@ enum PageBuilderComponentType {
 }
 
 const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
-  const [resolvedData, setResolvedData] = React.useState<PageCollection | null>(
-    null
-  );
-
-  React.useEffect(() => {
-    data.then((result) => setResolvedData(result.pageCollection));
-  }, [data]);
-
-  const renderedPages = resolvedData?.items[0]?.blocksCollection?.items.map(
-    (pageData) => {
+  const renderedPages =
+    data?.pageCollection.items[0]?.blocksCollection?.items.map((pageData) => {
       const { __typename, _id, ...rest } = pageData;
       switch (__typename) {
         case PageBuilderComponentType.HeroSideImageHead:
@@ -109,7 +101,7 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
               bgColor={rest.bgColor ?? ""}
               endHeading={rest.endHeading ?? ""}
               orderInPage={rest.orderInPage}
-              fontColor={rest.fontColor}
+              fontColor={rest.fontColor ?? ""}
               button={
                 rest.button ?? { text: "", bgColor: "", url: "", color: "" }
               }
@@ -165,8 +157,8 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
               urlGithub={rest.urlGithub ?? ""}
               urlApp={rest.urlApp ?? ""}
               image={rest.image ?? { url: "" }}
-              bgColor={rest.bgColor}
-              fontColor={rest.fontColor}
+              bgColor={rest.bgColor ?? ""}
+              fontColor={rest.fontColor ?? ""}
             />
           );
 
@@ -174,8 +166,7 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
           console.log("No component found", __typename);
           return null;
       }
-    }
-  );
+    });
 
   return <>{renderedPages}</>;
 };
