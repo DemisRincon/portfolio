@@ -160,6 +160,7 @@ const ButtonContainer = styled.div`
   width: 100%;
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     width: 95%;
+    justify-content: start;
   }
 `;
 
@@ -201,11 +202,15 @@ const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> = ({
               <WrapperFadeIn>
                 <Owner color={fontColor}>{enterprise}</Owner>{" "}
               </WrapperFadeIn>
-              <Description color={fontColor}>{first}</Description>
+              <WrapperFadeIn>
+                <Description color={fontColor}>{first}</Description>
+              </WrapperFadeIn>
               <JobFunctions color={fontColor}>
                 {newArray.map((item, index) => (
                   <JobFunction key={index}>
-                    <Description color={fontColor}>{item}</Description>
+                    <WrapperFadeIn threshold={0.3}>
+                      <Description color={fontColor}>{item}</Description>
+                    </WrapperFadeIn>
                   </JobFunction>
                 ))}
               </JobFunctions>
