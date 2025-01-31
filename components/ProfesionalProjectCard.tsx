@@ -29,17 +29,28 @@ const Container = styled.div`
   justify-content: center;
   align-items: start;
   width: 100%;
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    width: 80%;
+  }
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    width: 55%;
   }
 `;
 
 const ImageContainer = styled.div`
-  display: flex;
   justify-content: center;
   align-items: start;
   width: 100%;
   height: 100%;
   cursor: pointer;
+  display: none;
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    display: flex;
+    width: 80%;
+  }
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    width: 45%;
+  }
 `;
 
 const ProductImage = styled.img`
@@ -47,7 +58,7 @@ const ProductImage = styled.img`
   height: 100%;
   object-fit: cover;
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    width: 80%;
+    width: 95%;
   }
 `;
 
@@ -62,9 +73,10 @@ const Owner = styled.h3<{ color?: string }>`
     `
     color: ${color};
   `}
+  margin-top: 2rem;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    width: 80%;
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    margin-top: 0;
     justify-content: start;
   }
 `;
@@ -82,8 +94,8 @@ const ProductName = styled.h2<{ color?: string }>`
   color: ${color};
   `}
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    width: 80%;
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    width: 95%;
     justify-content: start;
   }
 `;
@@ -102,6 +114,7 @@ const Button = styled.button`
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.h5};
   margin: 2rem 0;
+  font-size: 1.5rem;
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     font-size: 1.8rem;
   }
@@ -131,11 +144,12 @@ const MiddleContainer = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  font-size: 1.2rem;
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     flex-direction: row-reverse;
     align-items: start;
     gap: 2rem;
-    width: 80%;
+    width: 95%;
   }
 `;
 
@@ -145,8 +159,7 @@ const ButtonContainer = styled.div`
   align-items: center;
   width: 100%;
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    width: 80%;
-    justify-content: start;
+    width: 95%;
   }
 `;
 
@@ -177,27 +190,26 @@ const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> = ({
           <WrapperFadeIn>
             <ProductName color={fontColor}>{name}</ProductName>
           </WrapperFadeIn>
-          <WrapperFadeIn>
-            <Owner color={fontColor}>{enterprise}</Owner>{" "}
-          </WrapperFadeIn>
           <MiddleContainer>
-            <WrapperFadeIn>
-              <ImageContainer onClick={() => window.open(url, "_blank")}>
+            <ImageContainer onClick={() => window.open(url, "_blank")}>
+              <WrapperFadeIn>
                 <ProductImage src={productImg} alt={name} />
-              </ImageContainer>
-            </WrapperFadeIn>
-            <WrapperFadeIn>
-              <Container>
-                <Description color={fontColor}>{first}</Description>
-                <JobFunctions color={fontColor}>
-                  {newArray.map((item, index) => (
-                    <JobFunction key={index}>
-                      <Description color={fontColor}>{item}</Description>
-                    </JobFunction>
-                  ))}
-                </JobFunctions>
-              </Container>
-            </WrapperFadeIn>
+              </WrapperFadeIn>
+            </ImageContainer>
+
+            <Container>
+              <WrapperFadeIn>
+                <Owner color={fontColor}>{enterprise}</Owner>{" "}
+              </WrapperFadeIn>
+              <Description color={fontColor}>{first}</Description>
+              <JobFunctions color={fontColor}>
+                {newArray.map((item, index) => (
+                  <JobFunction key={index}>
+                    <Description color={fontColor}>{item}</Description>
+                  </JobFunction>
+                ))}
+              </JobFunctions>
+            </Container>
           </MiddleContainer>
 
           <WrapperFadeIn>
