@@ -84,8 +84,8 @@ const MenuIcon = styled.button`
 const links = [
   { href: "/", label: "Home" },
   { href: "/projects", label: "Projects" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/about", label: "About Me" },
+  { href: "/contact", label: "Hire me" },
 ];
 
 const Menu: FC = () => {

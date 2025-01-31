@@ -106,8 +106,8 @@ const Description = styled.p`
 const JobFunctions = styled.ul`
   margin: 0 0 1rem 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: start;
+  align-items: start;
   flex-direction: column;
   color: ${({ color }) => color};
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {

@@ -11,13 +11,15 @@ export const PageContainer = styled.div<PageContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: ${({ $isFirstElement }) =>
+    $isFirstElement ? "calc(100vh - 60px)" : "100vh"};
   width: 100%;
   box-sizing: border-box;
   padding: 0 20px;
   margin: 0;
 
   ${({ $isFirstElement }) => $isFirstElement && `margin-top: 60px;`}
+
   ${({ $bgColor, theme }) =>
     $bgColor && `background-color: ${theme.colors[$bgColor]};`}
 `;
