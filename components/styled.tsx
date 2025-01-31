@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 interface PageContainerProps {
@@ -32,4 +33,21 @@ export const PageContainerAdjusted = styled(PageContainer)`
 export const PageFreeSpace = styled(PageContainer)`
   max-height: none;
   flex: 1;
+`;
+
+export const Button = styled(motion.button)<{
+  $bgColor?: string;
+  $color?: string;
+}>`
+  border: none;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  background-color: ${({ theme, $bgColor }) =>
+    $bgColor ? theme.colors[$bgColor] : theme.colors.black};
+  color: ${({ theme, $color }) =>
+    $color ? theme.colors[$color] : theme.colors.white};
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    font-size: 1.7rem;
+  }
 `;

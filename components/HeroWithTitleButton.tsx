@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { PageContainer } from "./styled";
+import { PageContainer, Button } from "./styled";
 import WrapperFadeIn from "./Motion/WrapperFadeIn";
 import { motion } from "framer-motion";
 import useTransformOnScroll from "@/library/hooks/useParallax";
@@ -33,21 +33,6 @@ const ButtonContainer = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     height: 50%;
-  }
-`;
-
-const Button = styled(motion.button)<{ $bgColor?: string; $color?: string }>`
-  padding: 10px 30px;
-  border: none;
-  border-radius: 5px;
-  font-size: 2rem;
-  height: 100px;
-  background-color: ${({ theme, $bgColor }) =>
-    $bgColor ? theme.colors[$bgColor] : theme.colors.black};
-  color: ${({ theme, $color }) =>
-    $color ? theme.colors[$color] : theme.colors.white};
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    font-size: 2rem;
   }
 `;
 
