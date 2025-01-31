@@ -217,9 +217,7 @@ const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> = ({
             <WrapperFadeIn>
               <Owner color={fontColor}>{enterprise}</Owner>
             </WrapperFadeIn>
-            <WrapperFadeIn>
-              <Description color={fontColor}>{first}</Description>
-            </WrapperFadeIn>
+            <Description color={fontColor}>{first}</Description>
             <JobFunctions color={fontColor}>
               {newArray.map((item, index) => (
                 <JobFunction key={index}>

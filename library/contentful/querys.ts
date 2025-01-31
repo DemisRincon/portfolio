@@ -82,8 +82,8 @@ query {
               projectName
               details
               technologies
-              urlgithub
-              urlapp
+              urlGithub
+              urlApp
               bgColor
               fontColor
               image{

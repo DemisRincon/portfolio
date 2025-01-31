@@ -8,8 +8,10 @@ interface PersonalProjectProps {
   projectName: string;
   details: string;
   technologies: string;
-  githubUrl: string;
-  appUrl: string;
+  urlGithub: string;
+  urlApp: string;
+  bgColor: string;
+  fontColor: string;
   image: {
     url: string;
   };
@@ -98,22 +100,31 @@ const ProductName = styled.h2<{ color?: string }>`
 `;
 
 const PersonalProject: React.FC<PersonalProjectProps> = React.memo(
-  ({ projectName, details, technologies, githubUrl, appUrl, image }) => {
+  ({
+    projectName,
+    details,
+    technologies,
+    urlGithub,
+    urlApp,
+    image,
+    bgColor,
+    fontColor,
+  }) => {
     return (
-      <PageContainerAdjusted $bgColor="grey">
-        <Container $textcolor="white">
+      <PageContainerAdjusted $bgColor={bgColor}>
+        <Container $textcolor={fontColor}>
           <ProductName>{projectName}</ProductName>
           <Paragraph>Technologies used: {technologies}</Paragraph>
           <Paragraph>{details}</Paragraph>
-          <ImageContainer onClick={() => window.open(appUrl, "_blank")}>
+          <ImageContainer onClick={() => window.open(urlApp, "_blank")}>
             <ProductImage src={image.url} alt={projectName} />
           </ImageContainer>
           <ButtonsContainer>
-            <Button onClick={() => window.open(githubUrl, "_blank")}>
+            <Button onClick={() => window.open(urlGithub, "_blank")}>
               <FaGithub size={32} />
               Github
             </Button>
-            <Button onClick={() => window.open(appUrl, "_blank")}>
+            <Button onClick={() => window.open(urlApp, "_blank")}>
               <MdWeb size={32} />
               App
             </Button>

@@ -41,8 +41,8 @@ type BlockItem = {
   projectName?: string;
   details?: string;
   technologies?: string;
-  urlgithub?: string;
-  urlapp?: string;
+  urlGithub?: string;
+  urlApp?: string;
   showName?: boolean;
   sliceText?: boolean;
 };
@@ -162,9 +162,11 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ data }) => {
               projectName={rest.projectName ?? ""}
               details={rest.details ?? ""}
               technologies={rest.technologies ?? ""}
-              urlgithub={rest.urlgithub ?? ""}
-              urlapp={rest.urlapp ?? ""}
+              urlGithub={rest.urlGithub ?? ""}
+              urlApp={rest.urlApp ?? ""}
               image={rest.image ?? { url: "" }}
+              bgColor={rest.bgColor}
+              fontColor={rest.fontColor}
             />
           );
 
