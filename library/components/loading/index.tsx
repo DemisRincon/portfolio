@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { motion } from "motion/react";
 import styled from "styled-components";
 
@@ -57,4 +58,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default React.memo(Loading);

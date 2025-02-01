@@ -1,13 +1,8 @@
 "use client";
-import React, { useEffect } from "react";
+import PageBuilder from "@/library/components/pageBuilder";
 
 const Page = () => {
-  return (
-    <div>
-      <h1>Welcome to My Portfolio</h1>
-      <p>This is a clean page component.</p>
-    </div>
-  );
+  return <PageBuilder />;
 };
 
 export default Page;

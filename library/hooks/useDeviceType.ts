@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 
 export enum DeviceType {
   Mobile = "mobile",
@@ -8,9 +8,22 @@ export enum DeviceType {
 }
 
 const useDetectDevice = () => {
-  const [deviceType, setDeviceType] = useState(() =>
-    typeof window !== "undefined" ? getDeviceType() : DeviceType.Desktop
-  );
+  const getDeviceType = useCallback(() => {
+    const width = window.innerWidth;
+    if (width < 768) {
+      return DeviceType.Mobile;
+    } else if (width < 1024) {
+      return DeviceType.Tablet;
+    } else {
+      return DeviceType.Desktop;
+    }
+  }, []);
+
+  const initialDeviceType = useMemo(() => {
+    return typeof window !== "undefined" ? getDeviceType() : DeviceType.Desktop;
+  }, [getDeviceType]);
+
+  const [deviceType, setDeviceType] = useState(initialDeviceType);
 
   useEffect(() => {
     const handleResize = () => {
@@ -21,19 +34,7 @@ const useDetectDevice = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
-  if (typeof window === "undefined") return;
-
-  function getDeviceType() {
-    const width = window.innerWidth;
-    if (width < 768) {
-      return DeviceType.Mobile;
-    } else if (width < 1024) {
-      return DeviceType.Tablet;
-    } else {
-      return DeviceType.Desktop;
-    }
-  }
+  }, [getDeviceType]);
 
   return deviceType;
 };
