@@ -2,6 +2,7 @@ import { AnimatePresence } from "motion/react";
 import React, { useState } from "react";
 import { FaBars } from "react-icons/fa";
 import styled from "styled-components";
+import FloatingMenu from "./floatingMenu";
 
 const MenuIcon = styled.button`
   outline: 0;
@@ -24,7 +25,9 @@ const MobileNavigator = () => {
       <MenuIcon onClick={toggleMenu}>
         <FaBars size={25} />
       </MenuIcon>
-      <AnimatePresence>{menuOpen && <>open menu</>}</AnimatePresence>
+      <AnimatePresence>
+        {menuOpen && <FloatingMenu toggleMenu={toggleMenu} />}
+      </AnimatePresence>
     </>
   );
 };
