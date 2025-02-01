@@ -36,10 +36,6 @@ export const LoadingText = styled.h1`
   margin-top: 20px;
   color: ${(props) => props.theme.colors.teal};
   letter-spacing: 0.5rem;
-  font-size: 2rem;
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    font-size: 5rem;
-  }
 `;
 
 const Loading = () => {

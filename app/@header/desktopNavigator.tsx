@@ -16,14 +16,8 @@ const NavLink = styled(motion.div)<{ $isActive?: boolean }>`
   text-decoration: none;
   font-weight: bold;
 
-  font-size: 1rem;
   color: ${(props) => props.theme.colors.black};
-  ${(props) =>
-    props.$isActive &&
-    `
-      color: ${props.theme.colors.teal};
-      font-size: 1.2rem;
-    `}
+
   &:after {
     content: "";
     display: block;

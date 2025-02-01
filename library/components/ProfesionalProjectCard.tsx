@@ -2,6 +2,7 @@ import React, { useMemo, useCallback } from "react";
 import styled from "styled-components";
 import WrapperFadeIn from "./WrapperFadeIn";
 import { Button } from "./common";
+import useScrollOnView from "../hooks/useScrollOnView";
 
 interface ProfesionalProjectCardProps {
   fontColor: string;
@@ -11,6 +12,7 @@ interface ProfesionalProjectCardProps {
   name: string;
   productPhoto: { url: string };
   buttonText?: string;
+  title?: string;
 }
 
 const MainContainer = styled.div`
@@ -160,7 +162,9 @@ const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> = ({
   name,
   productPhoto: { url: productImg },
   buttonText,
+  title,
 }) => {
+  const target = useScrollOnView();
   const first = useMemo(() => description?.[0] || "", [description]);
   const newArray = useMemo(() => description?.slice(1) || [], [description]);
 
@@ -173,7 +177,7 @@ const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> = ({
   }, [url]);
 
   return (
-    <MainContainer>
+    <MainContainer id={title} ref={target}>
       <WrapperFadeIn>
         <ProductName color={fontColor}>{name}</ProductName>
       </WrapperFadeIn>

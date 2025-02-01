@@ -1,6 +1,6 @@
 "use client";
 import styled from "styled-components";
-import { PageContainer } from "./common";
+import { PageContainer, PageContainerAdjusted, PageFreeSpace } from "./common";
 
 import React, { useCallback } from "react";
 import Image from "next/image";
@@ -104,9 +104,12 @@ const PageBuilder: React.FC = () => {
           </PageContainer>
         );
       case PageBuilderComponentType.ProfesionalProjectCard:
-        console.log(item);
         return (
-          <PageContainer key={item._id} id={item.title}>
+          <PageFreeSpace
+            key={item._id}
+            $bgColor={item.bgColor}
+            $fontColor={item.fontColor}
+          >
             <ProfesionalProjectCard
               fontColor={item.fontColor ?? ""}
               description={item.description}
@@ -115,8 +118,9 @@ const PageBuilder: React.FC = () => {
               name={item.name ?? ""}
               productPhoto={item.productPhoto ?? { url: "" }}
               buttonText={item.buttonText}
+              title={item.title ?? ""}
             />
-          </PageContainer>
+          </PageFreeSpace>
         );
       case PageBuilderComponentType.PersonalProjects:
         return (

@@ -49,8 +49,7 @@ const NavList = styled.ul`
 const NavItem = styled(motion.li)<{ $isActive?: boolean }>`
   margin: 0.5rem 0;
   text-decoration: none;
-  font-weight: bold;
-  font-size: 1.5rem;
+
   &:hover {
     cursor: pointer;
     color: ${(props) => props.theme.colors.grey};

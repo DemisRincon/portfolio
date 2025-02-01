@@ -27,7 +27,7 @@ const Header = () => {
   return (
     <MainContainer>
       <InnerContainer>
-        <h2>{headerData.name}</h2>
+        <h1>{headerData.name}</h1>
         {isMobile ? <MobileNavigator /> : <DesktopNavigator />}
       </InnerContainer>
     </MainContainer>

@@ -9,7 +9,7 @@ const useGetPage = () => {
   const [error, setError] = useState<unknown>(null);
   const path = usePathname();
   const prevPathRef = useRef<string | null>(null);
-  console.log(path);
+
   useEffect(() => {
     if (prevPathRef.current !== path) {
       const fetchData = async () => {
