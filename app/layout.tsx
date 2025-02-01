@@ -1,5 +1,7 @@
 import Providers from "@/library/providers/MainProvider";
 import type { Metadata } from "next";
+import Header from "./@header/page";
+import Foother from "./@foother/page";
 
 export const metadata: Metadata = {
   title: "Portfolio Demis Rincon",
@@ -14,7 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          {children}
+          <Foother />
+        </Providers>
       </body>
     </html>
   );

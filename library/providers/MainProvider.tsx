@@ -1,6 +1,5 @@
 "use client";
 import { ThemeProvider } from "styled-components";
-import mobileTheme from "@/library/themes/mobileTheme";
 import StyledComponentsRegistry from "./registry";
 import useDetectDevice, { DeviceType } from "../hooks/useDeviceType";
 import GlobalStyles from "./GlobalStyles";
@@ -20,7 +19,6 @@ const Providers: React.FC<ProvidersProps> = ({ children }) => {
         <GlobalStyles />
         {children}
       </ThemeProvider>
-      ;
     </StyledComponentsRegistry>
   );
 };

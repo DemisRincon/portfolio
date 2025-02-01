@@ -1,0 +1,32 @@
+import { AnimatePresence } from "motion/react";
+import React, { useState } from "react";
+import { FaBars } from "react-icons/fa";
+import styled from "styled-components";
+
+const MenuIcon = styled.button`
+  outline: 0;
+  border: none;
+  padding: 0.5rem;
+  background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+`;
+
+const MobileNavigator = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  return (
+    <>
+      <MenuIcon onClick={toggleMenu}>
+        <FaBars size={25} />
+      </MenuIcon>
+      <AnimatePresence>{menuOpen && <>open menu</>}</AnimatePresence>
+    </>
+  );
+};
+
+export default MobileNavigator;
