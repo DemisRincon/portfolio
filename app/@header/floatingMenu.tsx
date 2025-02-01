@@ -4,6 +4,7 @@ import { FaTimes } from "react-icons/fa";
 import styled from "styled-components";
 import { usePathname, useRouter } from "next/navigation";
 import headerData from "@/library/data/header";
+import useLockScroll from "@/library/hooks/useLockScroll";
 
 interface FloatingMenuProps {
   toggleMenu: () => void;
@@ -15,12 +16,12 @@ const FullScreenOverlay = styled(motion.div)`
   right: 0;
   width: 100%;
   height: 100%;
-  background-color: ${(props) => props.theme.colors.teal};
-  color: ${(props) => props.theme.colors.white};
   z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${(props) => props.theme.colors.teal};
+  color: ${(props) => props.theme.colors.white};
 `;
 
 const CloseIcon = styled.div`
@@ -54,32 +55,22 @@ const NavItem = styled(motion.li)<{ $isActive?: boolean }>`
     cursor: pointer;
     color: ${(props) => props.theme.colors.grey};
   }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.lg}) {
-    margin: 0 1rem;
-  }
 `;
 
 const FloatingMenu: React.FC<FloatingMenuProps> = ({ toggleMenu }) => {
   const animationControls = useAnimation();
   const pathname = usePathname();
   const router = useRouter();
-
+  useLockScroll();
   useEffect(() => {
     animationControls.start("visible");
   }, [animationControls]);
-
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, []);
 
   const handleClose = useCallback(
     async (href?: string): Promise<void> => {
       await animationControls.start("hidden");
       if (href) {
+        router.prefetch(href);
         router.push(href);
       }
       toggleMenu();
@@ -126,7 +117,7 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ toggleMenu }) => {
               }}
               onClick={() => handleClose(link.href)}
             >
-              {link.label}
+              <h1>{link.label}</h1>
             </NavItem>
           </AnimatePresence>
         ))}
