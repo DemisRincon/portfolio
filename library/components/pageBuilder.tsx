@@ -8,10 +8,12 @@ import CarrouseImageWithLink from "./ImageCarouselWithLinks";
 import useGetPage from "../hooks/useGetPage";
 import ProfesionalProjectCard from "./ProfesionalProjectCard";
 import HeroSideImageHead from "./HeroSideImageHead";
+import IconWall from "./IconWall";
 
-type Image = {
+export type Image = {
   url: string;
   alt?: string;
+  name: string;
 };
 
 export type BlockItem = {
@@ -32,6 +34,7 @@ export type BlockItem = {
     color: string;
   };
   collection?: Image[];
+  collectionString?: string[];
   name?: string;
   slug?: string;
   title?: string;
@@ -101,9 +104,17 @@ const PageBuilder: React.FC = () => {
         );
       case PageBuilderComponentType.IconWall:
         return (
-          <PageContainer key={item._id}>
-            {PageBuilderComponentType.IconWall}
-          </PageContainer>
+          <PageContainerAdjusted
+            key={item._id}
+            $bgColor={item.bgColor}
+            $fontColor={item.fontColor}
+          >
+            <IconWall
+              name={item.name ?? ""}
+              collectionString={item.collectionString ?? []}
+              showName={item.showName}
+            />
+          </PageContainerAdjusted>
         );
       case PageBuilderComponentType.ImageCarouselWithLinks:
         return (

@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 import useTransformOnScroll from "../hooks/useTransformOnScroll";
@@ -120,15 +119,18 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
 
   const { y: yImage } = useTransformOnScroll([0, 1], [1, 1.7]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setMiddleHeadingIndex(
-        (prevIndex) => (prevIndex + 1) % middleHeading.length
-      );
-    }, 3000);
+  const memoizedMiddleHeading = useMemo(() => middleHeading, [middleHeading]);
 
+  const updateMiddleHeadingIndex = useCallback(() => {
+    setMiddleHeadingIndex(
+      (prevIndex) => (prevIndex + 1) % memoizedMiddleHeading.length
+    );
+  }, [memoizedMiddleHeading.length]);
+
+  useEffect(() => {
+    const interval = setInterval(updateMiddleHeadingIndex, 3000);
     return () => clearInterval(interval);
-  }, [middleHeading.length]);
+  }, [updateMiddleHeadingIndex]);
 
   return (
     <Container>
@@ -138,13 +140,13 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
           {heading}{" "}
           <AnimatePresence mode="wait">
             <motion.div
-              key={middleHeading[middleHeadingIndex]}
+              key={memoizedMiddleHeading[middleHeadingIndex]}
               initial={{ opacity: 0, y: -30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 30 }}
               transition={{ duration: 0.1 }}
             >
-              <Strong>{middleHeading[middleHeadingIndex]}</Strong>
+              <Strong>{memoizedMiddleHeading[middleHeadingIndex]}</Strong>
             </motion.div>
           </AnimatePresence>{" "}
           {endHeading}

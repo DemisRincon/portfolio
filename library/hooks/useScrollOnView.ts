@@ -15,7 +15,7 @@ const useScrollOnView = () => {
   useEffect(() => {
     if (urlFragment && targetRef.current) {
       const id = targetRef.current.id;
-      console.log(urlFragment, id);
+
       if (urlFragment === id) {
         targetRef.current.scrollIntoView({
           behavior: "smooth",

@@ -39,12 +39,26 @@ export const PageContainer = styled.div<{
     $fontColor ? theme.colors[$fontColor] : theme.colors.black};
 `;
 
-export const PageContainerAdjusted = styled(PageContainer)`
+export const PageContainerAdjusted = styled(PageContainer)<{
+  $bgColor?: string;
+  $fontColor?: string;
+}>`
   height: auto;
   overflow: hidden;
+  background-color: ${({ theme, $bgColor }) =>
+    $bgColor ? theme.colors[$bgColor] : theme.colors.white};
+  color: ${({ theme, $fontColor }) =>
+    $fontColor ? theme.colors[$fontColor] : theme.colors.black};
 `;
 
-export const PageFreeSpace = styled(PageContainer)`
+export const PageFreeSpace = styled(PageContainer)<{
+  $bgColor?: string;
+  $fontColor?: string;
+}>`
   max-height: none;
   width: 100%;
+  background-color: ${({ theme, $bgColor }) =>
+    $bgColor ? theme.colors[$bgColor] : theme.colors.white};
+  color: ${({ theme, $fontColor }) =>
+    $fontColor ? theme.colors[$fontColor] : theme.colors.black};
 `;

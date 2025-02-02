@@ -30,7 +30,7 @@ query {
               orderInPage
               title
               slug
-              collection
+              collectionString
               name
               bgColor
               showName
