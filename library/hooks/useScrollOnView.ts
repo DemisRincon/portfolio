@@ -1,5 +1,4 @@
-"use client";
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const useScrollOnView = () => {
   const getHashFromUrl = () => {
@@ -13,7 +12,7 @@ const useScrollOnView = () => {
 
   const targetRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (urlFragment && targetRef.current) {
       const id = targetRef.current.id;
 
