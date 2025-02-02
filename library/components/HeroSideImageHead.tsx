@@ -35,7 +35,7 @@ const TextContainer = styled(motion.div)`
   }
 `;
 
-const SubHeading = styled.p`
+const SubHeading = styled.h6`
   color: ${({ theme }) => theme.colors.grey};
   text-align: start;
   width: 100%;

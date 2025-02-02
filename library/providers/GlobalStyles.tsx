@@ -31,5 +31,17 @@ export const GlobalStyles = createGlobalStyle`
     h2{
             font-size: ${({ theme }) => theme.h2.fontSize};
     }
+    h3{
+            font-size: ${({ theme }) => theme.h3.fontSize};
+    }
+    h4{
+            font-size: ${({ theme }) => theme.h4.fontSize};
+    }
+    h5{
+            font-size: ${({ theme }) => theme.h5.fontSize};
+    }
+    h6{
+            font-size: ${({ theme }) => theme.h6.fontSize};
+    }
 `;
 export default GlobalStyles;
