@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const useScrollOnView = () => {
   const getHashFromUrl = () => {
@@ -8,7 +8,19 @@ const useScrollOnView = () => {
     return null;
   };
 
-  const urlFragment = getHashFromUrl();
+  const [urlFragment, setUrlFragment] = useState(getHashFromUrl());
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setUrlFragment(getHashFromUrl());
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
 
   const targetRef = useRef<HTMLDivElement>(null);
 
