@@ -141,7 +141,7 @@ const PageBuilder: React.FC = () => {
         );
       case PageBuilderComponentType.ProfesionalProjectCard:
         return (
-          <PageContainerAdjusted
+          <PageContainer
             key={item._id}
             $bgColor={item.bgColor}
             $fontColor={item.fontColor}
@@ -156,7 +156,7 @@ const PageBuilder: React.FC = () => {
               buttonText={item.buttonText}
               title={item.title ?? ""}
             />
-          </PageContainerAdjusted>
+          </PageContainer>
         );
       case PageBuilderComponentType.PersonalProjects:
         console.log(item);
