@@ -1,14 +1,14 @@
 "use client";
 import styled from "styled-components";
-import { PageContainer, PageContainerAdjusted, PageFreeSpace } from "./Common";
-
-import React, { useCallback } from "react";
+import { PageContainer, PageContainerAdjusted } from "./Common";
+import React, { useCallback, useMemo } from "react";
 import Image from "next/image";
 import CarrouseImageWithLink from "./ImageCarouselWithLinks";
 import useGetPage from "../hooks/useGetPage";
 import ProfesionalProjectCard from "./ProfesionalProjectCard";
 import HeroSideImageHead from "./HeroSideImageHead";
 import IconWall from "./IconWall";
+import HeroWithTitleButton from "./HeroWithTitleButton";
 
 export type Image = {
   url: string;
@@ -91,15 +91,27 @@ const PageBuilder: React.FC = () => {
               subHeading={item.subHeading}
               middleHeading={item.middleHeading}
               image={item.image}
-              endHeading={item.endHeading}
+              endHeading={item.endHeading ?? ""}
               sliceText={item.sliceText}
             />
           </PageContainer>
         );
       case PageBuilderComponentType.HeroWithTitleButton:
         return (
-          <PageContainer key={item._id}>
-            {PageBuilderComponentType.HeroWithTitleButton}
+          <PageContainer
+            key={item._id}
+            $bgColor={item.bgColor}
+            $fontColor={item.fontColor}
+          >
+            <HeroWithTitleButton
+              heading={item.heading}
+              subHeading={item.subHeading}
+              middleHeading={item.middleHeading}
+              endHeading={item.endHeading ?? ""}
+              button={
+                item.button ?? { text: "", bgColor: "", url: "", color: "" }
+              }
+            />
           </PageContainer>
         );
       case PageBuilderComponentType.IconWall:
@@ -128,7 +140,7 @@ const PageBuilder: React.FC = () => {
         );
       case PageBuilderComponentType.ProfesionalProjectCard:
         return (
-          <PageFreeSpace
+          <PageContainerAdjusted
             key={item._id}
             $bgColor={item.bgColor}
             $fontColor={item.fontColor}
@@ -143,7 +155,7 @@ const PageBuilder: React.FC = () => {
               buttonText={item.buttonText}
               title={item.title ?? ""}
             />
-          </PageFreeSpace>
+          </PageContainerAdjusted>
         );
       case PageBuilderComponentType.PersonalProjects:
         return (
@@ -156,6 +168,11 @@ const PageBuilder: React.FC = () => {
     }
   }, []);
 
+  const components = useMemo(
+    () => pageData?.map(renderComponent),
+    [pageData, renderComponent]
+  );
+
   if (error) {
     return <div>Error loading data</div>;
   }
@@ -163,8 +180,6 @@ const PageBuilder: React.FC = () => {
   if (!pageData) {
     return null;
   }
-
-  const components = pageData.map(renderComponent);
 
   return <PageWrapper>{components}</PageWrapper>;
 };
