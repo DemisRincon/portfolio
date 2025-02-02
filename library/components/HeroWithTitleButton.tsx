@@ -58,7 +58,7 @@ const HeadingContainer = styled(motion.div)`
   }
 `;
 
-const Heading = styled.h1`
+const Heading = styled.h2`
   box-sizing: border-box;
   text-align: center;
   box-sizing: border-box;

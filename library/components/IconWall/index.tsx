@@ -19,7 +19,7 @@ const HeaderContainer = styled.div`
   align-items: center;
 `;
 
-const Header = styled.h1`
+const Header = styled.h3`
   margin: 1rem 0;
   text-align: center;
 `;

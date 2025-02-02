@@ -17,10 +17,7 @@ import styled from "styled-components";
 import cucumbericon from "@/library/assets/icons/cucumber.svg";
 import nightwatchicon from "@/library/assets/icons/nightwatch.svg";
 import SVG from "react-inlinesvg";
-import useIsMobile from "@/library/hooks/useIsMobile";
-
-const desktopSize = "2rem";
-const mobileSize = "2.5rem";
+import { useTheme } from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
@@ -94,16 +91,16 @@ const iconMap: Record<string, (color: string, size: string) => JSX.Element> = {
 const IconProvider: React.FC<IconProviderProps> = ({
   name,
   $showName = false,
-  $fontColor = "black",
+  $fontColor = "white",
 }) => {
-  const isMobile = useIsMobile();
+  const theme = useTheme();
   const icon = useMemo(() => {
     return iconMap[name] ? (
-      iconMap[name]($fontColor, isMobile ? mobileSize : desktopSize)
+      iconMap[name]($fontColor, theme.fontSizes.icon)
     ) : (
       <span>📚</span>
     );
-  }, [name, $fontColor, isMobile]);
+  }, [name, $fontColor, theme.fontSizes.icon]);
 
   return (
     <Wrapper>

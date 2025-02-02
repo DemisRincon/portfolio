@@ -25,23 +25,23 @@ export const GlobalStyles = createGlobalStyle`
         }
     }
     h1{
-            font-size: ${({ theme }) => theme.h1.fontSize};
+            font-size: ${({ theme }) => theme.fontSizes.h1.fontSize};
            
     }
     h2{
-            font-size: ${({ theme }) => theme.h2.fontSize};
+            font-size: ${({ theme }) => theme.fontSizes.h2.fontSize};
     }
     h3{
-            font-size: ${({ theme }) => theme.h3.fontSize};
+            font-size: ${({ theme }) => theme.fontSizes.h3.fontSize};
     }
     h4{
-            font-size: ${({ theme }) => theme.h4.fontSize};
+            font-size: ${({ theme }) => theme.fontSizes.h4.fontSize};
     }
     h5{
-            font-size: ${({ theme }) => theme.h5.fontSize};
+            font-size: ${({ theme }) => theme.fontSizes.h5.fontSize};
     }
     h6{
-            font-size: ${({ theme }) => theme.h6.fontSize};
+            font-size: ${({ theme }) => theme.fontSizes.h6.fontSize};
     }
 `;
 export default GlobalStyles;
