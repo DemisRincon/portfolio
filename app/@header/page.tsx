@@ -22,13 +22,15 @@ const InnerContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-
+const Heading = styled.h1`
+  color: ${({ theme }) => theme.colors.black};
+`;
 const Header = () => {
   const isMobile = useIsMobile();
   return (
     <MainContainer>
       <InnerContainer>
-        <h1>{headerData.name}</h1>
+        <Heading>{headerData.name}</Heading>
         {isMobile ? <MobileNavigator /> : <DesktopNavigator />}
       </InnerContainer>
     </MainContainer>

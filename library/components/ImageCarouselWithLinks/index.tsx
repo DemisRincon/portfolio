@@ -18,6 +18,7 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   max-width: 100%;
+  margin-top: 2rem;
 `;
 
 const Header = styled.h1`
@@ -45,12 +46,12 @@ const CarrouseImageWithLink: React.FC<CarrouseImageWithLinkProps> = ({
   const memoizedData = useMemo(() => data, [data]);
 
   return (
-    <WrapperFadeIn>
-      <Container title={title}>
+    <Container title={title}>
+      <WrapperFadeIn>
         <Header>{name}</Header>
-        {memoizedData && <InfiniteCarousel data={memoizedData} />}
-      </Container>
-    </WrapperFadeIn>
+      </WrapperFadeIn>
+      {memoizedData && <InfiniteCarousel data={memoizedData} />}
+    </Container>
   );
 };
 

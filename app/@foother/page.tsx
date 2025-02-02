@@ -1,8 +1,9 @@
 "use client";
-import { PageFreeSpace } from "@/library/components/Common";
+import { PageContainerAdjusted } from "@/library/components/Common";
 import styled from "styled-components";
 
 const FooterContainer = styled.div`
+  padding: 3rem;
   display: grid;
   justify-content: center;
   align-items: start;
@@ -32,20 +33,20 @@ const Container = styled.div`
 
 const Footer = () => {
   return (
-    <PageFreeSpace $bgColor="black">
+    <PageContainerAdjusted $bgColor="black">
       <FooterContainer>
         <Container>
-          <h5>Created by: </h5>
+          <h6>Created by: </h6>
           <p>Demis Rincon</p>
           <p>© 2025 Open source code</p>
         </Container>
         <Container>
-          <h5>Contact</h5>
+          <h6>Contact</h6>
           <p>Hire me</p>
           <p>About me</p>
         </Container>
         <Container>
-          <h5>Projects</h5>
+          <h6>Projects</h6>
           <p>Smart Point Cloud</p>
           <p>COOP</p>
           <p>PMG</p>
@@ -54,7 +55,7 @@ const Footer = () => {
           <p>POS Kiosko</p>
         </Container>
       </FooterContainer>
-    </PageFreeSpace>
+    </PageContainerAdjusted>
   );
 };
 export default Footer;

@@ -131,13 +131,13 @@ const PageBuilder: React.FC = () => {
         );
       case PageBuilderComponentType.ImageCarouselWithLinks:
         return (
-          <PageContainer key={item._id}>
+          <PageContainerAdjusted key={item._id}>
             <CarrouseImageWithLink
               title={item.title ?? ""}
               name={item.name ?? ""}
               slug={item.slug ?? ""}
             />
-          </PageContainer>
+          </PageContainerAdjusted>
         );
       case PageBuilderComponentType.ProfesionalProjectCard:
         return (

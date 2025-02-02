@@ -21,6 +21,7 @@ const mobileTheme = {
     h6: {
       fontSize: "1.4rem",
     },
+    button: "1.8rem",
     icon: "40px",
   },
 };

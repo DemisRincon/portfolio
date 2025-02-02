@@ -2,12 +2,22 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
+    html {
+        box-sizing:border-box;
+    }
     body  {
         font-family: ${({ theme }) => theme.fonts.body};
         letter-spacing: 2px;
         margin: 0;
         padding: 0;
         max-width: 100vw;
+    }
+    div{
+        outline: none;
+        //box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        line-height: 1;
     }
     h1, h2, h3, h4, h5, h6 {
         font-family: ${({ theme }) => theme.fonts.heading};
@@ -42,6 +52,14 @@ export const GlobalStyles = createGlobalStyle`
     }
     h6{
             font-size: ${({ theme }) => theme.fontSizes.h6.fontSize};
+    }
+    button{
+        font-size: ${({ theme }) => theme.fontSizes.button};
+        font-family: ${({ theme }) => theme.fonts.heading};
+        letter-spacing: 0.2rem;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        font-weight: 600;
     }
 `;
 export default GlobalStyles;

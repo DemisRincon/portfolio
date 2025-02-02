@@ -7,7 +7,7 @@ const desktopTheme = {
       fontSize: "3rem",
     },
     h2: {
-      fontSize: "4.1rem",
+      fontSize: "4.5rem",
     },
     h3: {
       fontSize: "3rem",
@@ -21,6 +21,7 @@ const desktopTheme = {
     h6: {
       fontSize: "2.3rem",
     },
+    button: "2rem",
     icon: "48px",
   },
 };

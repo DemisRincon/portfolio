@@ -18,19 +18,9 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column-reverse;
-  width: 100%;
+  flex-direction: column;
+  width: 95%;
   height: 100%;
-  max-width: ${({ theme }) => theme.breakpoints.lg};
-  padding: 0;
-  box-sizing: border-box;
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    justify-content: center;
-  }
-  .full-width {
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 const ButtonContainer = styled.div`
@@ -50,29 +40,18 @@ const HeadingContainer = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
   width: 90%;
-  height: 80%;
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    height: 50%;
-  }
 `;
 
 const Heading = styled.h2`
-  box-sizing: border-box;
+  display: inline-block;
   text-align: center;
-  box-sizing: border-box;
-  margin: 0;
-  max-width: 100%;
-  text-overflow: ellipsis;
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding-top: 30px;
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
   }
 `;
-
-const Span = styled(motion.span)``;
 
 const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
   heading,
@@ -81,7 +60,8 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
   endHeading,
   button,
 }) => {
-  const { y: scale } = useTransformOnScroll([0, 0.7, 1], [1, 1.4, 1]);
+  console.log("HeroWithTitleButton", middleHeading[0]);
+  const { y: scale } = useTransformOnScroll([0, 0.7, 1], [0.5, 1.1, 1.2]);
 
   const handleClick = useCallback(() => {
     window.location.href = button.url;
@@ -89,9 +69,17 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
 
   return (
     <Container>
-      {button.text && (
-        <ButtonContainer>
-          <WrapperFadeIn className="full-width">
+      <HeadingContainer style={{ scale: scale }}>
+        <Heading>
+          {heading}
+          {` `} <span>{middleHeading[0]}</span>
+          {` `}
+          {endHeading}
+        </Heading>
+      </HeadingContainer>
+      <ButtonContainer>
+        <WrapperFadeIn className="full-width">
+          {button.text && (
             <Button
               onClick={handleClick}
               $bgColor={button.bgColor}
@@ -103,23 +91,9 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
             >
               {button.text}
             </Button>
-          </WrapperFadeIn>
-        </ButtonContainer>
-      )}
-      <HeadingContainer style={{ scale: scale }}>
-        <WrapperFadeIn>
-          <Heading>
-            {heading}{" "}
-            <Span
-              title={`Click to go to ${button.text}`}
-              whileHover={{ scale: 1.3, y: 20, cursor: "pointer" }}
-            >
-              {middleHeading[0]}
-            </Span>{" "}
-            {endHeading}
-          </Heading>
+          )}
         </WrapperFadeIn>
-      </HeadingContainer>
+      </ButtonContainer>
     </Container>
   );
 };
