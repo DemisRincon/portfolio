@@ -1,7 +1,7 @@
 import React, { useMemo, useCallback } from "react";
 import styled from "styled-components";
 import WrapperFadeIn from "./WrapperFadeIn";
-import { Button } from "./common";
+import { Button } from "./Common";
 import useScrollOnView from "../hooks/useScrollOnView";
 
 interface ProfesionalProjectCardProps {

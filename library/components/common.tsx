@@ -30,9 +30,9 @@ export const PageContainer = styled.div<{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  width: 100vw;
-  padding-top: 80px;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
   background-color: ${({ theme, $bgColor }) =>
     $bgColor ? theme.colors[$bgColor] : theme.colors.white};
   color: ${({ theme, $fontColor }) =>
@@ -41,11 +41,10 @@ export const PageContainer = styled.div<{
 
 export const PageContainerAdjusted = styled(PageContainer)`
   height: auto;
-  min-height: auto;
   overflow: hidden;
 `;
 
 export const PageFreeSpace = styled(PageContainer)`
   max-height: none;
-  flex: 1;
+  width: 100%;
 `;

@@ -1,12 +1,13 @@
 "use client";
 import styled from "styled-components";
-import { PageContainer, PageContainerAdjusted, PageFreeSpace } from "./common";
+import { PageContainer, PageContainerAdjusted, PageFreeSpace } from "./Common";
 
 import React, { useCallback } from "react";
 import Image from "next/image";
 import CarrouseImageWithLink from "./ImageCarouselWithLinks";
 import useGetPage from "../hooks/useGetPage";
 import ProfesionalProjectCard from "./ProfesionalProjectCard";
+import HeroSideImageHead from "./HeroSideImageHead";
 
 type Image = {
   url: string;
@@ -64,7 +65,7 @@ const PageWrapper = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   padding-top: 80px;
 `;
 
@@ -77,8 +78,19 @@ const PageBuilder: React.FC = () => {
     switch (item.__typename) {
       case PageBuilderComponentType.HeroSideImageHead:
         return (
-          <PageContainer key={item._id}>
-            {PageBuilderComponentType.HeroSideImageHead}
+          <PageContainer
+            key={item._id}
+            $bgColor={item.bgColor}
+            $fontColor={item.fontColor}
+          >
+            <HeroSideImageHead
+              heading={item.heading}
+              subHeading={item.subHeading}
+              middleHeading={item.middleHeading}
+              image={item.image}
+              endHeading={item.endHeading}
+              sliceText={item.sliceText}
+            />
           </PageContainer>
         );
       case PageBuilderComponentType.HeroWithTitleButton:

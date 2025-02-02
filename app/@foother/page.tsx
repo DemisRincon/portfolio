@@ -1,14 +1,13 @@
 "use client";
-import { PageFreeSpace } from "@/library/components/common";
+import { PageFreeSpace } from "@/library/components/Common";
 import styled from "styled-components";
 
 const FooterContainer = styled.div`
   display: grid;
   justify-content: center;
   align-items: start;
-
   grid-gap: 1rem;
-  width: 100%;
+  width: 100vw;
   grid-template-columns: repeat(1, 1fr);
   background-color: ${({ theme }) => theme.colors.black};
   color: ${({ theme }) => theme.colors.white};
@@ -19,10 +18,12 @@ const FooterContainer = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     grid-template-columns: repeat(3, 1fr);
+    max-width: 100%;
   }
 `;
 
 const Container = styled.div`
+  max-width: 100%;
   display: flex;
   justify-content: start;
   align-items: center;

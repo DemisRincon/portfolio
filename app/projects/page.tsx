@@ -1,4 +1,4 @@
-import PageBuilder from "@/library/components/pageBuilder";
+import PageBuilder from "@/library/components/PageBuilder";
 import React from "react";
 
 const Page = () => {
