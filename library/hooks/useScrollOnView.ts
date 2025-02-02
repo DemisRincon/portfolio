@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 const useScrollOnView = () => {
   const getHashFromUrl = () => {
@@ -8,23 +8,12 @@ const useScrollOnView = () => {
     return null;
   };
 
-  const [urlFragment, setUrlFragment] = useState(getHashFromUrl());
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      setUrlFragment(getHashFromUrl());
-    };
-
-    window.addEventListener("hashchange", handleHashChange);
-
-    return () => {
-      window.removeEventListener("hashchange", handleHashChange);
-    };
-  }, []);
-
   const targetRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
+  const [isMounted, setIsMounted] = useState(false);
+  const [urlFragment, setUrlFragment] = useState<string | null>(
+    getHashFromUrl()
+  );
+  const scrollToView = useCallback(() => {
     if (urlFragment && targetRef.current) {
       const id = targetRef.current.id;
 
@@ -37,6 +26,29 @@ const useScrollOnView = () => {
       }
     }
   }, [urlFragment, targetRef]);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setUrlFragment(getHashFromUrl());
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, [scrollToView]);
+
+  useEffect(() => {
+    if (isMounted) {
+      scrollToView();
+    }
+  }, [isMounted, urlFragment, targetRef, scrollToView]);
+
+  useEffect(() => {
+    setIsMounted(true);
+    scrollToView(); // Ensure scrolling on initial render
+  }, [scrollToView]);
 
   return targetRef;
 };
