@@ -19,7 +19,6 @@ const useScrollOnView = () => {
 
       if (urlFragment === id) {
         targetRef.current.scrollIntoView({
-          behavior: "smooth",
           block: "center",
           inline: "nearest",
         });
