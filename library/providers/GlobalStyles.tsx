@@ -24,5 +24,12 @@ export const GlobalStyles = createGlobalStyle`
             }
         }
     }
+    h1{
+            font-size: ${({ theme }) => theme.h1.fontSize};
+           
+    }
+    h2{
+            font-size: ${({ theme }) => theme.h2.fontSize};
+    }
 `;
 export default GlobalStyles;

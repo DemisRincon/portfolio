@@ -9,6 +9,7 @@ import ProfesionalProjectCard from "./ProfesionalProjectCard";
 import HeroSideImageHead from "./HeroSideImageHead";
 import IconWall from "./IconWall";
 import HeroWithTitleButton from "./HeroWithTitleButton";
+import PersonalProject from "./PersonalProject";
 
 export type Image = {
   url: string;
@@ -81,7 +82,7 @@ const PageBuilder: React.FC = () => {
     switch (item.__typename) {
       case PageBuilderComponentType.HeroSideImageHead:
         return (
-          <PageContainer
+          <PageContainerAdjusted
             key={item._id}
             $bgColor={item.bgColor}
             $fontColor={item.fontColor}
@@ -94,7 +95,7 @@ const PageBuilder: React.FC = () => {
               endHeading={item.endHeading ?? ""}
               sliceText={item.sliceText}
             />
-          </PageContainer>
+          </PageContainerAdjusted>
         );
       case PageBuilderComponentType.HeroWithTitleButton:
         return (
@@ -158,9 +159,21 @@ const PageBuilder: React.FC = () => {
           </PageContainerAdjusted>
         );
       case PageBuilderComponentType.PersonalProjects:
+        console.log(item);
         return (
-          <PageContainer key={item._id}>
-            {PageBuilderComponentType.PersonalProjects}
+          <PageContainer
+            key={item._id}
+            $bgColor={item.bgColor}
+            $fontColor={item.fontColor}
+          >
+            <PersonalProject
+              projectName={item.projectName ?? ""}
+              details={item.details ?? ""}
+              technologies={item.technologies ?? ""}
+              urlGithub={item.urlGithub ?? ""}
+              urlApp={item.urlApp ?? ""}
+              image={item.image}
+            />
           </PageContainer>
         );
       default:

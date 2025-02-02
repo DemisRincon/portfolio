@@ -17,6 +17,7 @@ const Providers: React.FC<ProvidersProps> = ({ children }) => {
 
   if (!device || !theme) return null;
 
+  console.log("theme", theme);
   return (
     <StyledComponentsRegistry>
       <ThemeProvider theme={theme}>

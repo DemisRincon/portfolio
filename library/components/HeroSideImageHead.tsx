@@ -8,10 +8,8 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column-reverse;
-  width: 100%;
-  min-width: 100%;
-  height: 100%;
-  max-width: ${({ theme }) => theme.breakpoints.lg};
+  width: 95%;
+  height: calc(100vh - 80px);
   padding: 0;
   white-space: nowrap;
   text-overflow: clip;
@@ -28,7 +26,6 @@ const TextContainer = styled(motion.div)`
   flex-direction: column;
   width: 100%;
   height: 50%;
-
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     height: 100%;
     width: 40%;
@@ -40,17 +37,14 @@ const TextContainer = styled(motion.div)`
 
 const SubHeading = styled.p`
   color: ${({ theme }) => theme.colors.grey};
-  text-align: center;
+  text-align: start;
   width: 100%;
-
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     text-align: justify;
   }
 `;
 
-const Heading = styled.h1<{ $color?: string; $sliceText?: boolean }>`
-  color: ${({ theme, $color }) =>
-    $color ? theme.colors[$color] : theme.colors.black};
+const Heading = styled.h2<{ $sliceText?: boolean }>`
   box-sizing: border-box;
   width: 100%;
   display: flex;
