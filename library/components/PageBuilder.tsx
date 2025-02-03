@@ -1,8 +1,6 @@
 "use client";
-import styled from "styled-components";
 import { PageContainer, PageContainerAdjusted } from "./Common";
 import React, { useCallback, useMemo } from "react";
-import Image from "next/image";
 import CarrouseImageWithLink from "./ImageCarouselWithLinks";
 import useGetPage from "../hooks/useGetPage";
 import ProfesionalProjectCard from "./ProfesionalProjectCard";
@@ -63,10 +61,51 @@ enum PageBuilderComponentType {
   PersonalProjects = "PersonalProjects",
 }
 
+/**
+ * PageBuilder component is responsible for rendering various types of page components
+ * based on the data fetched from the `useGetPage` hook.
+ *
+ * @component
+ * @returns {React.FC} A functional component that renders different page components.
+ *
+ * @example
+ * <PageBuilder />
+ *
+ * @remarks
+ * This component uses the `useMemo` and `useCallback` hooks to optimize performance
+ * by memoizing the page data and the render function for the components.
+ *
+ * @hook
+ * @function useGetPage
+ * Fetches the page data which includes an array of `BlockItem` objects.
+ *
+ * @typedef {Object} BlockItem
+ * Represents a block item with various properties used to render different components.
+ *
+ * @typedef {Object} PageBuilderComponentType
+ * Enum-like object that defines the different types of components that can be rendered.
+ *
+ * @param {BlockItem[]} pageData - The array of block items fetched from the `useGetPage` hook.
+ * @param {Object} error - The error object returned from the `useGetPage` hook if there is an error.
+ *
+ * @function renderComponent
+ * Renders the appropriate component based on the `__typename` property of the `BlockItem`.
+ *
+ * @param {BlockItem} item - The block item to be rendered.
+ * @returns {JSX.Element | null} The rendered component or null if the type is not recognized.
+ *
+ * @function components
+ * Memoized array of rendered components.
+ *
+ * @returns {JSX.Element} The rendered components or an error/loading message.
+ */
 const PageBuilder: React.FC = () => {
-  const result = useGetPage();
-  const error = result?.error;
-  const pageData = result?.data as BlockItem[] | undefined;
+  const pageResponse = useGetPage();
+  const pageData: BlockItem[] = useMemo(
+    () => pageResponse?.data ?? [],
+    [pageResponse?.data]
+  );
+  const error = pageResponse?.error;
 
   const renderComponent = useCallback((item: BlockItem) => {
     switch (item.__typename) {
@@ -149,7 +188,6 @@ const PageBuilder: React.FC = () => {
           </PageContainer>
         );
       case PageBuilderComponentType.PersonalProjects:
-        console.log(item);
         return (
           <PageContainer
             key={item._id}
@@ -181,10 +219,10 @@ const PageBuilder: React.FC = () => {
   }
 
   if (!pageData) {
-    return null;
+    return <div>Loading...</div>;
   }
 
-  return components;
+  return <>{components}</>;
 };
 
 export default React.memo(PageBuilder);
