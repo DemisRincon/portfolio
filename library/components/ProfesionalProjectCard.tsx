@@ -25,6 +25,15 @@ const MainContainer = styled(motion.div)`
   width: 95%;
 `;
 
+const Container = styled(MainContainer)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 2rem;
+  width: 100%;
+`;
+
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -181,11 +190,11 @@ const ProfessionalProjectCard: React.FC<ProfessionalProjectCardProps> =
       const target = useScrollOnView();
       const { y: scale, ref } = useTransformOnScroll([0, 0.5, 1], [0.6, 1, 1]);
 
-      useEffect(() => {
-        if (target.current) {
-          ref.current = target.current;
-        }
-      }, [target, ref]);
+      // useEffect(() => {
+      //   if (target.current) {
+      //     ref.current = target.current;
+      //   }
+      // }, [target, ref]);
       const firstDescription = useMemo(
         () => description[0] || "",
         [description]
@@ -205,53 +214,58 @@ const ProfessionalProjectCard: React.FC<ProfessionalProjectCardProps> =
 
       return (
         <MainContainer id={title} ref={target} style={{ scale }}>
-          <WrapperFadeIn>
-            <StyledProductName>{name}</StyledProductName>
-          </WrapperFadeIn>
+          <Container ref={ref}>
+            <WrapperFadeIn>
+              <StyledProductName>{name}</StyledProductName>
+            </WrapperFadeIn>
 
-          <MiddleWrapper>
-            <ImageWrapper onClick={handleImageClick}>
-              <WrapperFadeIn>
-                <StyledImage src={productImg} alt={name} />
-              </WrapperFadeIn>
-            </ImageWrapper>
-            <ContentContainer>
-              <WrapperFadeIn>
-                <StyledOwner>
-                  <strong>{enterprise}</strong>
-                </StyledOwner>
-              </WrapperFadeIn>
-              <StyledDescription>{firstDescription}</StyledDescription>
-              <JobFunctionsList>
-                {remainingDescriptions.map((item, index) => (
-                  <JobFunctionItem key={index}>
-                    <WrapperFadeIn
-                      threshold={0.3}
-                      transition={{ duration: 0.6, delay: (index + 1) * 0.15 }}
-                    >
-                      <StyledDescription>{item}</StyledDescription>
-                    </WrapperFadeIn>
-                  </JobFunctionItem>
-                ))}
-              </JobFunctionsList>
-            </ContentContainer>
-          </MiddleWrapper>
+            <MiddleWrapper>
+              <ImageWrapper onClick={handleImageClick}>
+                <WrapperFadeIn>
+                  <StyledImage src={productImg} alt={name} />
+                </WrapperFadeIn>
+              </ImageWrapper>
+              <ContentContainer>
+                <WrapperFadeIn>
+                  <StyledOwner>
+                    <strong>{enterprise}</strong>
+                  </StyledOwner>
+                </WrapperFadeIn>
+                <StyledDescription>{firstDescription}</StyledDescription>
+                <JobFunctionsList>
+                  {remainingDescriptions.map((item, index) => (
+                    <JobFunctionItem key={index}>
+                      <WrapperFadeIn
+                        threshold={0.3}
+                        transition={{
+                          duration: 0.6,
+                          delay: (index + 1) * 0.15,
+                        }}
+                      >
+                        <StyledDescription>{item}</StyledDescription>
+                      </WrapperFadeIn>
+                    </JobFunctionItem>
+                  ))}
+                </JobFunctionsList>
+              </ContentContainer>
+            </MiddleWrapper>
 
-          <WrapperFadeIn>
-            <ButtonWrapper>
-              <Button
-                whileHover={{
-                  scale: 1.1,
-                  transition: {
-                    duration: 0.3,
-                  },
-                }}
-                onClick={handleButtonClick}
-              >
-                {buttonText}
-              </Button>
-            </ButtonWrapper>
-          </WrapperFadeIn>
+            <WrapperFadeIn>
+              <ButtonWrapper>
+                <Button
+                  whileHover={{
+                    scale: 1.1,
+                    transition: {
+                      duration: 0.3,
+                    },
+                  }}
+                  onClick={handleButtonClick}
+                >
+                  {buttonText}
+                </Button>
+              </ButtonWrapper>
+            </WrapperFadeIn>
+          </Container>
         </MainContainer>
       );
     }
