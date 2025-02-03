@@ -31,7 +31,7 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Footer = () => {
+const Foother = () => {
   return (
     <PageContainerAdjusted $bgColor="black">
       <FooterContainer>
@@ -58,4 +58,4 @@ const Footer = () => {
     </PageContainerAdjusted>
   );
 };
-export default Footer;
+export default Foother;

@@ -63,16 +63,6 @@ enum PageBuilderComponentType {
   PersonalProjects = "PersonalProjects",
 }
 
-const PageWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  width: 100%;
-  padding-top: 80px;
-`;
-
 const PageBuilder: React.FC = () => {
   const result = useGetPage();
   const error = result?.error;
@@ -194,7 +184,7 @@ const PageBuilder: React.FC = () => {
     return null;
   }
 
-  return <PageWrapper>{components}</PageWrapper>;
+  return components;
 };
 
 export default React.memo(PageBuilder);
