@@ -102,7 +102,7 @@ const PersonalProject: React.FC<PersonalProjectProps> = React.memo(
     const handleImageClick = () => window.open(urlApp, "_blank");
     const handleGithubClick = () => window.open(urlGithub, "_blank");
     const handleAppClick = () => window.open(urlApp, "_blank");
-    const { y: scale, ref } = useTransformOnScroll([0, 0.5, 1], [0.5, 1, 1]);
+    const { y: scale, ref } = useTransformOnScroll([0, 0.5, 1], [0.6, 1, 1]);
 
     return (
       <WrapperFadeIn threshold={0.25}>

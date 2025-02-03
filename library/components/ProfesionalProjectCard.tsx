@@ -179,7 +179,7 @@ const ProfessionalProjectCard: React.FC<ProfessionalProjectCardProps> =
       title,
     }) => {
       const target = useScrollOnView();
-      const { y: scale, ref } = useTransformOnScroll([0, 0.5, 1], [0.8, 1, 1]);
+      const { y: scale, ref } = useTransformOnScroll([0, 0.5, 1], [0.6, 1, 1]);
 
       useEffect(() => {
         if (target.current) {

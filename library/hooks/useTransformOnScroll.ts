@@ -3,6 +3,9 @@ import { useScroll, useTransform } from "framer-motion";
 
 const useTransformOnScroll = (array1 = [0, 1], array2 = [0, 400]) => {
   const ref = useRef<HTMLDivElement>(null);
+  if (!ref.current) {
+    ref.current = null;
+  }
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],

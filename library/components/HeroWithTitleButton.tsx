@@ -53,7 +53,7 @@ const Heading = styled.h2`
     padding-top: 30px;
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    width: 50%;
+    width: 70%;
   }
 `;
 
@@ -99,7 +99,7 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
   endHeading,
   button,
 }) => {
-  const { y: scale, ref } = useTransformOnScroll([0, 0.7, 1], [0.5, 1.4, 1.7]);
+  const { y: scale, ref } = useTransformOnScroll([0, 0.7, 1], [0.5, 1, 1]);
 
   const handleClick = useCallback(() => {
     window.location.href = button.url;

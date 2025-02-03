@@ -26,7 +26,7 @@ const TextContainer = styled(motion.div)`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 50%;
+  height: 30%;
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     height: 100%;
     width: 40%;
@@ -67,7 +67,7 @@ const ImageContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 50%;
+  height: 70%;
   max-width: 50vh;
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     height: 60%;
