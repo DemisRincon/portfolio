@@ -10,7 +10,7 @@ import {
   SiJest,
   SiContentful,
 } from "react-icons/si";
-import { BiLogoNetlify } from "react-icons/bi";
+import { BiLogoNetlify, BiPhone } from "react-icons/bi";
 import { TbBrandReactNative, TbBrandFramerMotion } from "react-icons/tb";
 import { GrMysql } from "react-icons/gr";
 import styled from "styled-components";
@@ -86,6 +86,7 @@ const iconMap: Record<string, (color: string, size: string) => JSX.Element> = {
   nightwatch: (color, size) => (
     <Icon src={nightwatchicon.src} size={size} $fontColor={color} />
   ),
+  Phone: (color, size) => <BiPhone size={size} color={color} />,
 };
 
 const IconProvider: React.FC<IconProviderProps> = ({

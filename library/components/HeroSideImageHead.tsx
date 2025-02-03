@@ -4,6 +4,20 @@ import { AnimatePresence, motion } from "framer-motion";
 import useTransformOnScroll from "../hooks/useTransformOnScroll";
 import WrapperFadeIn from "./WrapperFadeIn";
 
+interface Image {
+  url: string;
+}
+
+interface HeroSideImageHeadProps {
+  heading: string;
+  subHeading: string;
+  middleHeading: string[];
+  image: Image;
+  sliceText?: boolean;
+  endHeading?: string;
+  isPhoto?: boolean;
+}
+
 const Container = styled.div`
   display: flex;
   align-items: center;
@@ -55,11 +69,14 @@ const Heading = styled.h2<{ $sliceText?: boolean }>`
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding-top: 30px;
     text-align: center;
+
+    ${({ $sliceText }) => $sliceText && `text-align: start;`}
   }
 `;
 
-const Strong = styled(motion.strong)`
-  margin: 0 0 0 0.5rem;
+const Strong = styled(motion.strong)<{ $sliceText?: boolean }>`
+  margin: 0 0.8rem 0 0.8rem;
+  ${({ $sliceText }) => $sliceText && `margin: 0;`}
 `;
 
 const ImageContainer = styled.div`
@@ -92,20 +109,6 @@ const ProfileImage = styled(motion.img)<{ $isPhoto?: boolean }>`
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   `}
 `;
-
-interface Image {
-  url: string;
-}
-
-interface HeroSideImageHeadProps {
-  heading: string;
-  subHeading: string;
-  middleHeading: string[];
-  image: Image;
-  sliceText?: boolean;
-  endHeading?: string;
-  isPhoto?: boolean;
-}
 
 /**
  * HeroSideImageHead component displays a heading with animated middle text,
@@ -148,7 +151,9 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
 }) => {
   const [middleHeadingIndex, setMiddleHeadingIndex] = useState(0);
 
-  const { y: yImage, ref } = useTransformOnScroll([0, 1], [1, 1.7]);
+  const size = isPhoto ? [0.5, 1.3] : [1, 1.7];
+
+  const { y: yImage, ref } = useTransformOnScroll([0, 1], size);
 
   const memoizedMiddleHeading = useMemo(() => middleHeading, [middleHeading]);
 
@@ -171,7 +176,7 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
         </WrapperFadeIn>
         <WrapperFadeIn>
           <Heading $sliceText={sliceText}>
-            {heading}{" "}
+            {heading}
             <AnimatePresence mode="wait">
               <motion.div
                 key={memoizedMiddleHeading[middleHeadingIndex]}
@@ -180,9 +185,11 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
                 exit={{ opacity: 0, y: 30 }}
                 transition={{ duration: 0.1 }}
               >
-                <Strong>{memoizedMiddleHeading[middleHeadingIndex]}</Strong>
+                <Strong $sliceText={sliceText}>
+                  {memoizedMiddleHeading[middleHeadingIndex]}
+                </Strong>
               </motion.div>
-            </AnimatePresence>{" "}
+            </AnimatePresence>
             {endHeading}
           </Heading>
         </WrapperFadeIn>
