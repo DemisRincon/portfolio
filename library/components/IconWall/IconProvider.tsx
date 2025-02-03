@@ -10,14 +10,8 @@ import {
   SiJest,
   SiContentful,
 } from "react-icons/si";
-import { LuPointer } from "react-icons/lu";
-
 import { BiLogoNetlify } from "react-icons/bi";
-import {
-  TbBrandReactNative,
-  TbBrandFramerMotion,
-  TbPointerHeart,
-} from "react-icons/tb";
+import { TbBrandReactNative, TbBrandFramerMotion } from "react-icons/tb";
 import { GrMysql } from "react-icons/gr";
 import styled from "styled-components";
 import cucumbericon from "@/library/assets/icons/cucumber.svg";
@@ -93,7 +87,6 @@ const iconMap: Record<string, (color: string, size: string) => JSX.Element> = {
   nightwatch: (color, size) => (
     <Icon src={nightwatchicon.src} size={size} $fontColor={color} />
   ),
-  pointer: (color, size) => <LuPointer size={size} color={color} />,
 };
 
 const IconProvider: React.FC<IconProviderProps> = ({
