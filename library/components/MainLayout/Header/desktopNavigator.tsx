@@ -15,7 +15,7 @@ const Container = styled.nav`
     display: none;
   }
 `;
-const NavLink = styled(motion.div)<{ $isActive?: boolean }>`
+const NavLink = styled(motion.div)`
   text-decoration: none;
   font-weight: bold;
 
