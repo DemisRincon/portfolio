@@ -56,7 +56,6 @@ const CarouselImageWithLink: React.FC<CarouselImageWithLinkProps> = ({
   name,
 }) => {
   const [data, setData] = useState<ImageItemInterface[] | null>(null);
-  const [error, setError] = useState<string | null>(null);
 
   const fetchData = useCallback(async () => {
     try {
@@ -65,8 +64,8 @@ const CarouselImageWithLink: React.FC<CarouselImageWithLinkProps> = ({
         FetchType.dynamicData
       );
       setData(response.imageCarouselWithLinks.imagesCollection.items);
-    } catch {
-      setError("Failed to fetch data");
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
   }, [slug]);
 
@@ -76,11 +75,12 @@ const CarouselImageWithLink: React.FC<CarouselImageWithLinkProps> = ({
 
   return (
     <Container title={title}>
-      <WrapperFadeIn>
+      <WrapperFadeIn threshold={0.3}>
         <Header>{name}</Header>
       </WrapperFadeIn>
-      {error && <p>{error}</p>}
-      {data && <InfiniteCarousel data={data} />}
+      <WrapperFadeIn threshold={0.3}>
+        {data && <InfiniteCarousel data={data} />}
+      </WrapperFadeIn>
     </Container>
   );
 };

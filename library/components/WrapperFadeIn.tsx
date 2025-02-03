@@ -21,7 +21,7 @@ const WrapperFadeIn: React.FC<IWrapperFadeInProps> = ({
   className,
   threshold = 0.1,
   refreshKey,
-  fromTop = false,
+  fromTop = true,
   transition = { duration: 0.6, delay: 0.1 },
 }) => {
   const controls = useAnimation();

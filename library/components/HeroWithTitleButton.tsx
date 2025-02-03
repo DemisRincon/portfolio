@@ -52,6 +52,9 @@ const Heading = styled.h2`
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding-top: 30px;
   }
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    width: 50%;
+  }
 `;
 
 const Strong = styled(motion.strong)`
@@ -96,7 +99,7 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
   endHeading,
   button,
 }) => {
-  const { y: scale } = useTransformOnScroll([0, 0.7, 1], [0.5, 1.1, 1.2]);
+  const { y: scale } = useTransformOnScroll([0, 0.7, 1], [0.5, 1.4, 1.2]);
 
   const handleClick = useCallback(() => {
     window.location.href = button.url;
@@ -108,14 +111,16 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
   return (
     <Container>
       <HeadingContainer style={headingStyle}>
-        <Heading>
-          {heading} <Strong onClick={handleClick}>{middleHeading[0]}</Strong>{" "}
-          {endHeading}
-        </Heading>
+        <WrapperFadeIn threshold={0.5}>
+          <Heading>
+            {heading} <Strong onClick={handleClick}>{middleHeading[0]}</Strong>{" "}
+            {endHeading}
+          </Heading>
+        </WrapperFadeIn>
       </HeadingContainer>
       {button.text && (
         <ButtonContainer>
-          <WrapperFadeIn className="full-width">
+          <WrapperFadeIn transition={{ duration: 0.6, delay: 0.4 }}>
             <Button
               onClick={handleClick}
               $bgColor={button.bgColor}

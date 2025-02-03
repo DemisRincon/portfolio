@@ -183,7 +183,13 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
       </TextContainer>
 
       <ImageContainer>
-        <ProfileImage src={url} alt="Profile Photo" style={{ scale: yImage }} />
+        <WrapperFadeIn>
+          <ProfileImage
+            src={url}
+            alt="Profile Photo"
+            style={{ scale: yImage }}
+          />
+        </WrapperFadeIn>
       </ImageContainer>
     </Container>
   );

@@ -196,11 +196,15 @@ const ProfessionalProjectCard: React.FC<ProfessionalProjectCardProps> =
 
       return (
         <MainContainer id={title} ref={target}>
-          <StyledProductName>{name}</StyledProductName>
+          <WrapperFadeIn>
+            <StyledProductName>{name}</StyledProductName>
+          </WrapperFadeIn>
 
           <MiddleWrapper>
             <ImageWrapper onClick={handleImageClick}>
-              <StyledImage src={productImg} alt={name} />
+              <WrapperFadeIn>
+                <StyledImage src={productImg} alt={name} />
+              </WrapperFadeIn>
             </ImageWrapper>
             <ContentContainer>
               <WrapperFadeIn>
@@ -212,7 +216,10 @@ const ProfessionalProjectCard: React.FC<ProfessionalProjectCardProps> =
               <JobFunctionsList>
                 {remainingDescriptions.map((item, index) => (
                   <JobFunctionItem key={index}>
-                    <WrapperFadeIn threshold={0.3}>
+                    <WrapperFadeIn
+                      threshold={0.3}
+                      transition={{ duration: 0.6, delay: (index + 1) * 0.15 }}
+                    >
                       <StyledDescription>{item}</StyledDescription>
                     </WrapperFadeIn>
                   </JobFunctionItem>
