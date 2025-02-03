@@ -105,9 +105,9 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
           {heading} <span>{middleHeading[0]}</span> {endHeading}
         </Heading>
       </HeadingContainer>
-      <ButtonContainer>
-        <WrapperFadeIn className="full-width">
-          {button.text && (
+      {button.text && (
+        <ButtonContainer>
+          <WrapperFadeIn className="full-width">
             <Button
               onClick={handleClick}
               $bgColor={button.bgColor}
@@ -119,9 +119,9 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
             >
               {button.text}
             </Button>
-          )}
-        </WrapperFadeIn>
-      </ButtonContainer>
+          </WrapperFadeIn>
+        </ButtonContainer>
+      )}
     </Container>
   );
 };
