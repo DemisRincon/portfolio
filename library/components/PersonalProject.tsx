@@ -20,11 +20,7 @@ const Container = styled.article`
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  width: 100%;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    width: 95%;
-  }
+  width: 95%;
 `;
 
 const ImageContainer = styled.div`
@@ -34,6 +30,7 @@ const ImageContainer = styled.div`
   width: 100%;
   height: 100%;
   cursor: pointer;
+  margin: 2rem 0;
 `;
 
 const ProductImage = styled.img`
@@ -56,22 +53,20 @@ const ButtonsContainer = styled.div`
 
 const Paragraph = styled.p``;
 
-const ProductName = styled.h2<{ color?: string }>`
+const ProductName = styled.h1`
   display: flex;
   justify-content: center;
+  justify-content: start;
   align-items: center;
   gap: 1rem;
   width: 100%;
-  text-align: right;
-  ${({ color }) =>
-    color &&
-    `
-  color: ${color};
-  `}
-
+  text-align: left;
+  margin: 1rem 0;
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    text-align: justify;
+  }
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     width: 95%;
-    justify-content: start;
   }
 `;
 
@@ -111,12 +106,9 @@ const PersonalProject: React.FC<PersonalProjectProps> = React.memo(
     console.log("PersonalProject render", image.url);
     return (
       <Container>
-        <header>
-          <ProductName>{projectName}</ProductName>
-        </header>
+        <ProductName>{projectName}</ProductName>
         <Paragraph>Technologies used: {technologies}</Paragraph>
         <Paragraph>{details}</Paragraph>
-
         <ImageContainer onClick={handleImageClick}>
           <ProductImage src={image.url} alt={projectName} />
         </ImageContainer>

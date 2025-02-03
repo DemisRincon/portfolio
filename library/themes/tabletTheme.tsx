@@ -21,7 +21,9 @@ const tabletTheme = {
     h6: {
       fontSize: "1.5rem",
     },
-    button: "1.8rem",
+
+    button: "2rem",
+    pharagraph: { fontSize: "1.25rem", lineHeight: "1.5" },
     icon: "48px",
   },
 };

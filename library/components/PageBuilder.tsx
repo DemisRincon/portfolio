@@ -176,7 +176,6 @@ const PageBuilder: React.FC = () => {
             $fontColor={item.fontColor}
           >
             <ProfesionalProjectCard
-              fontColor={item.fontColor ?? ""}
               description={item.description}
               enterprise={item.enterprise ?? ""}
               url={item.url ?? ""}

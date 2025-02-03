@@ -22,6 +22,10 @@ const desktopTheme = {
       fontSize: "2.3rem",
     },
     button: "2rem",
+    pharagraph: {
+      fontSize: "1.5rem",
+      lineHeight: "1.6",
+    },
     icon: "48px",
   },
 };

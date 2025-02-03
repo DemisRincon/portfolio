@@ -16,7 +16,6 @@ export const Button = styled(motion.button)<ButtonProps>`
     $bgColor ? theme.colors[$bgColor] : theme.colors.teal};
   color: ${({ theme, $color }) =>
     $color ? theme.colors[$color] : theme.colors.white};
-
   &:hover {
     cursor: pointer;
   }
@@ -30,7 +29,7 @@ export const PageContainer = styled.div<{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   overflow: hidden;
   background-color: ${({ theme, $bgColor }) =>

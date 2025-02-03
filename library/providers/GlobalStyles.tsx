@@ -61,5 +61,9 @@ export const GlobalStyles = createGlobalStyle`
         border-radius: 10px;
         font-weight: 600;
     }
+    p{
+        font-size: ${({ theme }) => theme.fontSizes.pharagraph.fontSize};
+        line-height: ${({ theme }) => theme.fontSizes.pharagraph.lineHeight};
+    }
 `;
 export default GlobalStyles;

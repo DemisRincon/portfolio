@@ -21,7 +21,11 @@ const mobileTheme = {
     h6: {
       fontSize: "1.4rem",
     },
-    button: "1.8rem",
+    button: "1.4rem",
+    pharagraph: {
+      fontSize: "1rem",
+      lineHeight: "1.5",
+    },
     icon: "40px",
   },
 };
