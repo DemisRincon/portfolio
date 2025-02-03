@@ -3,6 +3,7 @@ import styled from "styled-components";
 import IconProvider from "./IconProvider";
 import useTransformOnScroll from "@/library/hooks/useTransformOnScroll";
 import { motion } from "framer-motion";
+import WrapperFadeIn from "../WrapperFadeIn";
 
 const Container = styled.div`
   display: flex;
@@ -63,7 +64,12 @@ const IconWall: React.FC<IconWallProps> = React.memo(
 
     const renderIcon = useCallback(
       (icon: string, index: number) => (
-        <IconProvider key={index} name={icon} $showName={showName} />
+        <WrapperFadeIn
+          key={index}
+          transition={{ duration: 0.6, delay: (index + 1) * 0.15 }}
+        >
+          <IconProvider name={icon} $showName={showName} />
+        </WrapperFadeIn>
       ),
       [showName]
     );
@@ -76,7 +82,9 @@ const IconWall: React.FC<IconWallProps> = React.memo(
     return (
       <Container>
         <HeaderContainer>
-          <Header>{name}</Header>
+          <WrapperFadeIn>
+            <Header>{name}</Header>
+          </WrapperFadeIn>
         </HeaderContainer>
         <ContainerGrid>
           <IconsGrid style={{ scale }}>{renderedIcons}</IconsGrid>

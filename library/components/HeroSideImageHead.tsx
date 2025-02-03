@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo, useCallback } from "react";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 import useTransformOnScroll from "../hooks/useTransformOnScroll";
+import WrapperFadeIn from "./WrapperFadeIn";
 
 const Container = styled.div`
   display: flex;
@@ -159,22 +160,26 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
   return (
     <Container>
       <TextContainer>
-        <SubHeading>{subHeading}</SubHeading>
-        <Heading $sliceText={sliceText}>
-          {heading}{" "}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={memoizedMiddleHeading[middleHeadingIndex]}
-              initial={{ opacity: 0, y: -30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 30 }}
-              transition={{ duration: 0.1 }}
-            >
-              <Strong>{memoizedMiddleHeading[middleHeadingIndex]}</Strong>
-            </motion.div>
-          </AnimatePresence>{" "}
-          {endHeading}
-        </Heading>
+        <WrapperFadeIn>
+          <SubHeading>{subHeading}</SubHeading>
+        </WrapperFadeIn>
+        <WrapperFadeIn>
+          <Heading $sliceText={sliceText}>
+            {heading}{" "}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={memoizedMiddleHeading[middleHeadingIndex]}
+                initial={{ opacity: 0, y: -30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 30 }}
+                transition={{ duration: 0.1 }}
+              >
+                <Strong>{memoizedMiddleHeading[middleHeadingIndex]}</Strong>
+              </motion.div>
+            </AnimatePresence>{" "}
+            {endHeading}
+          </Heading>
+        </WrapperFadeIn>
       </TextContainer>
 
       <ImageContainer>
