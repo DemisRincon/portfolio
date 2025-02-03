@@ -20,7 +20,7 @@ const MainContainer = styled.div`
   align-items: center;
   flex-direction: column;
   padding-bottom: 2rem;
-  width: 100%;
+  width: 95%;
 `;
 
 const ContentContainer = styled.div`
@@ -28,13 +28,6 @@ const ContentContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  width: 100%;
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    width: 80%;
-  }
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    width: 55%;
-  }
 `;
 
 const ImageWrapper = styled.div`
@@ -62,7 +55,7 @@ const StyledImage = styled.img`
   }
 `;
 
-const StyledOwner = styled.h3<{ color?: string }>`
+const StyledOwner = styled.h3`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,38 +74,22 @@ const StyledOwner = styled.h3<{ color?: string }>`
   }
 `;
 
-const StyledProductName = styled.h2<{ color?: string }>`
+const StyledProductName = styled.h1`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   width: 100%;
-  text-align: right;
-  ${({ color }) =>
-    color &&
-    `
-  color: ${color};
-  `}
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    width: 95%;
-    justify-content: start;
+  text-align: left;
+  margin: 1rem 0;
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    text-align: justify;
   }
 `;
 
-const StyledDescription = styled.p<{ color?: string }>`
-  ${({ color }) =>
-    color &&
-    `
-    color: ${color};
-  `}
-  text-align: justify;
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    margin-top: 0;
-  }
-`;
+const StyledDescription = styled.p``;
 
-const JobFunctionsList = styled.ul<{ color?: string }>`
+const JobFunctionsList = styled.ul`
   display: flex;
   justify-content: center;
   align-items: start;

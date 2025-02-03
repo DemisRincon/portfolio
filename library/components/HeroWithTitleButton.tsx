@@ -40,7 +40,7 @@ const HeadingContainer = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 90%;
+  margin: 1rem 0;
 `;
 
 const Heading = styled.h2`

@@ -43,6 +43,7 @@ export const PageContainerAdjusted = styled(PageContainer)<{
   $fontColor?: string;
 }>`
   height: auto;
+  max-height: auto;
   overflow: hidden;
   background-color: ${({ theme, $bgColor }) =>
     $bgColor ? theme.colors[$bgColor] : theme.colors.white};

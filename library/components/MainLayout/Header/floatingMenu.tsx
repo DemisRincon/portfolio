@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useAnimation } from "motion/react";
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useCallback, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 import styled from "styled-components";
 import { usePathname, useRouter } from "next/navigation";
@@ -56,40 +56,11 @@ const NavItem = styled(motion.li)<{ $isActive?: boolean }>`
   }
 `;
 
-/**
- * FloatingMenu component.
- *
- * This component renders a floating menu with navigation items. It uses animations
- * to show and hide the menu and its items. The menu can be toggled using the `toggleMenu`
- * function passed as a prop.
- *
- * @component
- * @param {Object} props - The component props.
- * @param {Function} props.toggleMenu - Function to toggle the menu visibility.
- *
- * @returns {React.FC<FloatingMenuProps>} The FloatingMenu component.
- *
- * @example
- * <FloatingMenu toggleMenu={toggleMenuFunction} />
- *
- * @remarks
- * This component uses the `useAnimation` hook from Framer Motion for animations,
- * `usePathname` and `useRouter` hooks from Next.js for routing, and `useLockScroll`
- * hook to lock the scroll when the menu is open.
- *
- * The `useEffect` hook is used to start the animation when the component mounts.
- * The `handleClose` function handles the closing of the menu and navigation to a new route.
- * The `navItems` are memoized using `useMemo` to avoid unnecessary re-renders.
- *
- * @see {@link https://www.framer.com/api/motion/} for more information on Framer Motion.
- * @see {@link https://nextjs.org/docs/api-reference/next/router} for more information on Next.js router.
- */
 const FloatingMenu: React.FC<FloatingMenuProps> = ({ toggleMenu }) => {
   const animationControls = useAnimation();
   const pathname = usePathname();
   const router = useRouter();
   useLockScroll();
-
   useEffect(() => {
     animationControls.start("visible");
   }, [animationControls]);
@@ -104,32 +75,6 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ toggleMenu }) => {
       toggleMenu();
     },
     [animationControls, toggleMenu, router]
-  );
-
-  const navItems = useMemo(
-    () =>
-      headerData.links.map((link, index) => (
-        <NavItem
-          key={link.href}
-          $isActive={pathname === link.href}
-          initial={{ opacity: 0, y: "-20%", x: "100%" }}
-          animate={animationControls}
-          transition={{ delay: 0.3 + index * 0.1 }}
-          variants={{
-            visible: { opacity: 1, y: 0, x: 0 },
-            hidden: {
-              opacity: 0,
-              y: "-20%",
-              x: "200%",
-              transition: { duration: 0.2 },
-            },
-          }}
-          onClick={() => handleClose(link.href)}
-        >
-          <h1>{link.label}</h1>
-        </NavItem>
-      )),
-    [animationControls, handleClose, pathname]
   );
 
   return (
@@ -152,7 +97,30 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ toggleMenu }) => {
       <CloseIcon onClick={() => handleClose()}>
         <FaTimes size={24} />
       </CloseIcon>
-      <NavList>{navItems}</NavList>
+      <NavList>
+        {headerData.links.map((link, index) => (
+          <AnimatePresence key={link.href}>
+            <NavItem
+              $isActive={pathname === link.href}
+              initial={{ opacity: 0, y: "-20%", x: "100%" }}
+              animate={animationControls}
+              transition={{ delay: 0.3 + index * 0.1 }}
+              variants={{
+                visible: { opacity: 1, y: 0, x: 0 },
+                hidden: {
+                  opacity: 0,
+                  y: "-20%",
+                  x: "200%",
+                  transition: { duration: 0.2 },
+                },
+              }}
+              onClick={() => handleClose(link.href)}
+            >
+              <h1>{link.label}</h1>
+            </NavItem>
+          </AnimatePresence>
+        ))}
+      </NavList>
     </FullScreenOverlay>
   );
 };

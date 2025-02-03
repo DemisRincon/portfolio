@@ -8,6 +8,7 @@ import HeroSideImageHead from "./HeroSideImageHead";
 import IconWall from "./IconWall";
 import HeroWithTitleButton from "./HeroWithTitleButton";
 import PersonalProject from "./PersonalProject";
+import useManualScroll from "../hooks/useManualScroll";
 
 export type Image = {
   url: string;
@@ -101,6 +102,8 @@ enum PageBuilderComponentType {
  */
 const PageBuilder: React.FC = () => {
   const pageResponse = useGetPage();
+  useManualScroll();
+
   const pageData: BlockItem[] = useMemo(
     () => pageResponse?.data ?? [],
     [pageResponse?.data]

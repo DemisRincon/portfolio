@@ -65,9 +65,6 @@ const ProductName = styled.h1`
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     text-align: justify;
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    width: 95%;
-  }
 `;
 
 /**
