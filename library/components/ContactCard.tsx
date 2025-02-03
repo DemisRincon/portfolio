@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { PageContainer } from "./Common";
+import { Button, PageContainer } from "./Common";
 import Link from "next/link";
 import IconProvider from "./IconWall/IconProvider";
 
@@ -12,6 +12,7 @@ const Container = styled.div`
   width: 95%;
   height: 100%;
   gap: 3rem;
+  margin-top: 3rem;
 `;
 
 const StyledLink = styled(Link)`
@@ -21,10 +22,22 @@ const StyledLink = styled(Link)`
   margin-top: 1rem;
 `;
 
+const StyledButton = styled(Button)`
+  margin-top: 2rem;
+`;
+
 const ContactCard = () => {
   return (
     <PageContainer>
       <h2>Contact</h2>
+      <StyledButton
+        onClick={() => {
+          window.open("/resume.pdf", "_blank");
+        }}
+      >
+        Resume
+      </StyledButton>
+
       <Container>
         <StyledLink href="https://www.linkedin.com/in/demisrincon/">
           <h4>Linkedin: /demisrincon</h4>
