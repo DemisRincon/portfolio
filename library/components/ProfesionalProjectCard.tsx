@@ -190,11 +190,6 @@ const ProfessionalProjectCard: React.FC<ProfessionalProjectCardProps> =
       const target = useScrollOnView();
       const { y: scale, ref } = useTransformOnScroll([0, 0.5, 1], [0.6, 1, 1]);
 
-      // useEffect(() => {
-      //   if (target.current) {
-      //     ref.current = target.current;
-      //   }
-      // }, [target, ref]);
       const firstDescription = useMemo(
         () => description[0] || "",
         [description]
