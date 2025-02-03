@@ -15,6 +15,20 @@ interface ImageProps {
   onClick?: () => void;
 }
 
+/**
+ * A memoized functional component that represents a card with an image.
+ * The card scales up and moves slightly upwards when hovered over.
+ *
+ * @component
+ * @param {Object} props - The properties object.
+ * @param {string} props.image - The source URL of the image to be displayed.
+ * @param {boolean} props.$imagecircular - A flag indicating if the image should be circular.
+ * @param {number} props.width - The width of the image.
+ * @param {number} props.height - The height of the image.
+ * @param {number} props.$horizontalmargin - The horizontal margin of the image.
+ * @param {function} props.onClick - The function to be called when the card is clicked.
+ * @returns {JSX.Element} The rendered card component.
+ */
 const Card: React.FC<CardProps> = React.memo(function Card({
   image,
   $imagecircular,

@@ -4,8 +4,7 @@ import WrapperFadeIn from "./WrapperFadeIn";
 import { Button } from "./Common";
 import useScrollOnView from "../hooks/useScrollOnView";
 
-interface ProfesionalProjectCardProps {
-  fontColor: string;
+interface ProfessionalProjectCardProps {
   description?: string[];
   enterprise: string;
   url: string;
@@ -161,7 +160,7 @@ const ButtonWrapper = styled.div`
  *
  * @component
  * @param {ProfesionalProjectCardProps} props - The properties passed to the component.
- * @param {string} props.fontColor - The color of the text.
+
  * @param {string[]} [props.description=[]] - An array of descriptions for the project.
  * @param {string} props.enterprise - The name of the enterprise associated with the project.
  * @param {string} props.url - The URL of the project.
@@ -185,10 +184,9 @@ const ButtonWrapper = styled.div`
  *   title="Project Title"
  * />
  */
-const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> =
+const ProfessionalProjectCard: React.FC<ProfessionalProjectCardProps> =
   React.memo(
     ({
-      fontColor,
       description = [],
       enterprise,
       url,
@@ -218,7 +216,7 @@ const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> =
       return (
         <MainContainer id={title} ref={target}>
           <WrapperFadeIn>
-            <StyledProductName color={fontColor}>{name}</StyledProductName>
+            <StyledProductName>{name}</StyledProductName>
           </WrapperFadeIn>
           <MiddleWrapper>
             <ImageWrapper onClick={handleImageClick}>
@@ -229,18 +227,14 @@ const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> =
 
             <ContentContainer>
               <WrapperFadeIn>
-                <StyledOwner color={fontColor}>{enterprise}</StyledOwner>
+                <StyledOwner>{enterprise}</StyledOwner>
               </WrapperFadeIn>
-              <StyledDescription color={fontColor}>
-                {firstDescription}
-              </StyledDescription>
-              <JobFunctionsList color={fontColor}>
+              <StyledDescription>{firstDescription}</StyledDescription>
+              <JobFunctionsList>
                 {remainingDescriptions.map((item, index) => (
                   <JobFunctionItem key={index}>
                     <WrapperFadeIn threshold={0.3}>
-                      <StyledDescription color={fontColor}>
-                        {item}
-                      </StyledDescription>
+                      <StyledDescription>{item}</StyledDescription>
                     </WrapperFadeIn>
                   </JobFunctionItem>
                 ))}
@@ -268,6 +262,6 @@ const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> =
     }
   );
 
-ProfesionalProjectCard.displayName = "ProfesionalProjectCard";
+ProfessionalProjectCard.displayName = "ProfessionalProjectCard";
 
-export default ProfesionalProjectCard;
+export default ProfessionalProjectCard;

@@ -63,10 +63,13 @@ const DesktopNavigator = () => {
         }}
       >
         {typeof link.href === "string" && (
-          <Link href={link.href} passHref prefetch={true}>
-            <a style={{ textDecoration: "none", color: "inherit" }}>
-              {link.label}
-            </a>
+          <Link
+            href={link.href}
+            passHref
+            prefetch={true}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            {link.label}
           </Link>
         )}
       </NavLink>

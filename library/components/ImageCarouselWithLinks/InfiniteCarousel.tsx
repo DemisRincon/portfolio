@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Card from "./Card";
 import WrapperFadeIn from "../WrapperFadeIn";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useMemo, useCallback } from "react";
 
 export interface ImageItemInterface {
   url: string;
@@ -12,6 +12,10 @@ export interface ImageItemInterface {
   image: {
     url: string;
   };
+}
+
+interface InfiniteCarouselProps {
+  data: ImageItemInterface[];
 }
 
 const MainContainer = styled.div`
@@ -29,55 +33,63 @@ const Container = styled.div`
   height: 100%;
 `;
 
-const Carrusel = styled(motion.div)`
+const Carousel = styled(motion.div)`
   display: flex;
   width: fit-content;
-  display: flex;
   align-items: center;
   height: 300px;
   flex-shrink: 0;
   background-color: ${({ theme }) => theme.colors.white};
 `;
 
-const InfiniteCarousel: React.FC<{ data: ImageItemInterface[] }> = ({
-  data,
-}) => {
-  const router = useRouter();
+const InfiniteCarousel: React.FC<InfiniteCarouselProps> = React.memo(
+  ({ data }) => {
+    const router = useRouter();
 
-  const carouselData = React.useMemo(() => {
-    return data.map((item) => (
-      <Card
-        key={item.name}
-        image={item.image.url}
-        $horizontalmargin="10px"
-        width="200px"
-        height="auto"
-        onClick={() => router.push(item.url, { scroll: true })}
-      />
-    ));
-  }, [data, router]);
+    const handleClick = useCallback(
+      (url: string) => {
+        router.push(url, { scroll: true });
+      },
+      [router]
+    );
 
-  const carrousels = 4;
-  const carrouselsData = React.useMemo(() => {
-    return Array.from({ length: carrousels }, (_, i) => i).map((index) => (
-      <Carrusel
-        key={index}
-        initial={{ x: 0 }}
-        animate={{ x: "-100%" }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-      >
-        {carouselData}
-      </Carrusel>
-    ));
-  }, [carouselData]);
+    const carouselData = useMemo(() => {
+      return data.map((item) => (
+        <Card
+          key={item.name}
+          image={item.image.url}
+          $horizontalmargin="10px"
+          width="200px"
+          height="auto"
+          onClick={() => handleClick(item.url)}
+        />
+      ));
+    }, [data, handleClick]);
 
-  return (
-    <MainContainer>
-      <WrapperFadeIn>
-        <Container>{carrouselsData}</Container>
-      </WrapperFadeIn>
-    </MainContainer>
-  );
-};
+    const carousels = 4;
+    const carouselsData = useMemo(() => {
+      return Array.from({ length: carousels }, (_, i) => i).map((index) => (
+        <Carousel
+          key={index}
+          initial={{ x: 0 }}
+          animate={{ x: "-100%" }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        >
+          {carouselData}
+        </Carousel>
+      ));
+    }, [carouselData]);
+
+    return (
+      <MainContainer>
+        <WrapperFadeIn>
+          <Container>{carouselsData}</Container>
+        </WrapperFadeIn>
+      </MainContainer>
+    );
+  }
+);
+
+InfiniteCarousel.displayName = "InfiniteCarousel";
 
 export default InfiniteCarousel;

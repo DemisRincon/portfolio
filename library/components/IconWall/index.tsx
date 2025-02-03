@@ -30,7 +30,6 @@ const ContainerGrid = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  box-sizing: border-box;
 `;
 
 const IconsGrid = styled(motion.div)`
@@ -60,7 +59,7 @@ interface IconWallProps {
 }
 const IconWall: React.FC<IconWallProps> = React.memo(
   ({ name, collectionString, showName = false }) => {
-    const { y: scale } = useTransformOnScroll([0, 0.7, 1], [0.6, 0.9, 1.1]);
+    const { y: scale } = useTransformOnScroll([0, 0.7, 1], [0.3, 1, 1.3]);
 
     const renderIcon = useCallback(
       (icon: string, index: number) => (
