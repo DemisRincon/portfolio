@@ -21,6 +21,9 @@ const Container = styled.div`
   flex-direction: column;
   width: 95%;
   height: 100%;
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    gap: 6rem;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -49,6 +52,10 @@ const Heading = styled.h2`
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding-top: 30px;
   }
+`;
+
+const Strong = styled(motion.strong)`
+  cursor: pointer;
 `;
 
 /**
@@ -102,7 +109,8 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
     <Container>
       <HeadingContainer style={headingStyle}>
         <Heading>
-          {heading} <span>{middleHeading[0]}</span> {endHeading}
+          {heading} <Strong onClick={handleClick}>{middleHeading[0]}</Strong>{" "}
+          {endHeading}
         </Heading>
       </HeadingContainer>
       {button.text && (

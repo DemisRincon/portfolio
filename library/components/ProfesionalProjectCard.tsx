@@ -26,12 +26,16 @@ const MainContainer = styled.div`
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: start;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    width: 55%;
+  }
 `;
 
 const ImageWrapper = styled.div`
-  justify-content: center;
+  justify-content: end;
   align-items: start;
   width: 100%;
   height: 100%;
@@ -43,6 +47,8 @@ const ImageWrapper = styled.div`
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     width: 45%;
+
+    height: 100%;
   }
 `;
 
@@ -61,11 +67,6 @@ const StyledOwner = styled.h3`
   align-items: center;
   gap: 1rem;
   width: 100%;
-  ${({ color }) =>
-    color &&
-    `
-    color: ${color};
-  `}
   margin-top: 2rem;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
@@ -74,9 +75,9 @@ const StyledOwner = styled.h3`
   }
 `;
 
-const StyledProductName = styled.h1`
+const StyledProductName = styled.h2`
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   gap: 1rem;
   width: 100%;
@@ -84,6 +85,11 @@ const StyledProductName = styled.h1`
   margin: 1rem 0;
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     text-align: justify;
+    justify-content: center;
+  }
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    text-align: left;
+    justify-content: start;
   }
 `;
 
@@ -115,7 +121,6 @@ const MiddleWrapper = styled.div`
     flex-direction: row-reverse;
     align-items: start;
     gap: 2rem;
-    width: 95%;
   }
 `;
 
@@ -125,7 +130,6 @@ const ButtonWrapper = styled.div`
   align-items: center;
   width: 100%;
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    width: 95%;
     justify-content: start;
   }
 `;
@@ -192,19 +196,17 @@ const ProfessionalProjectCard: React.FC<ProfessionalProjectCardProps> =
 
       return (
         <MainContainer id={title} ref={target}>
-          <WrapperFadeIn>
-            <StyledProductName>{name}</StyledProductName>
-          </WrapperFadeIn>
+          <StyledProductName>{name}</StyledProductName>
+
           <MiddleWrapper>
             <ImageWrapper onClick={handleImageClick}>
-              <WrapperFadeIn>
-                <StyledImage src={productImg} alt={name} />
-              </WrapperFadeIn>
+              <StyledImage src={productImg} alt={name} />
             </ImageWrapper>
-
             <ContentContainer>
               <WrapperFadeIn>
-                <StyledOwner>{enterprise}</StyledOwner>
+                <StyledOwner>
+                  <strong>{enterprise}</strong>
+                </StyledOwner>
               </WrapperFadeIn>
               <StyledDescription>{firstDescription}</StyledDescription>
               <JobFunctionsList>

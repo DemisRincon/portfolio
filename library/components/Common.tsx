@@ -38,25 +38,17 @@ export const PageContainer = styled.div<{
     $fontColor ? theme.colors[$fontColor] : theme.colors.black};
 `;
 
-export const PageContainerAdjusted = styled(PageContainer)<{
+export const PageContainerAdjusted = styled.div<{
   $bgColor?: string;
   $fontColor?: string;
 }>`
-  height: auto;
-  max-height: auto;
-  overflow: hidden;
-  background-color: ${({ theme, $bgColor }) =>
-    $bgColor ? theme.colors[$bgColor] : theme.colors.white};
-  color: ${({ theme, $fontColor }) =>
-    $fontColor ? theme.colors[$fontColor] : theme.colors.black};
-`;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-export const PageFreeSpace = styled(PageContainer)<{
-  $bgColor?: string;
-  $fontColor?: string;
-}>`
-  max-height: none;
   width: 100%;
+  overflow: hidden;
   background-color: ${({ theme, $bgColor }) =>
     $bgColor ? theme.colors[$bgColor] : theme.colors.white};
   color: ${({ theme, $fontColor }) =>

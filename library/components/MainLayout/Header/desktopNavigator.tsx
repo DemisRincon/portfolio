@@ -46,7 +46,7 @@ const DesktopNavigator = () => {
           >
             <Link
               href={link.href}
-              scroll={false}
+              prefetch={false}
               style={{ textDecoration: "none", color: "inherit" }}
             >
               {link.label}
