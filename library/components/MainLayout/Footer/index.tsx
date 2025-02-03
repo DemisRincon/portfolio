@@ -1,6 +1,7 @@
 "use client";
 import { PageContainerAdjusted } from "@/library/components/Common";
 import styled from "styled-components";
+import React from "react";
 
 const FooterContainer = styled.div`
   padding: 3rem;
@@ -31,7 +32,28 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Foother = () => {
+/**
+ * Footer component that displays various sections including creator information, contact details, and projects.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Footer />
+ * )
+ *
+ * @returns {JSX.Element} The rendered footer component.
+ *
+ * @remarks
+ * This component uses styled-components for styling. It contains three main sections:
+ * - Creator information
+ * - Contact details
+ * - List of projects
+ *
+ * @see {@link PageContainerAdjusted} for the container with background color adjustment.
+ * @see {@link FooterContainer} for the main footer container styling.
+ * @see {@link Container} for individual section styling within the footer.
+ */
+const Footer = () => {
   return (
     <PageContainerAdjusted $bgColor="black">
       <FooterContainer>
@@ -58,4 +80,7 @@ const Foother = () => {
     </PageContainerAdjusted>
   );
 };
-export default Foother;
+
+Footer.displayName = "Footer";
+
+export default React.memo(Footer);
