@@ -101,6 +101,36 @@ interface HeroSideImageHeadProps {
   endHeading?: string;
 }
 
+/**
+ * HeroSideImageHead component displays a heading with animated middle text,
+ * a subheading, and an image that scales on scroll.
+ *
+ * @component
+ * @param {HeroSideImageHeadProps} props - The properties for the HeroSideImageHead component.
+ * @param {string} props.heading - The main heading text.
+ * @param {string} props.subHeading - The subheading text.
+ * @param {string[]} props.middleHeading - An array of strings for the animated middle heading text.
+ * @param {Object} props.image - The image object containing the URL.
+ * @param {string} props.image.url - The URL of the image.
+ * @param {boolean} props.sliceText - A flag to determine if the text should be sliced.
+ * @param {string} props.endHeading - The ending part of the heading text.
+ *
+ * @returns {JSX.Element} The rendered HeroSideImageHead component.
+ *
+ * @example
+ * <HeroSideImageHead
+ *   heading="Welcome"
+ *   subHeading="to my portfolio"
+ *   middleHeading={["Developer", "Designer", "Creator"]}
+ *   image={{ url: "path/to/image.jpg" }}
+ *   sliceText={true}
+ *   endHeading="!"
+ * />
+ *
+ * @remarks
+ * This component uses `useTransformOnScroll` to scale the image on scroll and `useMemo` to memoize the middle heading text.
+ * The middle heading text changes every 3 seconds using `setInterval` and `useEffect`.
+ */
 const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
   heading,
   subHeading,

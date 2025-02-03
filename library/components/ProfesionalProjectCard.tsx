@@ -24,7 +24,7 @@ const MainContainer = styled.div`
   width: 100%;
 `;
 
-const Container = styled.div`
+const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,7 +38,7 @@ const Container = styled.div`
   }
 `;
 
-const ImageContainer = styled.div`
+const ImageWrapper = styled.div`
   justify-content: center;
   align-items: start;
   width: 100%;
@@ -54,7 +54,7 @@ const ImageContainer = styled.div`
   }
 `;
 
-const ProductImage = styled.img`
+const StyledImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -63,7 +63,7 @@ const ProductImage = styled.img`
   }
 `;
 
-const Owner = styled.h3<{ color?: string }>`
+const StyledOwner = styled.h3<{ color?: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -82,7 +82,7 @@ const Owner = styled.h3<{ color?: string }>`
   }
 `;
 
-const ProductName = styled.h2<{ color?: string }>`
+const StyledProductName = styled.h2<{ color?: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -101,7 +101,7 @@ const ProductName = styled.h2<{ color?: string }>`
   }
 `;
 
-const Description = styled.p<{ color?: string }>`
+const StyledDescription = styled.p<{ color?: string }>`
   ${({ color }) =>
     color &&
     `
@@ -113,7 +113,7 @@ const Description = styled.p<{ color?: string }>`
   }
 `;
 
-const JobFunctions = styled.ul<{ color?: string }>`
+const JobFunctionsList = styled.ul<{ color?: string }>`
   display: flex;
   justify-content: center;
   align-items: start;
@@ -126,9 +126,9 @@ const JobFunctions = styled.ul<{ color?: string }>`
   padding-left: 1.1rem;
 `;
 
-const JobFunction = styled.li``;
+const JobFunctionItem = styled.li``;
 
-const MiddleContainer = styled.div`
+const MiddleWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -143,7 +143,7 @@ const MiddleContainer = styled.div`
   }
 `;
 
-const ButtonContainer = styled.div`
+const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -154,74 +154,120 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> = ({
-  fontColor,
-  description,
-  enterprise,
-  url,
-  name,
-  productPhoto: { url: productImg },
-  buttonText,
-  title,
-}) => {
-  const target = useScrollOnView();
-  const first = useMemo(() => description?.[0] || "", [description]);
-  const newArray = useMemo(() => description?.slice(1) || [], [description]);
+/**
+ * `ProfesionalProjectCard` is a memoized functional component that displays a professional project card.
+ * It includes the project's name, enterprise, description, and an image. The card also features a button
+ * that opens the project's URL in a new tab.
+ *
+ * @component
+ * @param {ProfesionalProjectCardProps} props - The properties passed to the component.
+ * @param {string} props.fontColor - The color of the text.
+ * @param {string[]} [props.description=[]] - An array of descriptions for the project.
+ * @param {string} props.enterprise - The name of the enterprise associated with the project.
+ * @param {string} props.url - The URL of the project.
+ * @param {string} props.name - The name of the project.
+ * @param {Object} props.productPhoto - An object containing the URL of the product image.
+ * @param {string} props.productPhoto.url - The URL of the product image.
+ * @param {string} props.buttonText - The text displayed on the button.
+ * @param {string} props.title - The title of the project card.
+ *
+ * @returns {JSX.Element} The rendered professional project card component.
+ *
+ * @example
+ * <ProfesionalProjectCard
+ *   fontColor="black"
+ *   description={["Description 1", "Description 2"]}
+ *   enterprise="Enterprise Name"
+ *   url="https://example.com"
+ *   name="Project Name"
+ *   productPhoto={{ url: "https://example.com/image.jpg" }}
+ *   buttonText="View Project"
+ *   title="Project Title"
+ * />
+ */
+const ProfesionalProjectCard: React.FC<ProfesionalProjectCardProps> =
+  React.memo(
+    ({
+      fontColor,
+      description = [],
+      enterprise,
+      url,
+      name,
+      productPhoto: { url: productImg },
+      buttonText,
+      title,
+    }) => {
+      const target = useScrollOnView();
+      const firstDescription = useMemo(
+        () => description[0] || "",
+        [description]
+      );
+      const remainingDescriptions = useMemo(
+        () => description.slice(1),
+        [description]
+      );
 
-  const handleImageClick = useCallback(() => {
-    window.open(url, "_blank");
-  }, [url]);
+      const handleImageClick = useCallback(() => {
+        window.open(url, "_blank");
+      }, [url]);
 
-  const handleButtonClick = useCallback(() => {
-    window.open(url, "_blank");
-  }, [url]);
+      const handleButtonClick = useCallback(() => {
+        window.open(url, "_blank");
+      }, [url]);
 
-  return (
-    <MainContainer id={title} ref={target}>
-      <WrapperFadeIn>
-        <ProductName color={fontColor}>{name}</ProductName>
-      </WrapperFadeIn>
-      <MiddleContainer>
-        <ImageContainer onClick={handleImageClick}>
+      return (
+        <MainContainer id={title} ref={target}>
           <WrapperFadeIn>
-            <ProductImage src={productImg} alt={name} />
+            <StyledProductName color={fontColor}>{name}</StyledProductName>
           </WrapperFadeIn>
-        </ImageContainer>
+          <MiddleWrapper>
+            <ImageWrapper onClick={handleImageClick}>
+              <WrapperFadeIn>
+                <StyledImage src={productImg} alt={name} />
+              </WrapperFadeIn>
+            </ImageWrapper>
 
-        <Container>
+            <ContentContainer>
+              <WrapperFadeIn>
+                <StyledOwner color={fontColor}>{enterprise}</StyledOwner>
+              </WrapperFadeIn>
+              <StyledDescription color={fontColor}>
+                {firstDescription}
+              </StyledDescription>
+              <JobFunctionsList color={fontColor}>
+                {remainingDescriptions.map((item, index) => (
+                  <JobFunctionItem key={index}>
+                    <WrapperFadeIn threshold={0.3}>
+                      <StyledDescription color={fontColor}>
+                        {item}
+                      </StyledDescription>
+                    </WrapperFadeIn>
+                  </JobFunctionItem>
+                ))}
+              </JobFunctionsList>
+            </ContentContainer>
+          </MiddleWrapper>
+
           <WrapperFadeIn>
-            <Owner color={fontColor}>{enterprise}</Owner>
+            <ButtonWrapper>
+              <Button
+                whileHover={{
+                  scale: 1.1,
+                  transition: {
+                    duration: 0.3,
+                  },
+                }}
+                onClick={handleButtonClick}
+              >
+                {buttonText}
+              </Button>
+            </ButtonWrapper>
           </WrapperFadeIn>
-          <Description color={fontColor}>{first}</Description>
-          <JobFunctions color={fontColor}>
-            {newArray.map((item, index) => (
-              <JobFunction key={index}>
-                <WrapperFadeIn threshold={0.3}>
-                  <Description color={fontColor}>{item}</Description>
-                </WrapperFadeIn>
-              </JobFunction>
-            ))}
-          </JobFunctions>
-        </Container>
-      </MiddleContainer>
-
-      <WrapperFadeIn>
-        <ButtonContainer>
-          <Button
-            whileHover={{
-              scale: 1.1,
-              transition: {
-                duration: 0.3,
-              },
-            }}
-            onClick={handleButtonClick}
-          >
-            {buttonText}
-          </Button>
-        </ButtonContainer>
-      </WrapperFadeIn>
-    </MainContainer>
+        </MainContainer>
+      );
+    }
   );
-};
+
+ProfesionalProjectCard.displayName = "ProfesionalProjectCard";
 
 export default ProfesionalProjectCard;

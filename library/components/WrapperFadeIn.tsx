@@ -1,10 +1,10 @@
-import { useEffect, FC, ReactNode, useCallback, useMemo } from "react";
+import React, { useEffect, ReactNode, useCallback, useMemo } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "motion/react";
 import useIsMobile from "@/library/hooks/useIsMobile";
 import styled from "styled-components";
 
-export const MotionDiv = styled(motion.div)`
+const MotionDiv = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +23,27 @@ interface WrapperFadeInProps {
   fromTop?: boolean;
 }
 
-const WrapperFadeIn: FC<WrapperFadeInProps> = ({
+/**
+ * A React functional component that provides a fade-in animation effect for its children.
+ * The animation is triggered when the component comes into view.
+ *
+ * @component
+ * @param {React.ReactNode} children - The content to be wrapped by the fade-in animation.
+ * @param {number} [delay=0.1] - The delay before the animation starts, in seconds.
+ * @param {boolean} [conditionWrapper] - A condition to determine whether to apply the wrapper.
+ * @param {string} [className] - Additional CSS class names to apply to the component.
+ * @param {number} [threshold=0.1] - The threshold for the intersection observer, determining when the animation should start.
+ * @param {any} [refreshKey] - A key to refresh the animation.
+ * @param {boolean} [fromTop=false] - A flag to determine if the animation should start from the top.
+ *
+ * @returns {JSX.Element} The wrapped children with the fade-in animation applied.
+ *
+ * @example
+ * <WrapperFadeIn delay={0.2} fromTop={true}>
+ *   <div>Your content here</div>
+ * </WrapperFadeIn>
+ */
+const WrapperFadeIn: React.FC<WrapperFadeInProps> = ({
   children,
   delay = 0.1,
   conditionWrapper,
@@ -36,7 +56,7 @@ const WrapperFadeIn: FC<WrapperFadeInProps> = ({
   const { ref, inView } = useInView({ threshold });
   const isMobile = useIsMobile();
 
-  const startAnimation = useCallback(() => {
+  const startAnimation = useCallback((): void => {
     if (inView) {
       controls.start("visible");
     }
@@ -76,4 +96,4 @@ const WrapperFadeIn: FC<WrapperFadeInProps> = ({
   );
 };
 
-export default WrapperFadeIn;
+export default React.memo(WrapperFadeIn);

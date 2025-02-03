@@ -10,13 +10,12 @@ interface PersonalProjectProps {
   technologies: string;
   urlGithub: string;
   urlApp: string;
-
   image: {
     url: string;
   };
 }
 
-const Container = styled.div`
+const Container = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,16 +75,49 @@ const ProductName = styled.h2<{ color?: string }>`
   }
 `;
 
+/**
+ * `PersonalProject` is a memoized functional component that displays information about a personal project.
+ * It includes the project name, details, technologies used, and links to the project's GitHub repository and live application.
+ * The component also displays an image related to the project, which can be clicked to open the live application.
+ *
+ * @component
+ * @param {PersonalProjectProps} props - The properties passed to the component.
+ * @param {string} props.projectName - The name of the project.
+ * @param {string} props.details - A brief description of the project.
+ * @param {string} props.technologies - The technologies used in the project.
+ * @param {string} props.urlGithub - The URL to the project's GitHub repository.
+ * @param {string} props.urlApp - The URL to the live application of the project.
+ * @param {Object} props.image - The image object related to the project.
+ * @param {string} props.image.url - The URL of the image.
+ *
+ * @returns {JSX.Element} The rendered component.
+ *
+ * @example
+ * <PersonalProject
+ *   projectName="My Project"
+ *   details="This is a sample project."
+ *   technologies="React, TypeScript"
+ *   urlGithub="https://github.com/myproject"
+ *   urlApp="https://myproject.com"
+ *   image={{ url: "https://myproject.com/image.png" }}
+ * />
+ */
 const PersonalProject: React.FC<PersonalProjectProps> = React.memo(
   ({ projectName, details, technologies, urlGithub, urlApp, image }) => {
+    const handleImageClick = () => window.open(urlApp, "_blank");
+    const handleGithubClick = () => window.open(urlGithub, "_blank");
+    const handleAppClick = () => window.open(urlApp, "_blank");
+
     console.log("PersonalProject render", image.url);
     return (
       <Container>
-        <ProductName>{projectName}</ProductName>
+        <header>
+          <ProductName>{projectName}</ProductName>
+        </header>
         <Paragraph>Technologies used: {technologies}</Paragraph>
         <Paragraph>{details}</Paragraph>
 
-        <ImageContainer onClick={() => window.open(urlApp, "_blank")}>
+        <ImageContainer onClick={handleImageClick}>
           <ProductImage src={image.url} alt={projectName} />
         </ImageContainer>
 
@@ -97,7 +129,7 @@ const PersonalProject: React.FC<PersonalProjectProps> = React.memo(
                 duration: 0.3,
               },
             }}
-            onClick={() => window.open(urlGithub, "_blank")}
+            onClick={handleGithubClick}
           >
             <FaGithub size={32} />
             Github
@@ -109,7 +141,7 @@ const PersonalProject: React.FC<PersonalProjectProps> = React.memo(
                 duration: 0.3,
               },
             }}
-            onClick={() => window.open(urlApp, "_blank")}
+            onClick={handleAppClick}
           >
             <MdWeb size={32} />
             App

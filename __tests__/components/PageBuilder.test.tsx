@@ -1,9 +1,9 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import PageBuilder, { BlockItem } from "./PageBuilder";
-import useGetPage from "../hooks/useGetPage";
+import PageBuilder, { BlockItem } from "../../library/components/PageBuilder";
+import useGetPage from "../../library/hooks/useGetPage";
 import "@testing-library/jest-dom";
-import Providers from "../providers/MainProvider";
+import Providers from "../../library/providers/MainProvider";
 
 // Mocking the useGetPage hook to control its return values during tests
 jest.mock("../hooks/useGetPage");
