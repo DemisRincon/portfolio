@@ -18,6 +18,7 @@ query {
               middleHeading
               subHeading
               sliceText
+              isPhoto
               image {
                 url
               }

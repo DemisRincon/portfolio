@@ -51,6 +51,7 @@ export type BlockItem = {
   urlApp?: string;
   showName?: boolean;
   sliceText?: boolean;
+  isPhoto?: boolean;
 };
 
 enum PageBuilderComponentType {
@@ -126,6 +127,7 @@ const PageBuilder: React.FC = () => {
               image={item.image}
               endHeading={item.endHeading ?? ""}
               sliceText={item.sliceText}
+              isPhoto={item.isPhoto}
             />
           </PageContainerAdjusted>
         );

@@ -78,15 +78,19 @@ const ImageContainer = styled.div`
   }
 `;
 
-const ProfileImage = styled(motion.img)`
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+const ProfileImage = styled(motion.img)<{ $isPhoto?: boolean }>`
   display: inline-block;
   position: relative;
   max-width: 80%;
   max-height: 80%;
   overflow: hidden;
-  border-radius: 50%;
   object-fit: cover;
+  ${({ $isPhoto }) =>
+    $isPhoto &&
+    `
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  `}
 `;
 
 interface Image {
@@ -100,6 +104,7 @@ interface HeroSideImageHeadProps {
   image: Image;
   sliceText?: boolean;
   endHeading?: string;
+  isPhoto?: boolean;
 }
 
 /**
@@ -139,6 +144,7 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
   image: { url },
   sliceText,
   endHeading,
+  isPhoto,
 }) => {
   const [middleHeadingIndex, setMiddleHeadingIndex] = useState(0);
 
@@ -188,6 +194,7 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
             src={url}
             alt="Profile Photo"
             style={{ scale: yImage }}
+            $isPhoto={isPhoto}
           />
         </WrapperFadeIn>
       </ImageContainer>

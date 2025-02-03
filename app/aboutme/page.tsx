@@ -1,4 +1,3 @@
-"use client";
 import PageBuilder from "@/library/components/PageBuilder";
 import React from "react";
 
@@ -6,4 +5,4 @@ const Page = () => {
   return <PageBuilder />;
 };
 
-export default Page;
+export default React.memo(Page);

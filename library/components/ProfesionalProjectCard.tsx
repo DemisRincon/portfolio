@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback, useEffect } from "react";
+import React, { useMemo, useCallback } from "react";
 import styled from "styled-components";
 import WrapperFadeIn from "./WrapperFadeIn";
 import { Button } from "./Common";
