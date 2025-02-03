@@ -11,6 +11,9 @@ const Container = styled.nav`
   align-items: center;
   height: 100%;
   text-transform: uppercase;
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    display: none;
+  }
 `;
 const NavLink = styled(motion.div)<{ $isActive?: boolean }>`
   text-decoration: none;

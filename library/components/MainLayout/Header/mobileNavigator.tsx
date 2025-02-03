@@ -11,6 +11,9 @@ const MenuIcon = styled.button`
   background-color: transparent;
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    display: none;
+  }
 `;
 
 const MobileNavigator = () => {
