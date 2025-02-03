@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { FaGithub } from "react-icons/fa";
 import { MdWeb } from "react-icons/md";
 import { Button } from "./Common";
+import WrapperFadeIn from "./WrapperFadeIn";
+import useTransformOnScroll from "../hooks/useTransformOnScroll";
+import { motion } from "motion/react";
 
 interface PersonalProjectProps {
   projectName: string;
@@ -15,7 +18,7 @@ interface PersonalProjectProps {
   };
 }
 
-const Container = styled.article`
+const Container = styled(motion.article)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -99,44 +102,46 @@ const PersonalProject: React.FC<PersonalProjectProps> = React.memo(
     const handleImageClick = () => window.open(urlApp, "_blank");
     const handleGithubClick = () => window.open(urlGithub, "_blank");
     const handleAppClick = () => window.open(urlApp, "_blank");
+    const { y: scale, ref } = useTransformOnScroll([0, 0.5, 1], [0.5, 1, 1]);
 
-    console.log("PersonalProject render", image.url);
     return (
-      <Container>
-        <ProductName>{projectName}</ProductName>
-        <Paragraph>Technologies used: {technologies}</Paragraph>
-        <Paragraph>{details}</Paragraph>
-        <ImageContainer onClick={handleImageClick}>
-          <ProductImage src={image.url} alt={projectName} />
-        </ImageContainer>
+      <WrapperFadeIn threshold={0.25}>
+        <Container ref={ref} style={{ scale }}>
+          <ProductName>{projectName}</ProductName>
+          <Paragraph>Technologies used: {technologies}</Paragraph>
+          <Paragraph>{details}</Paragraph>
+          <ImageContainer onClick={handleImageClick}>
+            <ProductImage src={image.url} alt={projectName} />
+          </ImageContainer>
 
-        <ButtonsContainer>
-          <Button
-            whileHover={{
-              scale: 1.1,
-              transition: {
-                duration: 0.3,
-              },
-            }}
-            onClick={handleGithubClick}
-          >
-            <FaGithub size={32} />
-            Github
-          </Button>
-          <Button
-            whileHover={{
-              scale: 1.1,
-              transition: {
-                duration: 0.3,
-              },
-            }}
-            onClick={handleAppClick}
-          >
-            <MdWeb size={32} />
-            App
-          </Button>
-        </ButtonsContainer>
-      </Container>
+          <ButtonsContainer>
+            <Button
+              whileHover={{
+                scale: 1.1,
+                transition: {
+                  duration: 0.3,
+                },
+              }}
+              onClick={handleGithubClick}
+            >
+              <FaGithub size={32} />
+              Github
+            </Button>
+            <Button
+              whileHover={{
+                scale: 1.1,
+                transition: {
+                  duration: 0.3,
+                },
+              }}
+              onClick={handleAppClick}
+            >
+              <MdWeb size={32} />
+              App
+            </Button>
+          </ButtonsContainer>
+        </Container>
+      </WrapperFadeIn>
     );
   }
 );

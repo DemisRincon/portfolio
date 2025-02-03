@@ -99,7 +99,7 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
   endHeading,
   button,
 }) => {
-  const { y: scale } = useTransformOnScroll([0, 0.7, 1], [0.5, 1.4, 1.2]);
+  const { y: scale, ref } = useTransformOnScroll([0, 0.7, 1], [0.5, 1.4, 1.7]);
 
   const handleClick = useCallback(() => {
     window.location.href = button.url;
@@ -109,9 +109,9 @@ const HeroWithTitleButton: React.FC<HeroWithTitleButtonProps> = ({
   const buttonStyle = useMemo(() => ({ y: scale }), [scale]);
 
   return (
-    <Container>
+    <Container ref={ref}>
       <HeadingContainer style={headingStyle}>
-        <WrapperFadeIn threshold={0.5}>
+        <WrapperFadeIn>
           <Heading>
             {heading} <Strong onClick={handleClick}>{middleHeading[0]}</Strong>{" "}
             {endHeading}

@@ -1,8 +1,10 @@
-import React, { useMemo, useCallback } from "react";
+import React, { useMemo, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import WrapperFadeIn from "./WrapperFadeIn";
 import { Button } from "./Common";
 import useScrollOnView from "../hooks/useScrollOnView";
+import useTransformOnScroll from "../hooks/useTransformOnScroll";
+import { motion } from "motion/react";
 
 interface ProfessionalProjectCardProps {
   description?: string[];
@@ -14,7 +16,7 @@ interface ProfessionalProjectCardProps {
   title?: string;
 }
 
-const MainContainer = styled.div`
+const MainContainer = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -177,6 +179,13 @@ const ProfessionalProjectCard: React.FC<ProfessionalProjectCardProps> =
       title,
     }) => {
       const target = useScrollOnView();
+      const { y: scale, ref } = useTransformOnScroll([0, 0.5, 1], [0.8, 1, 1]);
+
+      useEffect(() => {
+        if (target.current) {
+          ref.current = target.current;
+        }
+      }, [target, ref]);
       const firstDescription = useMemo(
         () => description[0] || "",
         [description]
@@ -195,7 +204,7 @@ const ProfessionalProjectCard: React.FC<ProfessionalProjectCardProps> =
       }, [url]);
 
       return (
-        <MainContainer id={title} ref={target}>
+        <MainContainer id={title} ref={target} style={{ scale }}>
           <WrapperFadeIn>
             <StyledProductName>{name}</StyledProductName>
           </WrapperFadeIn>

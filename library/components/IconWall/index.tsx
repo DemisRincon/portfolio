@@ -60,7 +60,7 @@ interface IconWallProps {
 }
 const IconWall: React.FC<IconWallProps> = React.memo(
   ({ name, collectionString, showName = false }) => {
-    const { y: scale } = useTransformOnScroll([0, 0.7, 1], [0.3, 1, 1.3]);
+    const { y: scale, ref } = useTransformOnScroll([0, 0.7, 1], [0.5, 1, 1]);
 
     const renderIcon = useCallback(
       (icon: string, index: number) => (
@@ -80,7 +80,7 @@ const IconWall: React.FC<IconWallProps> = React.memo(
     );
 
     return (
-      <Container>
+      <Container ref={ref}>
         <HeaderContainer>
           <WrapperFadeIn>
             <Header>{name}</Header>

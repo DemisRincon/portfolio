@@ -142,7 +142,7 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
 }) => {
   const [middleHeadingIndex, setMiddleHeadingIndex] = useState(0);
 
-  const { y: yImage } = useTransformOnScroll([0, 1], [1, 1.7]);
+  const { y: yImage, ref } = useTransformOnScroll([0, 1], [1, 1.7]);
 
   const memoizedMiddleHeading = useMemo(() => middleHeading, [middleHeading]);
 
@@ -158,7 +158,7 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
   }, [updateMiddleHeadingIndex]);
 
   return (
-    <Container>
+    <Container ref={ref}>
       <TextContainer>
         <WrapperFadeIn>
           <SubHeading>{subHeading}</SubHeading>
