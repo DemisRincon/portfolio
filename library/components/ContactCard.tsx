@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { PageContainer } from "./Common";
 import Link from "next/link";
+import IconProvider from "./IconWall/IconProvider";
 
 const Container = styled.div`
   display: flex;
@@ -23,19 +24,19 @@ const StyledLink = styled(Link)`
 const ContactCard = () => {
   return (
     <PageContainer>
+      <h2>Contact</h2>
       <Container>
-        <h2>Contact</h2>
         <StyledLink href="https://www.linkedin.com/in/demisrincon/">
-          <h3>Linkedin: Demis Rincon</h3>
+          <h4>Linkedin: /demisrincon</h4>
         </StyledLink>
         <StyledLink href="tel:+3121091992">
-          <h3>Phone: 312 109 19 92</h3>
+          <h4>Phone: 312 109 19 92</h4>
         </StyledLink>
         <StyledLink href="mailto:darmfma@gmail.com">
-          <h3>Email: darmfma@gmail.com</h3>
+          <h4>Email: darmfma@gmail.com</h4>
         </StyledLink>
         <StyledLink href="https://github.com/DemisRincon">
-          <h3>Github: DemisRincon</h3>
+          <h4>Github: /DemisRincon</h4>
         </StyledLink>
       </Container>
     </PageContainer>

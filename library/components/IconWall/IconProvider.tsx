@@ -10,8 +10,14 @@ import {
   SiJest,
   SiContentful,
 } from "react-icons/si";
-import { BiLogoNetlify, BiPhone } from "react-icons/bi";
-import { TbBrandReactNative, TbBrandFramerMotion } from "react-icons/tb";
+import { LuPointer } from "react-icons/lu";
+
+import { BiLogoNetlify } from "react-icons/bi";
+import {
+  TbBrandReactNative,
+  TbBrandFramerMotion,
+  TbPointerHeart,
+} from "react-icons/tb";
 import { GrMysql } from "react-icons/gr";
 import styled from "styled-components";
 import cucumbericon from "@/library/assets/icons/cucumber.svg";
@@ -42,6 +48,7 @@ interface IconProviderProps {
   name: string;
   $showName: boolean;
   $fontColor?: string;
+  $size?: string;
 }
 
 interface IconProps {
@@ -53,7 +60,7 @@ const Icon = styled(SVG)<IconProps>`
   width: ${({ size }) => size};
   height: ${({ size }) => size};
   & path {
-    fill: ${({ $fontColor }) => $fontColor};
+    fill: ${({ $fontColor, theme }) => theme.colors[$fontColor]};
   }
 `;
 
@@ -86,22 +93,23 @@ const iconMap: Record<string, (color: string, size: string) => JSX.Element> = {
   nightwatch: (color, size) => (
     <Icon src={nightwatchicon.src} size={size} $fontColor={color} />
   ),
-  Phone: (color, size) => <BiPhone size={size} color={color} />,
+  pointer: (color, size) => <LuPointer size={size} color={color} />,
 };
 
 const IconProvider: React.FC<IconProviderProps> = ({
   name,
   $showName = false,
   $fontColor = "white",
+  $size,
 }) => {
   const theme = useTheme();
   const icon = useMemo(() => {
     return iconMap[name] ? (
-      iconMap[name]($fontColor, theme.fontSizes.icon)
+      iconMap[name]($fontColor, $size ?? theme.fontSizes.icon)
     ) : (
       <span>📚</span>
     );
-  }, [name, $fontColor, theme.fontSizes.icon]);
+  }, [name, $fontColor, $size, , theme.fontSizes.icon]);
 
   return (
     <Wrapper>
