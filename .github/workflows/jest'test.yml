@@ -24,5 +24,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Verify TypeScript config
+        run: tsc --noEmit
+
       - name: Run Jest tests
         run: npm test
