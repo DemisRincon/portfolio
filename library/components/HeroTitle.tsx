@@ -68,9 +68,17 @@ const Strong = styled(motion.strong)`
   cursor: pointer;
 `;
 
-const HeroTitle: React.FC<HeroWithTitleButtonProps> & {
+interface HeroTitleComponent extends React.FC<HeroWithTitleButtonProps> {
   Button: React.FC<ButtonProps>;
-} = ({ heading, middleHeading, endHeading, button, children }) => {
+}
+
+const HeroTitle: HeroTitleComponent = ({
+  heading,
+  middleHeading,
+  endHeading,
+  button,
+  children,
+}) => {
   const { y: scale, ref } = useTransformOnScroll([0, 0.7, 1], [0.5, 1, 1]);
 
   return (
