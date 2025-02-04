@@ -99,7 +99,6 @@ const ProductName = styled.h1`
  */
 const PersonalProject: React.FC<PersonalProjectProps> = React.memo(
   ({ projectName, details, technologies, urlGithub, urlApp, image }) => {
-    const handleImageClick = () => window.open(urlApp, "_blank");
     const handleGithubClick = () => window.open(urlGithub, "_blank");
     const handleAppClick = () => window.open(urlApp, "_blank");
     const { y: scale, ref } = useTransformOnScroll([0, 0.5, 1], [0.6, 1, 1]);
@@ -110,7 +109,7 @@ const PersonalProject: React.FC<PersonalProjectProps> = React.memo(
           <ProductName>{projectName}</ProductName>
           <Paragraph>Technologies used: {technologies}</Paragraph>
           <Paragraph>{details}</Paragraph>
-          <ImageContainer onClick={handleImageClick}>
+          <ImageContainer onClick={handleAppClick}>
             <ProductImage src={image.url} alt={projectName} />
           </ImageContainer>
 
