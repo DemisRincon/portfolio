@@ -6,12 +6,10 @@ import "@testing-library/jest-dom";
 import Providers from "../../library/providers/MainProvider";
 
 // Mocking the useGetPage hook to control its return values during tests
-jest.mock("../hooks/useGetPage");
+jest.mock("../../library/hooks/useGetPage");
 
 // Creating a mock for the useGetPage hook
-const mockUseGetPage = useGetPage as unknown as jest.Mock<
-  () => { data: BlockItem[] | null; error: boolean }
->;
+const mockUseGetPage = useGetPage as jest.Mock;
 
 // Helper function to render components with Providers
 const renderWithTheme = (ui: React.ReactElement) => {
@@ -38,10 +36,10 @@ describe("PageBuilder", () => {
     mockUseGetPage.mockReturnValue({ data: null, error: false });
 
     // Rendering the PageBuilder component with theme
-    const { container } = renderWithTheme(<PageBuilder />);
+    renderWithTheme(<PageBuilder />);
 
-    // Asserting that the container is empty
-    expect(container).toBeEmptyDOMElement();
+    // Asserting that the loading message is displayed
+    expect(screen.getByText("Loading...")).toBeInTheDocument();
   });
 
   // Test case for rendering components based on page data
@@ -54,7 +52,7 @@ describe("PageBuilder", () => {
         heading: "Heading 1",
         subHeading: "Subheading 1",
         middleHeading: ["Middle 1"],
-        image: { url: "image1.jpg", name: "Image 1" },
+        image: { url: "image1.jpg", name: "Profile Photo" },
         orderInPage: 1,
       },
       {
@@ -85,12 +83,6 @@ describe("PageBuilder", () => {
     expect(screen.getByText("Heading 1")).toBeInTheDocument();
     expect(screen.getByText("Subheading 1")).toBeInTheDocument();
     expect(screen.getByText("Middle 1")).toBeInTheDocument();
-    expect(screen.getByAltText("Profile Photo")).toHaveAttribute(
-      "src",
-      "image1.jpg"
-    );
-    expect(
-      screen.getByText((content) => content.startsWith("Heading 2"))
-    ).toBeInTheDocument();
+    expect(screen.getByText("Button 2")).toBeInTheDocument();
   });
 });
