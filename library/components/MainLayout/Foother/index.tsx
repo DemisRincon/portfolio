@@ -2,6 +2,7 @@
 import { PageContainerAdjusted } from "@/library/components/Common";
 import styled from "styled-components";
 import React from "react";
+import Link from "next/link";
 
 const FooterContainer = styled.div`
   padding: 3rem;
@@ -30,6 +31,11 @@ const Container = styled.div`
   justify-content: start;
   align-items: center;
   flex-direction: column;
+`;
+
+const StyledLink = styled(Link)`
+  color: ${({ theme }) => theme.colors.white};
+  text-decoration: none;
 `;
 
 /**
@@ -64,17 +70,37 @@ const Footer = () => {
         </Container>
         <Container>
           <h6>Contact</h6>
-          <p>Hire me</p>
-          <p>About me</p>
+          <StyledLink href="/hireme">
+            <p>Hire me</p>
+          </StyledLink>
+
+          <StyledLink href="tel:+3121091992">
+            <p>312 109 19 92</p>
+          </StyledLink>
+          <StyledLink href="mailto:darmfma@gmail.com">
+            <p>darmfma@gmail.com</p>
+          </StyledLink>
+          <StyledLink href="https://www.linkedin.com/in/demisrincon/">
+            <p>Linkedin</p>
+          </StyledLink>
+          <StyledLink href="https://github.com/DemisRincon">
+            <p>Github</p>
+          </StyledLink>
         </Container>
         <Container>
           <h6>Projects</h6>
-          <p>Smart Point Cloud</p>
-          <p>COOP</p>
-          <p>PMG</p>
-          <p>Xennial Digital</p>
-          <p>Celebrity Crusies</p>
-          <p>POS Kiosko</p>
+          <StyledLink href="/projects/#travleport">
+            <p>Smart Point Cloud</p>
+          </StyledLink>
+          <StyledLink href="/projects/#sancrisoft">
+            <p>PMG</p>
+          </StyledLink>
+          <StyledLink href="/projects/#kiosko">
+            <p>POS Kiosko</p>
+          </StyledLink>
+          <StyledLink href="/projects/#tcs">
+            <p>H hotels</p>
+          </StyledLink>
         </Container>
       </FooterContainer>
     </PageContainerAdjusted>

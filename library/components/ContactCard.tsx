@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Button, PageContainer } from "./Common";
 import Link from "next/link";
-import IconProvider from "./IconWall/IconProvider";
 
 const Container = styled.div`
   display: flex;
