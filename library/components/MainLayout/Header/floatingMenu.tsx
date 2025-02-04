@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useAnimation } from "motion/react";
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 import styled from "styled-components";
 import { usePathname, useRouter } from "next/navigation";
@@ -65,17 +65,14 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ toggleMenu }) => {
     animationControls.start("visible");
   }, [animationControls]);
 
-  const handleClose = useCallback(
-    async (href?: string): Promise<void> => {
-      await animationControls.start("hidden");
-      if (href) {
-        router.prefetch(href);
-        router.push(href);
-      }
-      toggleMenu();
-    },
-    [animationControls, toggleMenu, router]
-  );
+  const handleClose = async (href?: string): Promise<void> => {
+    await animationControls.start("hidden");
+    if (href) {
+      router.prefetch(href);
+      router.push(href);
+    }
+    toggleMenu();
+  };
 
   return (
     <FullScreenOverlay
@@ -125,4 +122,4 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ toggleMenu }) => {
   );
 };
 
-export default React.memo(FloatingMenu);
+export default FloatingMenu;

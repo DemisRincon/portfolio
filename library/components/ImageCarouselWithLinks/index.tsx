@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import WrapperFadeIn from "../WrapperFadeIn";
 import fetchTool, { FetchType } from "@/library/contentful/fetchTool";
@@ -57,21 +57,21 @@ const CarouselImageWithLink: React.FC<CarouselImageWithLinkProps> = ({
 }) => {
   const [data, setData] = useState<ImageItemInterface[] | null>(null);
 
-  const fetchData = useCallback(async () => {
-    try {
-      const response = await fetchTool(
-        getImageCarousel(slug),
-        FetchType.dynamicData
-      );
-      setData(response.imageCarouselWithLinks.imagesCollection.items);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  }, [slug]);
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetchTool(
+          getImageCarousel(slug),
+          FetchType.dynamicData
+        );
+        setData(response.imageCarouselWithLinks.imagesCollection.items);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
     fetchData();
-  }, [fetchData]);
+  }, [slug]);
 
   return (
     <Container title={title}>
@@ -85,4 +85,4 @@ const CarouselImageWithLink: React.FC<CarouselImageWithLinkProps> = ({
   );
 };
 
-export default React.memo(CarouselImageWithLink);
+export default CarouselImageWithLink;

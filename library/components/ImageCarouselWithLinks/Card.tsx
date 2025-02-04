@@ -16,7 +16,7 @@ interface ImageProps {
 }
 
 /**
- * A memoized functional component that represents a card with an image.
+ * A functional component that represents a card with an image.
  * The card scales up and moves slightly upwards when hovered over.
  *
  * @component
@@ -29,14 +29,14 @@ interface ImageProps {
  * @param {function} props.onClick - The function to be called when the card is clicked.
  * @returns {JSX.Element} The rendered card component.
  */
-const Card: React.FC<CardProps> = React.memo(function Card({
+const Card: React.FC<CardProps> = ({
   image,
   $imagecircular,
   width,
   height,
   $horizontalmargin,
   onClick,
-}) {
+}) => {
   return (
     <ImageContainer
       whileHover={{ scale: 1.1, cursor: "pointer", y: -30 }}
@@ -52,7 +52,7 @@ const Card: React.FC<CardProps> = React.memo(function Card({
       />
     </ImageContainer>
   );
-});
+};
 
 const Image = styled.img<ImageProps>`
   width: ${({ width }) => width ?? "500px"};

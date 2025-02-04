@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from "react";
+import React from "react";
 import styled from "styled-components";
 import WrapperFadeIn from "./WrapperFadeIn";
 import { Button } from "./Common";
@@ -58,7 +58,6 @@ const ImageWrapper = styled.div`
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     width: 45%;
-
     height: 100%;
   }
 `;
@@ -145,126 +144,86 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-/**
- * `ProfesionalProjectCard` is a memoized functional component that displays a professional project card.
- * It includes the project's name, enterprise, description, and an image. The card also features a button
- * that opens the project's URL in a new tab.
- *
- * @component
- * @param {ProfesionalProjectCardProps} props - The properties passed to the component.
+const ProfessionalProjectCard: React.FC<ProfessionalProjectCardProps> = ({
+  description = [],
+  enterprise,
+  url,
+  name,
+  productPhoto: { url: productImg },
+  buttonText,
+  title,
+}) => {
+  const target = useScrollOnView();
+  const { y: scale, ref } = useTransformOnScroll([0, 0.5, 1], [0.6, 1, 1]);
 
- * @param {string[]} [props.description=[]] - An array of descriptions for the project.
- * @param {string} props.enterprise - The name of the enterprise associated with the project.
- * @param {string} props.url - The URL of the project.
- * @param {string} props.name - The name of the project.
- * @param {Object} props.productPhoto - An object containing the URL of the product image.
- * @param {string} props.productPhoto.url - The URL of the product image.
- * @param {string} props.buttonText - The text displayed on the button.
- * @param {string} props.title - The title of the project card.
- *
- * @returns {JSX.Element} The rendered professional project card component.
- *
- * @example
- * <ProfesionalProjectCard
- *   fontColor="black"
- *   description={["Description 1", "Description 2"]}
- *   enterprise="Enterprise Name"
- *   url="https://example.com"
- *   name="Project Name"
- *   productPhoto={{ url: "https://example.com/image.jpg" }}
- *   buttonText="View Project"
- *   title="Project Title"
- * />
- */
-const ProfessionalProjectCard: React.FC<ProfessionalProjectCardProps> =
-  React.memo(
-    ({
-      description = [],
-      enterprise,
-      url,
-      name,
-      productPhoto: { url: productImg },
-      buttonText,
-      title,
-    }) => {
-      const target = useScrollOnView();
-      const { y: scale, ref } = useTransformOnScroll([0, 0.5, 1], [0.6, 1, 1]);
+  const firstDescription = description[0] || "";
+  const remainingDescriptions = description.slice(1);
 
-      const firstDescription = useMemo(
-        () => description[0] || "",
-        [description]
-      );
-      const remainingDescriptions = useMemo(
-        () => description.slice(1),
-        [description]
-      );
+  const handleImageClick = () => {
+    window.open(url, "_blank");
+  };
 
-      const handleImageClick = useCallback(() => {
-        window.open(url, "_blank");
-      }, [url]);
+  const handleButtonClick = () => {
+    window.open(url, "_blank");
+  };
 
-      const handleButtonClick = useCallback(() => {
-        window.open(url, "_blank");
-      }, [url]);
+  return (
+    <MainContainer id={title} ref={target} style={{ scale }}>
+      <Container ref={ref}>
+        <WrapperFadeIn>
+          <StyledProductName>{name}</StyledProductName>
+        </WrapperFadeIn>
 
-      return (
-        <MainContainer id={title} ref={target} style={{ scale }}>
-          <Container ref={ref}>
+        <MiddleWrapper>
+          <ImageWrapper onClick={handleImageClick}>
             <WrapperFadeIn>
-              <StyledProductName>{name}</StyledProductName>
+              <StyledImage src={productImg} alt={name} />
             </WrapperFadeIn>
-
-            <MiddleWrapper>
-              <ImageWrapper onClick={handleImageClick}>
-                <WrapperFadeIn>
-                  <StyledImage src={productImg} alt={name} />
-                </WrapperFadeIn>
-              </ImageWrapper>
-              <ContentContainer>
-                <WrapperFadeIn>
-                  <StyledOwner>
-                    <strong>{enterprise}</strong>
-                  </StyledOwner>
-                </WrapperFadeIn>
-                <StyledDescription>{firstDescription}</StyledDescription>
-                <JobFunctionsList>
-                  {remainingDescriptions.map((item, index) => (
-                    <JobFunctionItem key={index}>
-                      <WrapperFadeIn
-                        threshold={0.3}
-                        transition={{
-                          duration: 0.6,
-                          delay: (index + 1) * 0.15,
-                        }}
-                      >
-                        <StyledDescription>{item}</StyledDescription>
-                      </WrapperFadeIn>
-                    </JobFunctionItem>
-                  ))}
-                </JobFunctionsList>
-              </ContentContainer>
-            </MiddleWrapper>
-
+          </ImageWrapper>
+          <ContentContainer>
             <WrapperFadeIn>
-              <ButtonWrapper>
-                <Button
-                  whileHover={{
-                    scale: 1.1,
-                    transition: {
-                      duration: 0.3,
-                    },
-                  }}
-                  onClick={handleButtonClick}
-                >
-                  {buttonText}
-                </Button>
-              </ButtonWrapper>
+              <StyledOwner>
+                <strong>{enterprise}</strong>
+              </StyledOwner>
             </WrapperFadeIn>
-          </Container>
-        </MainContainer>
-      );
-    }
+            <StyledDescription>{firstDescription}</StyledDescription>
+            <JobFunctionsList>
+              {remainingDescriptions.map((item, index) => (
+                <JobFunctionItem key={index}>
+                  <WrapperFadeIn
+                    threshold={0.3}
+                    transition={{
+                      duration: 0.6,
+                      delay: (index + 1) * 0.15,
+                    }}
+                  >
+                    <StyledDescription>{item}</StyledDescription>
+                  </WrapperFadeIn>
+                </JobFunctionItem>
+              ))}
+            </JobFunctionsList>
+          </ContentContainer>
+        </MiddleWrapper>
+
+        <WrapperFadeIn>
+          <ButtonWrapper>
+            <Button
+              whileHover={{
+                scale: 1.1,
+                transition: {
+                  duration: 0.3,
+                },
+              }}
+              onClick={handleButtonClick}
+            >
+              {buttonText}
+            </Button>
+          </ButtonWrapper>
+        </WrapperFadeIn>
+      </Container>
+    </MainContainer>
   );
+};
 
 ProfessionalProjectCard.displayName = "ProfessionalProjectCard";
 

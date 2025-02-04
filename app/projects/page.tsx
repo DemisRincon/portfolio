@@ -5,4 +5,4 @@ const Page = () => {
   return <PageBuilder />;
 };
 
-export default React.memo(Page);
+export default Page;

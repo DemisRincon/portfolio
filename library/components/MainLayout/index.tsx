@@ -53,4 +53,4 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
 MainLayout.displayName = "MainLayout";
 
-export default React.memo(MainLayout);
+export default MainLayout;

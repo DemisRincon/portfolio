@@ -34,31 +34,27 @@ const NavLink = styled(motion.div)`
   }
 `;
 
+const renderNavLink = (link: { href: string; label: string }) => (
+  <NavLink
+    key={link.href}
+    whileHover={{
+      scale: 1.1,
+      y: -5,
+      transition: { duration: 0.2 },
+    }}
+  >
+    <Link
+      href={link.href}
+      prefetch={true}
+      style={{ textDecoration: "none", color: "inherit" }}
+    >
+      {link.label}
+    </Link>
+  </NavLink>
+);
+
 const DesktopNavigator = () => {
-  return (
-    <Container>
-      {headerData.links.map((link) => {
-        return (
-          <NavLink
-            key={link.href}
-            whileHover={{
-              scale: 1.1,
-              y: -5,
-              transition: { duration: 0.2 },
-            }}
-          >
-            <Link
-              href={link.href}
-              prefetch={false}
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              {link.label}
-            </Link>
-          </NavLink>
-        );
-      })}
-    </Container>
-  );
+  return <Container>{headerData.links.map(renderNavLink)}</Container>;
 };
 
 export default DesktopNavigator;

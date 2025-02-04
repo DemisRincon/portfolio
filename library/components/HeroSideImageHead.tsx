@@ -10,7 +10,7 @@ interface Image {
 
 interface HeroSideImageHeadProps {
   heading: string;
-  subHeading: string;
+  children: React.ReactNode;
   middleHeading: string[];
   image: Image;
   sliceText?: boolean;
@@ -140,9 +140,13 @@ const ProfileImage = styled(motion.img)<{ $isPhoto?: boolean }>`
  * This component uses `useTransformOnScroll` to scale the image on scroll and `useMemo` to memoize the middle heading text.
  * The middle heading text changes every 3 seconds using `setInterval` and `useEffect`.
  */
-const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
+interface HeroSideImageHeadComponent extends React.FC<HeroSideImageHeadProps> {
+  Subheading: React.FC<{ subHeading: string }>;
+}
+
+const HeroSideImageHead: HeroSideImageHeadComponent = ({
   heading,
-  subHeading,
+  children,
   middleHeading,
   image: { url },
   sliceText,
@@ -171,9 +175,7 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
   return (
     <Container ref={ref}>
       <TextContainer>
-        <WrapperFadeIn>
-          <SubHeading>{subHeading}</SubHeading>
-        </WrapperFadeIn>
+        {children}
         <WrapperFadeIn>
           <Heading $sliceText={sliceText}>
             {heading}
@@ -208,5 +210,17 @@ const HeroSideImageHead: React.FC<HeroSideImageHeadProps> = ({
     </Container>
   );
 };
+
+HeroSideImageHead.Subheading = ({ subHeading }: { subHeading: string }) => {
+  return (
+    <WrapperFadeIn>
+      <SubHeading>{subHeading}</SubHeading>;
+    </WrapperFadeIn>
+  );
+};
+
+HeroSideImageHead.Subheading.displayName = "HeroSideImageHeadSubheading";
+
+HeroSideImageHead.displayName = "HeroSideImageHead";
 
 export default HeroSideImageHead;

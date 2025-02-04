@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Card from "./Card";
 import WrapperFadeIn from "../WrapperFadeIn";
 import { useRouter } from "next/navigation";
-import React, { useMemo, useCallback } from "react";
+import React from "react";
 
 export interface ImageItemInterface {
   url: string;
@@ -42,53 +42,46 @@ const Carousel = styled(motion.div)`
   background-color: ${({ theme }) => theme.colors.white};
 `;
 
-const InfiniteCarousel: React.FC<InfiniteCarouselProps> = React.memo(
-  ({ data }) => {
-    const router = useRouter();
+const InfiniteCarousel: React.FC<InfiniteCarouselProps> = ({ data }) => {
+  const router = useRouter();
 
-    const handleClick = useCallback(
-      (url: string) => {
-        router.push(url, { scroll: true });
-      },
-      [router]
-    );
+  const handleClick = (url: string) => {
+    router.push(url, { scroll: true });
+  };
 
-    const carouselData = useMemo(() => {
-      return data.map((item) => (
-        <Card
-          key={item.name}
-          image={item.image.url}
-          $horizontalmargin="10px"
-          width="200px"
-          height="auto"
-          onClick={() => handleClick(item.url)}
-        />
-      ));
-    }, [data, handleClick]);
+  const carouselData = data.map((item) => (
+    <Card
+      key={item.name}
+      image={item.image.url}
+      $horizontalmargin="10px"
+      width="200px"
+      height="auto"
+      onClick={() => handleClick(item.url)}
+    />
+  ));
 
-    const carousels = 4;
-    const carouselsData = useMemo(() => {
-      return Array.from({ length: carousels }, (_, i) => i).map((index) => (
-        <Carousel
-          key={index}
-          initial={{ x: 0 }}
-          animate={{ x: "-100%" }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        >
-          {carouselData}
-        </Carousel>
-      ));
-    }, [carouselData]);
+  const carousels = 4;
+  const carouselsData = Array.from({ length: carousels }, (_, i) => i).map(
+    (index) => (
+      <Carousel
+        key={index}
+        initial={{ x: 0 }}
+        animate={{ x: "-100%" }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+      >
+        {carouselData}
+      </Carousel>
+    )
+  );
 
-    return (
-      <MainContainer>
-        <WrapperFadeIn>
-          <Container>{carouselsData}</Container>
-        </WrapperFadeIn>
-      </MainContainer>
-    );
-  }
-);
+  return (
+    <MainContainer>
+      <WrapperFadeIn>
+        <Container>{carouselsData}</Container>
+      </WrapperFadeIn>
+    </MainContainer>
+  );
+};
 
 InfiniteCarousel.displayName = "InfiniteCarousel";
 

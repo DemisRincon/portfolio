@@ -71,7 +71,7 @@ const ProductName = styled.h1`
 `;
 
 /**
- * `PersonalProject` is a memoized functional component that displays information about a personal project.
+ * `PersonalProject` is a functional component that displays information about a personal project.
  * It includes the project name, details, technologies used, and links to the project's GitHub repository and live application.
  * The component also displays an image related to the project, which can be clicked to open the live application.
  *
@@ -97,53 +97,58 @@ const ProductName = styled.h1`
  *   image={{ url: "https://myproject.com/image.png" }}
  * />
  */
-const PersonalProject: React.FC<PersonalProjectProps> = React.memo(
-  ({ projectName, details, technologies, urlGithub, urlApp, image }) => {
-    const handleGithubClick = () => window.open(urlGithub, "_blank");
-    const handleAppClick = () => window.open(urlApp, "_blank");
-    const { y: scale, ref } = useTransformOnScroll([0, 0.5, 1], [0.6, 1, 1]);
+const PersonalProject: React.FC<PersonalProjectProps> = ({
+  projectName,
+  details,
+  technologies,
+  urlGithub,
+  urlApp,
+  image,
+}) => {
+  const handleGithubClick = () => window.open(urlGithub, "_blank");
+  const handleAppClick = () => window.open(urlApp, "_blank");
+  const { y: scale, ref } = useTransformOnScroll([0, 0.5, 1], [0.6, 1, 1]);
 
-    return (
-      <WrapperFadeIn threshold={0.25}>
-        <Container ref={ref} style={{ scale }}>
-          <ProductName>{projectName}</ProductName>
-          <Paragraph>Technologies used: {technologies}</Paragraph>
-          <Paragraph>{details}</Paragraph>
-          <ImageContainer onClick={handleAppClick}>
-            <ProductImage src={image.url} alt={projectName} />
-          </ImageContainer>
+  return (
+    <WrapperFadeIn threshold={0.25}>
+      <Container ref={ref} style={{ scale }}>
+        <ProductName>{projectName}</ProductName>
+        <Paragraph>Technologies used: {technologies}</Paragraph>
+        <Paragraph>{details}</Paragraph>
+        <ImageContainer onClick={handleAppClick}>
+          <ProductImage src={image.url} alt={projectName} />
+        </ImageContainer>
 
-          <ButtonsContainer>
-            <Button
-              whileHover={{
-                scale: 1.1,
-                transition: {
-                  duration: 0.3,
-                },
-              }}
-              onClick={handleGithubClick}
-            >
-              <FaGithub size={32} />
-              Github
-            </Button>
-            <Button
-              whileHover={{
-                scale: 1.1,
-                transition: {
-                  duration: 0.3,
-                },
-              }}
-              onClick={handleAppClick}
-            >
-              <MdWeb size={32} />
-              App
-            </Button>
-          </ButtonsContainer>
-        </Container>
-      </WrapperFadeIn>
-    );
-  }
-);
+        <ButtonsContainer>
+          <Button
+            whileHover={{
+              scale: 1.1,
+              transition: {
+                duration: 0.3,
+              },
+            }}
+            onClick={handleGithubClick}
+          >
+            <FaGithub size={32} />
+            Github
+          </Button>
+          <Button
+            whileHover={{
+              scale: 1.1,
+              transition: {
+                duration: 0.3,
+              },
+            }}
+            onClick={handleAppClick}
+          >
+            <MdWeb size={32} />
+            App
+          </Button>
+        </ButtonsContainer>
+      </Container>
+    </WrapperFadeIn>
+  );
+};
 
 PersonalProject.displayName = "PersonalProject";
 

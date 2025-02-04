@@ -81,13 +81,16 @@ const PageBuilder: React.FC = () => {
           >
             <HeroSideImageHead
               heading={item.heading}
-              subHeading={item.subHeading}
               middleHeading={item.middleHeading}
               image={item.image}
               endHeading={item.endHeading ?? ""}
               sliceText={item.sliceText}
               isPhoto={item.isPhoto}
-            />
+            >
+              {item.subHeading && (
+                <HeroSideImageHead.Subheading subHeading={item.subHeading} />
+              )}
+            </HeroSideImageHead>
           </PageContainerAdjusted>
         );
       case PageBuilderComponentType.HeroWithTitleButton:

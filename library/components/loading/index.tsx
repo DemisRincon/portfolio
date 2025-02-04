@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import styled, { keyframes } from "styled-components";
 
@@ -25,32 +25,6 @@ export const SpinnerContainer = styled(motion.div)`
   overflow: hidden;
 `;
 
-/**
- * A styled `div` component that represents a spinner for loading states.
- *
- * The spinner is styled with a border and an animation to create a rotating effect.
- * The border color and size are determined by the theme properties.
- *
- * @component
- * @example
- * // Usage example:
- * <Spinner />
- *
- * @styled
- * @property {Object} theme - The theme object provided by the ThemeProvider.
- * @property {Object} theme.colors - The colors object within the theme.
- * @property {string} theme.colors.lightGrey - The color used for the spinner's border.
- * @property {string} theme.colors.teal - The color used for the spinner's border-top.
- * @property {Object} theme.breakpoints - The breakpoints object within the theme.
- * @property {string} theme.breakpoints.md - The medium breakpoint value.
- *
- * @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
- *   width: 120px;
- *   height: 120px;
- * }
- *
- * @animation {keyframes} spinnerAnimation - The keyframes animation for the spinner rotation.
- */
 export const Spinner = styled.div`
   border: 16px solid ${(props) => props.theme.colors.lightGrey};
   border-top: 16px solid ${(props) => props.theme.colors.teal};
@@ -71,14 +45,11 @@ export const LoadingText = styled.h1`
 `;
 
 const Loading = () => {
-  const containerAnimation = useMemo(
-    () => ({
-      initial: { opacity: 0 },
-      animate: { opacity: 1 },
-      exit: { opacity: 0 },
-    }),
-    []
-  );
+  const containerAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
+  };
 
   return (
     <SpinnerContainer {...containerAnimation}>
@@ -88,4 +59,4 @@ const Loading = () => {
   );
 };
 
-export default React.memo(Loading, () => true);
+export default Loading;

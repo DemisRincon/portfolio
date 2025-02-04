@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { FaGithub, FaNodeJs, FaReact } from "react-icons/fa";
 import { JSX } from "react";
 import { RiNextjsFill } from "react-icons/ri";
@@ -96,13 +96,11 @@ const IconProvider: React.FC<IconProviderProps> = ({
   $size,
 }) => {
   const theme = useTheme();
-  const icon = useMemo(() => {
-    return iconMap[name] ? (
-      iconMap[name]($fontColor, $size ?? theme.fontSizes.icon)
-    ) : (
-      <span>📚</span>
-    );
-  }, [name, $fontColor, $size, , theme.fontSizes.icon]);
+  const icon = iconMap[name] ? (
+    iconMap[name]($fontColor, $size ?? theme.fontSizes.icon)
+  ) : (
+    <span>📚</span>
+  );
 
   return (
     <Wrapper>
@@ -112,4 +110,4 @@ const IconProvider: React.FC<IconProviderProps> = ({
   );
 };
 
-export default React.memo(IconProvider);
+export default IconProvider;

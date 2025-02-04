@@ -5,4 +5,4 @@ const AppLoading = () => {
   return <Loading />;
 };
 
-export default React.memo(AppLoading);
+export default AppLoading;
