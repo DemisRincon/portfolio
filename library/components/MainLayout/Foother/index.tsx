@@ -89,16 +89,16 @@ const Footer = () => {
         </Container>
         <Container>
           <h6>Projects</h6>
-          <StyledLink href="/projects/#travleport">
+          <StyledLink href="/projects/#travleport" scroll={true}>
             <p>Smart Point Cloud</p>
           </StyledLink>
-          <StyledLink href="/projects/#sancrisoft">
+          <StyledLink href="/projects/#sancrisoft" scroll={true}>
             <p>PMG</p>
           </StyledLink>
-          <StyledLink href="/projects/#kiosko">
+          <StyledLink href="/projects/#kiosko" scroll={true}>
             <p>POS Kiosko</p>
           </StyledLink>
-          <StyledLink href="/projects/#tcs">
+          <StyledLink href="/projects/#tcs" scroll={true}>
             <p>H hotels</p>
           </StyledLink>
         </Container>
