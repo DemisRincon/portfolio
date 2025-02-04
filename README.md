@@ -78,3 +78,73 @@ This project is open source and any developer can use it freely. Contributions a
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Example Page Data
+
+Here is an example of the object received by the request:
+
+```typescript
+const examplePageData: BlockItem[] = [
+  {
+    __typename: "HeroSideImageHead",
+    _id: "1",
+    heading: "Welcome to My Portfolio",
+    subHeading: "Discover my work and projects",
+    middleHeading: ["Innovative", "Creative", "Professional"],
+    image: { url: "/images/hero.jpg", alt: "Hero Image", name: "Hero" },
+    bgColor: "#ffffff",
+    fontColor: "#000000",
+    orderInPage: 1,
+    endHeading: "Let's get started",
+    sliceText: true,
+    isPhoto: true,
+  },
+  {
+    __typename: "IconWall",
+    _id: "2",
+    heading: "Technologies I Use",
+    subHeading: "",
+    middleHeading: [],
+    image: { url: "", name: "" },
+    bgColor: "#f0f0f0",
+    fontColor: "#333333",
+    orderInPage: 2,
+    collectionString: ["React", "TypeScript", "Node.js"],
+    showName: true,
+  },
+  {
+    __typename: "ProfesionalProjectCard",
+    _id: "3",
+    heading: "Professional Projects",
+    subHeading: "",
+    middleHeading: [],
+    image: { url: "", name: "" },
+    bgColor: "#ffffff",
+    fontColor: "#000000",
+    orderInPage: 3,
+    description: ["Project 1", "Project 2"],
+    enterprise: "Tech Company",
+    url: "https://techcompany.com",
+    name: "Project Name",
+    productPhoto: { url: "/images/project.jpg", name: "Project" },
+    buttonText: "View Project",
+    title: "Project Title",
+  },
+  {
+    __typename: "PersonalProjects",
+    _id: "4",
+    heading: "Personal Projects",
+    subHeading: "",
+    middleHeading: [],
+    image: { url: "/images/personal.jpg", name: "Personal Project" },
+    bgColor: "#e0e0e0",
+    fontColor: "#000000",
+    orderInPage: 4,
+    projectName: "My Personal Project",
+    details: "Details about my personal project",
+    technologies: "React, TypeScript",
+    urlGithub: "https://github.com/myproject",
+    urlApp: "https://myproject.com",
+  },
+];
+```
