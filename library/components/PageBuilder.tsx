@@ -6,7 +6,7 @@ import useGetPage from "../hooks/useGetPage";
 import ProfesionalProjectCard from "./ProfesionalProjectCard";
 import HeroSideImageHead from "./HeroSideImageHead";
 import IconWall from "./IconWall";
-import HeroWithTitleButton from "./HeroWithTitleButton";
+import HeroTitle from "./HeroTitle";
 import PersonalProject from "./PersonalProject";
 import useManualScroll from "../hooks/useManualScroll";
 
@@ -138,15 +138,23 @@ const PageBuilder: React.FC = () => {
             $bgColor={item.bgColor}
             $fontColor={item.fontColor}
           >
-            <HeroWithTitleButton
+            <HeroTitle
               heading={item.heading}
-              subHeading={item.subHeading}
               middleHeading={item.middleHeading}
               endHeading={item.endHeading ?? ""}
               button={
                 item.button ?? { text: "", bgColor: "", url: "", color: "" }
               }
-            />
+            >
+              {item?.button?.url && (
+                <HeroTitle.Button
+                  text={item.button.text}
+                  bgColor={item.button.bgColor}
+                  url={item.button.url}
+                  color={item.button.color}
+                />
+              )}
+            </HeroTitle>
           </PageContainer>
         );
       case PageBuilderComponentType.IconWall:
