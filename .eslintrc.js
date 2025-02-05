@@ -1,7 +1,7 @@
-
-import eslintRecommended from 'eslint/conf/eslint-recommended';
-import reactRecommended from 'eslint-plugin-react/configs/recommended';
-import reactPlugin from 'eslint-plugin-react';
+/* eslint-disable @typescript-eslint/no-require-imports */
+const eslintRecommended = require('eslint/conf/eslint-recommended');
+const reactRecommended = require('eslint-plugin-react/configs/recommended');
+const reactPlugin = require('eslint-plugin-react');
 
 const config = [
 
@@ -48,11 +48,9 @@ const config = [
         },
 
         rules: {
-
             'react/react-in-jsx-scope': 'off',
-
             'react/prop-types': 'off',
-
+            "@typescript-eslint/no-require-imports": "off",
         },
 
     },
