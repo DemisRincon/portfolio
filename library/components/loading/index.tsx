@@ -52,8 +52,8 @@ const Loading = () => {
   };
 
   return (
-    <SpinnerContainer {...containerAnimation}>
-      <Spinner />
+    <SpinnerContainer {...containerAnimation} data-testid="spinner">
+      <Spinner data-testid="spinner" />
       <LoadingText>Loading...</LoadingText>
     </SpinnerContainer>
   );
