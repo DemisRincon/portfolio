@@ -1,53 +1,62 @@
 
-module.exports = {
+import eslintRecommended from 'eslint/conf/eslint-recommended';
+import reactRecommended from 'eslint-plugin-react/configs/recommended';
+import reactPlugin from 'eslint-plugin-react';
 
-    languageOptions: {
+const config = [
 
-        globals: {
+    {
 
-            browser: true,
+        languageOptions: {
 
-            es2021: true,
+            globals: {
+
+                browser: true,
+
+                es2021: true,
+
+            },
+
+        },
+
+    },
+
+    ...eslintRecommended,
+
+    ...reactRecommended,
+
+    {
+
+        parserOptions: {
+
+            ecmaFeatures: {
+
+                jsx: true,
+
+            },
+
+            ecmaVersion: 12,
+
+            sourceType: 'module',
+
+        },
+
+        plugins: {
+
+            react: reactPlugin,
+
+        },
+
+        rules: {
+
+            'react/react-in-jsx-scope': 'off',
+
+            'react/prop-types': 'off',
 
         },
 
     },
 
-    extends: [
+];
 
-        'eslint:recommended',
-
-        'plugin:react/recommended',
-
-    ],
-
-    parserOptions: {
-
-        ecmaFeatures: {
-
-            jsx: true,
-
-        },
-
-        ecmaVersion: 12,
-
-        sourceType: 'module',
-
-    },
-
-    plugins: [
-
-        'react',
-
-    ],
-
-    rules: {
-
-        'react/react-in-jsx-scope': 'off',
-
-        'react/prop-types': 'off',
-
-
-    },
-
-};
+export default config;
