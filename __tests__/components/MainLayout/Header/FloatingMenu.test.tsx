@@ -1,22 +1,26 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Header from "@/library/components/MainLayout/Header";
+import FloatingMenu from "../../../../library/components/MainLayout/Header/floatingMenu";
 import Providers from "@/library/providers/MainProvider";
-import useIsMobile from "../../../../library/hooks/useIsMobile";
 
-jest.mock("../../../../library/hooks/useIsMobile");
+jest.mock("next/navigation", () => ({
+  useRouter: jest.fn(),
+  useServerInsertedHTML: jest.fn(),
+  usePathname: jest.fn(),
+}));
+
+const mockToggleMenu = jest.fn();
 
 const renderComponent = () =>
   render(
     <Providers>
-      <Header />
+      <FloatingMenu toggleMenu={mockToggleMenu} />
     </Providers>
   );
 
-describe("Header", () => {
-  it("renders DesktopNavigator when not on mobile", () => {
-    (useIsMobile as jest.Mock).mockReturnValue(false);
+describe("FloatingMenu", () => {
+  it("renders FloatingMenu", () => {
     renderComponent();
     expect(screen.getByText("Home")).toBeInTheDocument();
     expect(screen.getByText("Projects")).toBeInTheDocument();
