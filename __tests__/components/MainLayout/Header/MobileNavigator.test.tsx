@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import MobileNavigator from "../../../../library/components/MainLayout/Header/MobileNavigator";
+import MobileNavigator from "../../../../library/components/MainLayout/Header/mobileNavigator";
 import Providers from "@/library/providers/MainProvider";
 
 jest.mock(
