@@ -14,9 +14,9 @@ import { BiLogoNetlify } from "react-icons/bi";
 import { TbBrandReactNative, TbBrandFramerMotion } from "react-icons/tb";
 import { GrMysql } from "react-icons/gr";
 import styled from "styled-components";
-import cucumbericon from "@/library/assets/icons/cucumber.svg?url";
-import nightwatchicon from "@/library/assets/icons/nightwatch.svg?url";
-import SVG from "react-inlinesvg";
+// import cucumbericon from "@/library/assets/icons/cucumber.svg";
+// import nightwatchicon from "@/library/assets/icons/nightwatch.svg";
+// import SVG from "react-inlinesvg";
 import { useTheme } from "styled-components";
 
 const Wrapper = styled.div`
@@ -45,18 +45,18 @@ interface IconProviderProps {
   $size?: string;
 }
 
-interface IconProps {
-  size: string;
-  $fontColor: string;
-}
+// interface IconProps {
+//   size: string;
+//   $fontColor: string;
+// }
 
-const Icon = styled(SVG)<IconProps>`
-  width: ${({ size }) => size};
-  height: ${({ size }) => size};
-  & path {
-    fill: ${({ $fontColor, theme }) => theme.colors[$fontColor]};
-  }
-`;
+// const Icon = styled(SVG)<IconProps>`
+//   width: ${({ size }) => size};
+//   height: ${({ size }) => size};
+//   & path {
+//     fill: ${({ $fontColor, theme }) => theme.colors[$fontColor]};
+//   }
+// `;
 
 const iconMap: Record<string, (color: string, size: string) => JSX.Element> = {
   react: (color, size) => <FaReact size={size} color={color} />,
@@ -81,12 +81,6 @@ const iconMap: Record<string, (color: string, size: string) => JSX.Element> = {
   github: (color, size) => <FaGithub size={size} color={color} />,
   netlify: (color, size) => <BiLogoNetlify size={size} color={color} />,
   contentful: (color, size) => <SiContentful size={size} color={color} />,
-  cucumber: (color, size) => (
-    <Icon src={cucumbericon} size={size} $fontColor={color} />
-  ),
-  nightwatch: (color, size) => (
-    <Icon src={nightwatchicon} size={size} $fontColor={color} />
-  ),
 };
 
 const IconProvider: React.FC<IconProviderProps> = ({

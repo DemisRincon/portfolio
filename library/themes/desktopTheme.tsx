@@ -19,7 +19,7 @@ const desktopTheme = {
       fontSize: "2.5rem",
     },
     h6: {
-      fontSize: "2.3rem",
+      fontSize: "1.8rem",
     },
     button: "2rem",
     pharagraph: {
