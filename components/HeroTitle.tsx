@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Button } from "./Common";
 import { motion } from "framer-motion";
-import useTransformOnScroll from "../hooks/useTransformOnScroll";
+import useTransformOnScroll from "../library/hooks/useTransformOnScroll";
 import WrapperFadeIn from "./WrapperFadeIn";
 
 interface ButtonProps {

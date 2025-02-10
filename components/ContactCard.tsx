@@ -17,18 +17,19 @@ const Container = styled.div`
 const StyledLink = styled(Link)`
   color: ${({ theme }) => theme.colors.black};
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-top: 1rem;
 `;
 
 const StyledButton = styled(Button)`
   margin-top: 2rem;
+  font-size: 1.5rem;
 `;
 
 const ContactCard = () => {
   return (
     <PageContainer>
-      <h2>Contact</h2>
+      <h3>Contact</h3>
       <StyledButton
         onClick={() => {
           window.open("/resume.pdf", "_blank");

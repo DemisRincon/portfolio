@@ -2,9 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import WrapperFadeIn, {
-  IWrapperFadeInProps,
-} from "@/library/components/WrapperFadeIn";
+import WrapperFadeIn, { IWrapperFadeInProps } from "@/components/WrapperFadeIn";
 
 jest.mock("framer-motion", () => ({
   ...jest.requireActual("framer-motion"),

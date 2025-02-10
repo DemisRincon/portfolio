@@ -4,7 +4,7 @@ import { FaGithub } from "react-icons/fa";
 import { MdWeb } from "react-icons/md";
 import { Button } from "./Common";
 import WrapperFadeIn from "./WrapperFadeIn";
-import useTransformOnScroll from "../hooks/useTransformOnScroll";
+import useTransformOnScroll from "../library/hooks/useTransformOnScroll";
 import { motion } from "motion/react";
 
 interface PersonalProjectProps {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo, useCallback } from "react";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
-import useTransformOnScroll from "../hooks/useTransformOnScroll";
+import useTransformOnScroll from "../library/hooks/useTransformOnScroll";
 import WrapperFadeIn from "./WrapperFadeIn";
 
 interface Image {

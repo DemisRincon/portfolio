@@ -1,5 +1,5 @@
 "use client";
-import ContactCard from "@/library/components/ContactCard";
+import ContactCard from "@/components/ContactCard";
 import React from "react";
 
 const Page = () => {

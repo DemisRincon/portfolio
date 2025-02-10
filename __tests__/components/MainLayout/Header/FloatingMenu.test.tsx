@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import FloatingMenu from "../../../../library/components/MainLayout/Header/floatingMenu";
+import FloatingMenu from "../../../../components/MainLayout/Header/floatingMenu";
 import Providers from "@/library/providers/MainProvider";
 
 jest.mock("next/navigation", () => ({

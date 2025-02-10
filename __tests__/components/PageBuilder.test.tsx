@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import PageBuilder, { BlockItem } from "../../library/components/PageBuilder";
+import PageBuilder, { BlockItem } from "../../components/PageBuilder";
 import useGetPage from "../../library/hooks/useGetPage";
 import "@testing-library/jest-dom";
 import Providers from "../../library/providers/MainProvider";

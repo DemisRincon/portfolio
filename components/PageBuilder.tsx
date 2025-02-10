@@ -2,13 +2,13 @@
 import { PageContainer, PageContainerAdjusted } from "./Common";
 import React from "react";
 import CarrouseImageWithLink from "./ImageCarouselWithLinks";
-import useGetPage from "../hooks/useGetPage";
+import useGetPage from "../library/hooks/useGetPage";
 import ProfesionalProjectCard from "./ProfesionalProjectCard";
 import HeroSideImageHead from "./HeroSideImageHead";
 import IconWall from "./IconWall";
 import HeroTitle from "./HeroTitle";
 import PersonalProject from "./PersonalProject";
-import useManualScroll from "../hooks/useManualScroll";
+import useManualScroll from "../library/hooks/useManualScroll";
 
 export type Image = {
   url: string;

@@ -1,5 +1,5 @@
 "use client";
-import PageBuilder from "@/library/components/PageBuilder";
+import PageBuilder from "@/components/PageBuilder";
 
 const Page = () => {
   return <PageBuilder />;

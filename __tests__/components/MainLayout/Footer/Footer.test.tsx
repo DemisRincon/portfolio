@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Footer from "@/library/components/MainLayout/Footer";
+import Footer from "@/components/MainLayout/Footer";
 import Providers from "@/library/providers/MainProvider";
 
 describe("Footer", () => {

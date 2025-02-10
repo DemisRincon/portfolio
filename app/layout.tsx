@@ -1,6 +1,6 @@
 import Providers from "@/library/providers/MainProvider";
 import type { Metadata } from "next";
-import MainLayout from "../library/components/MainLayout";
+import MainLayout from "../components/MainLayout";
 
 export const metadata: Metadata = {
   title: "Portfolio Demis Rincon",

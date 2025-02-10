@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
-import DesktopNavigator from "@/library/components/MainLayout/Header/desktopNavigator";
+import DesktopNavigator from "@/components/MainLayout/Header/desktopNavigator";
 import Providers from "@/library/providers/MainProvider";
 import headerData from "@/library/data/header";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import ProfessionalProjectCard from "@/library/components/ProfesionalProjectCard";
+import ProfessionalProjectCard from "@/components/ProfesionalProjectCard";
 import Providers from "@/library/providers/MainProvider";
 
 const renderWithTheme = (ui: React.ReactElement) => {

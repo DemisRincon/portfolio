@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Providers from "@/library/providers/MainProvider";
-import PersonalProject from "@/library/components/PersonalProject";
+import PersonalProject from "@/components/PersonalProject";
 
 const renderWithTheme = (ui: React.ReactElement) => {
   return render(<Providers>{ui}</Providers>);

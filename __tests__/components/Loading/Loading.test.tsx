@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Loading from "@/library/components/loading";
+import Loading from "@/components/loading";
 import Providers from "@/library/providers/MainProvider";
 
 const renderComponent = () =>

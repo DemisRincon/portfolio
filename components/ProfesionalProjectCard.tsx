@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import WrapperFadeIn from "./WrapperFadeIn";
 import { Button } from "./Common";
-import useScrollOnView from "../hooks/useScrollOnView";
-import useTransformOnScroll from "../hooks/useTransformOnScroll";
+import useScrollOnView from "../library/hooks/useScrollOnView";
+import useTransformOnScroll from "../library/hooks/useTransformOnScroll";
 import { motion } from "motion/react";
 
 interface ProfessionalProjectCardProps {

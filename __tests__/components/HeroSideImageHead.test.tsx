@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import HeroSideImageHead from "@/library/components/HeroSideImageHead";
+import HeroSideImageHead from "@/components/HeroSideImageHead";
 import Providers from "@/library/providers/MainProvider";
 
 // Helper function to render components with Providers

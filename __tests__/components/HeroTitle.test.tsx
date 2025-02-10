@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Providers from "@/library/providers/MainProvider";
-import HeroTitle from "@/library/components/HeroTitle";
+import HeroTitle from "@/components/HeroTitle";
 
 const renderWithTheme = (ui: React.ReactElement) => {
   return render(<Providers>{ui}</Providers>);

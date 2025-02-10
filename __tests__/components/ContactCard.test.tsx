@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import ContactCard from "../../library/components/ContactCard";
+import ContactCard from "../../components/ContactCard";
 import "@testing-library/jest-dom";
 import Providers from "@/library/providers/MainProvider";
 const renderWithTheme = (ui: React.ReactElement) => {

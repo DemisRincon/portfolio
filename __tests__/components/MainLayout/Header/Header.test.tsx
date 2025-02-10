@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Header from "@/library/components/MainLayout/Header";
+import Header from "@/components/MainLayout/Header";
 import Providers from "@/library/providers/MainProvider";
 import useIsMobile from "../../../../library/hooks/useIsMobile";
 

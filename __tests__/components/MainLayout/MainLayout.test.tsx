@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import MainLayout from "@/library/components/MainLayout";
+import MainLayout from "@/components/MainLayout";
 import Providers from "@/library/providers/MainProvider";
 const renderWithTheme = (ui: React.ReactElement) => {
   return render(<Providers>{ui}</Providers>);
