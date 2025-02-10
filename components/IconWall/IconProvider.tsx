@@ -14,8 +14,8 @@ import { BiLogoNetlify } from "react-icons/bi";
 import { TbBrandReactNative, TbBrandFramerMotion } from "react-icons/tb";
 import { GrMysql } from "react-icons/gr";
 import styled from "styled-components";
-import cucumbericon from "@/library/assets/icons/cucumber.svg";
-import nightwatchicon from "@/library/assets/icons/nightwatch.svg";
+import cucumbericon from "@/library/assets/icons/cucumber.svg?url";
+import nightwatchicon from "@/library/assets/icons/nightwatch.svg?url";
 import SVG from "react-inlinesvg";
 import { useTheme } from "styled-components";
 
@@ -82,10 +82,10 @@ const iconMap: Record<string, (color: string, size: string) => JSX.Element> = {
   netlify: (color, size) => <BiLogoNetlify size={size} color={color} />,
   contentful: (color, size) => <SiContentful size={size} color={color} />,
   cucumber: (color, size) => (
-    <Icon src={cucumbericon.src} size={size} $fontColor={color} />
+    <Icon src={cucumbericon} size={size} $fontColor={color} />
   ),
   nightwatch: (color, size) => (
-    <Icon src={nightwatchicon.src} size={size} $fontColor={color} />
+    <Icon src={nightwatchicon} size={size} $fontColor={color} />
   ),
 };
 
