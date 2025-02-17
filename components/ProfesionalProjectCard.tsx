@@ -163,10 +163,6 @@ const ProfessionalProjectCard: React.FC<ProfessionalProjectCardProps> = ({
     window.open(url, "_blank");
   };
 
-  const handleButtonClick = () => {
-    window.open(url, "_blank");
-  };
-
   return (
     <MainContainer id={title} ref={target} style={{ scale }}>
       <Container ref={ref}>
@@ -207,17 +203,23 @@ const ProfessionalProjectCard: React.FC<ProfessionalProjectCardProps> = ({
 
         <WrapperFadeIn>
           <ButtonWrapper>
-            <Button
-              whileHover={{
-                scale: 1.1,
-                transition: {
-                  duration: 0.3,
-                },
-              }}
-              onClick={handleButtonClick}
+            <a
+              style={{ textDecoration: "none" }}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              {buttonText}
-            </Button>
+              <Button
+                whileHover={{
+                  scale: 1.1,
+                  transition: {
+                    duration: 0.3,
+                  },
+                }}
+              >
+                {buttonText}
+              </Button>
+            </a>
           </ButtonWrapper>
         </WrapperFadeIn>
       </Container>

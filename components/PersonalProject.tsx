@@ -106,7 +106,6 @@ const PersonalProject: React.FC<PersonalProjectProps> = ({
   image,
 }) => {
   const handleGithubClick = () => window.open(urlGithub, "_blank");
-  const handleAppClick = () => window.open(urlApp, "_blank");
   const { y: scale, ref } = useTransformOnScroll([0, 0.5, 1], [0.6, 1, 1]);
 
   return (
@@ -115,7 +114,7 @@ const PersonalProject: React.FC<PersonalProjectProps> = ({
         <ProductName>{projectName}</ProductName>
         <Paragraph>Technologies used: {technologies}</Paragraph>
         <Paragraph>{details}</Paragraph>
-        <ImageContainer onClick={handleAppClick}>
+        <ImageContainer onClick={handleGithubClick}>
           <ProductImage src={image.url} alt={projectName} />
         </ImageContainer>
 
@@ -132,18 +131,24 @@ const PersonalProject: React.FC<PersonalProjectProps> = ({
             <FaGithub size={32} />
             Github
           </Button>
-          <Button
-            whileHover={{
-              scale: 1.1,
-              transition: {
-                duration: 0.3,
-              },
-            }}
-            onClick={handleAppClick}
+          <a
+            style={{ textDecoration: "none" }}
+            href={urlApp}
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <MdWeb size={32} />
-            App
-          </Button>
+            <Button
+              whileHover={{
+                scale: 1.1,
+                transition: {
+                  duration: 0.3,
+                },
+              }}
+            >
+              <MdWeb size={32} />
+              App
+            </Button>
+          </a>
         </ButtonsContainer>
       </Container>
     </WrapperFadeIn>
