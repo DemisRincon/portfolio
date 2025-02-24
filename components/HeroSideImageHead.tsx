@@ -214,7 +214,7 @@ const HeroSideImageHead: HeroSideImageHeadComponent = ({
 HeroSideImageHead.Subheading = ({ subHeading }: { subHeading: string }) => {
   return (
     <WrapperFadeIn>
-      <SubHeading>{subHeading}</SubHeading>;
+      <SubHeading>{subHeading}</SubHeading>
     </WrapperFadeIn>
   );
 };
