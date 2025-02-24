@@ -46,7 +46,7 @@ const useScrollOnView = () => {
 
   useEffect(() => {
     setIsMounted(true);
-    scrollToView(); // Ensure scrolling on initial render
+    scrollToView();
   }, [scrollToView]);
 
   return targetRef;

@@ -12,8 +12,10 @@ jest.mock("framer-motion", () => ({
   }),
 }));
 
-jest.mock("../library/hooks/useScrollOnView", () => jest.fn(() => jest.fn()));
-jest.mock("../library/hooks/useTransformOnScroll", () =>
+jest.mock("../../library/hooks/useScrollOnView", () =>
+  jest.fn(() => jest.fn())
+);
+jest.mock("../../library/hooks/useTransformOnScroll", () =>
   jest.fn(() => ({ y: 1, ref: jest.fn() }))
 );
 
