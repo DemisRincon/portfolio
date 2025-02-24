@@ -1,4 +1,4 @@
-import React from "react";
+import React, { act } from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import MainLayout from "@/components/MainLayout";
@@ -9,11 +9,13 @@ const renderWithTheme = (ui: React.ReactElement) => {
 
 describe("MainLayout", () => {
   it("renders the Header component", () => {
-    renderWithTheme(
-      <MainLayout>
-        <div>Test Content</div>
-      </MainLayout>
-    );
+    act(() => {
+      renderWithTheme(
+        <MainLayout>
+          <div>Test Content</div>
+        </MainLayout>
+      );
+    });
     expect(screen.getAllByText("Demis Rincon")[0]).toBeInTheDocument();
   });
 

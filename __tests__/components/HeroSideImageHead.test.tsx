@@ -1,10 +1,9 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import HeroSideImageHead from "@/components/HeroSideImageHead";
 import Providers from "@/library/providers/MainProvider";
 
-// Helper function to render components with Providers
 const renderWithTheme = (ui: React.ReactElement) => {
   return render(<Providers>{ui}</Providers>);
 };
@@ -42,7 +41,9 @@ describe("HeroSideImageHead", () => {
     );
 
     expect(screen.getByText("Developer")).toBeInTheDocument();
-    jest.advanceTimersByTime(3500);
+    act(() => {
+      jest.advanceTimersByTime(3500);
+    });
   });
 
   it("renders sliced text when sliceText is true", () => {

@@ -1,5 +1,9 @@
 import { useEffect } from "react";
 
+if (typeof window !== "undefined" && typeof window.scrollTo !== "function") {
+  window.scrollTo = () => {};
+}
+
 const useManualScroll = () => {
   useEffect(() => {
     window.history.scrollRestoration = "manual";

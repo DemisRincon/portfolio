@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 import DesktopNavigator from "@/components/MainLayout/Header/desktopNavigator";
@@ -37,7 +37,9 @@ describe("DesktopNavigator", () => {
     renderComponent();
     headerData.links.forEach((link) => {
       const navLink = screen.getByText(link.label);
-      userEvent.click(navLink);
+      act(() => {
+        userEvent.click(navLink);
+      });
       expect(navLink.closest("a")).toHaveAttribute("href", link.href);
     });
   });
