@@ -1,17 +1,15 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useState } from "react";
 import { useServerInsertedHTML } from "next/navigation";
 import { ServerStyleSheet, StyleSheetManager } from "styled-components";
 
-interface StyledComponentsRegistryProps {
-  children: React.ReactNode;
-}
-
-const StyledComponentsRegistry: React.FC<StyledComponentsRegistryProps> = ({
+export default function StyledComponentsRegistry({
   children,
-}) => {
-  const styledComponentsStyleSheet = useMemo(() => new ServerStyleSheet(), []);
+}: {
+  children: React.ReactNode;
+}) {
+  const [styledComponentsStyleSheet] = useState(() => new ServerStyleSheet());
 
   useServerInsertedHTML(() => {
     const styles = styledComponentsStyleSheet.getStyleElement();
@@ -26,6 +24,4 @@ const StyledComponentsRegistry: React.FC<StyledComponentsRegistryProps> = ({
       {children}
     </StyleSheetManager>
   );
-};
-
-export default StyledComponentsRegistry;
+}

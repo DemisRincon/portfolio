@@ -1,8 +1,10 @@
+"use client";
 import { useEffect, useState, useMemo, useCallback, memo } from "react";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 import useTransformOnScroll from "../library/hooks/useTransformOnScroll";
 import WrapperFadeIn from "./WrapperFadeIn";
+import { PageContainer } from "./Common";
 
 const Container = styled.div`
   display: flex;
@@ -95,7 +97,7 @@ const ProfileImage = styled(motion.img)<{ $isPhoto?: boolean }>`
 
 interface HeroSideImageHeadProps {
   heading: string;
-  children: React.ReactNode;
+  subHeading: string;
   middleHeading: string[];
   image: { url: string };
   sliceText?: boolean;
@@ -105,7 +107,7 @@ interface HeroSideImageHeadProps {
 
 const HeroSideImageHead = ({
   heading,
-  children,
+  subHeading,
   middleHeading,
   image: { url },
   sliceText,
@@ -132,55 +134,56 @@ const HeroSideImageHead = ({
   const profileImageStyle = useMemo(() => ({ scale: yImage }), [yImage]);
 
   return (
-    <Container ref={ref}>
-      <TextContainer>
-        {children}
-        <WrapperFadeIn>
-          <Heading $sliceText={sliceText}>
-            {heading}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={memoizedMiddleHeading[middleHeadingIndex]}
-                initial={{ opacity: 0, y: -30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 30 }}
-                transition={{ duration: 0.1 }}
-              >
-                <Strong $sliceText={sliceText}>
-                  {memoizedMiddleHeading[middleHeadingIndex]}
-                </Strong>
-              </motion.div>
-            </AnimatePresence>
-            {endHeading}
-          </Heading>
-        </WrapperFadeIn>
-      </TextContainer>
+    <PageContainer>
+      <Container ref={ref}>
+        <TextContainer>
+          <Subheading subHeading={subHeading} />
+          <WrapperFadeIn>
+            <Heading $sliceText={sliceText}>
+              {heading}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={memoizedMiddleHeading[middleHeadingIndex]}
+                  initial={{ opacity: 0, y: -30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 30 }}
+                  transition={{ duration: 0.1 }}
+                >
+                  <Strong $sliceText={sliceText}>
+                    {memoizedMiddleHeading[middleHeadingIndex]}
+                  </Strong>
+                </motion.div>
+              </AnimatePresence>
+              {endHeading}
+            </Heading>
+          </WrapperFadeIn>
+        </TextContainer>
 
-      <ImageContainer>
-        <WrapperFadeIn>
-          <ProfileImage
-            src={url}
-            alt="Profile Photo"
-            style={profileImageStyle}
-            $isPhoto={isPhoto}
-          />
-        </WrapperFadeIn>
-      </ImageContainer>
-    </Container>
+        <ImageContainer>
+          <WrapperFadeIn>
+            <ProfileImage
+              src={url}
+              alt="Profile Photo"
+              style={profileImageStyle}
+              $isPhoto={isPhoto}
+            />
+          </WrapperFadeIn>
+        </ImageContainer>
+      </Container>
+    </PageContainer>
   );
 };
 
-HeroSideImageHead.Subheading = memo(
-  ({ subHeading }: { subHeading: string }) => {
-    return (
-      <WrapperFadeIn>
-        <SubHeading>{subHeading}</SubHeading>
-      </WrapperFadeIn>
-    );
-  }
-);
+const Subheading = memo(({ subHeading }: { subHeading: string }) => {
+  return (
+    <WrapperFadeIn>
+      <SubHeading>{subHeading}</SubHeading>
+    </WrapperFadeIn>
+  );
+});
+Subheading.displayName = "Subheading";
 
-HeroSideImageHead.Subheading.displayName = "HeroSideImageHeadSubheading";
 HeroSideImageHead.displayName = "HeroSideImageHead";
 
 export default HeroSideImageHead;
+export { HeroSideImageHead };
