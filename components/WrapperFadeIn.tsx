@@ -1,8 +1,9 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useMemo, useCallback } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
 import styled from "styled-components";
+import React from "react";
 
 export interface IWrapperFadeInProps {
   children?: React.ReactNode;
@@ -15,50 +16,57 @@ export interface IWrapperFadeInProps {
   transition?: { duration: number; delay: number };
 }
 
-const WrapperFadeIn: React.FC<IWrapperFadeInProps> = ({
-  children,
-  conditionWrapper,
-  className,
-  threshold = 0.1,
-  refreshKey,
-  fromTop = true,
-  transition = { duration: 0.6, delay: 0.1 },
-}) => {
-  const controls = useAnimation();
+const WrapperFadeIn: React.FC<IWrapperFadeInProps> = React.memo(
+  function WrapperFadeIn({
+    children,
+    conditionWrapper = true,
+    className,
+    threshold = 0.1,
+    refreshKey,
+    fromTop = true,
+    transition = { duration: 0.6, delay: 0.1 },
+  }) {
+    const controls = useAnimation();
+    const { ref, inView } = useInView({ threshold });
 
-  const { ref, inView } = useInView({ threshold });
+    const startAnimation = useCallback(() => {
+      if (inView) {
+        controls.start("visible");
+      }
+    }, [controls, inView]);
 
-  useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    }
-  }, [controls, inView, refreshKey]);
+    useEffect(() => {
+      startAnimation();
+    }, [startAnimation, refreshKey]);
 
-  if (conditionWrapper !== undefined && !conditionWrapper) {
-    return <>{children}</>;
-  }
-
-  return (
-    <Wrapper
-      ref={ref}
-      animate={controls}
-      initial="hidden"
-      transition={transition}
-      variants={{
-        visible: {
-          opacity: 1,
-          y: 0,
-        },
+    const variants = useMemo(
+      () => ({
+        visible: { opacity: 1, y: 0 },
         hidden: { opacity: 0, y: fromTop ? 40 : -40 },
-      }}
-      className={className}
-    >
-      {children}
-    </Wrapper>
-  );
-};
+      }),
+      [fromTop]
+    );
 
-const Wrapper = styled(motion.div)`
+    if (!conditionWrapper) {
+      return <>{children}</>;
+    }
+
+    return (
+      <MemoizedStyledWrapper
+        ref={ref}
+        animate={controls}
+        initial="hidden"
+        transition={transition}
+        variants={variants}
+        className={className}
+      >
+        {children}
+      </MemoizedStyledWrapper>
+    );
+  }
+);
+
+const StyledWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -66,5 +74,7 @@ const Wrapper = styled(motion.div)`
   max-width: 100vw;
   width: 100%;
 `;
+
+const MemoizedStyledWrapper = React.memo(StyledWrapper);
 
 export default WrapperFadeIn;

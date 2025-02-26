@@ -1,22 +1,8 @@
-import React, { useEffect, useState, useMemo, useCallback } from "react";
+import { useEffect, useState, useMemo, useCallback, memo } from "react";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 import useTransformOnScroll from "../library/hooks/useTransformOnScroll";
 import WrapperFadeIn from "./WrapperFadeIn";
-
-interface Image {
-  url: string;
-}
-
-interface HeroSideImageHeadProps {
-  heading: string;
-  children: React.ReactNode;
-  middleHeading: string[];
-  image: Image;
-  sliceText?: boolean;
-  endHeading?: string;
-  isPhoto?: boolean;
-}
 
 const Container = styled.div`
   display: flex;
@@ -65,18 +51,15 @@ const Heading = styled.h2<{ $sliceText?: boolean }>`
   display: flex;
   white-space: nowrap;
   text-overflow: clip;
-  ${({ $sliceText }) => $sliceText && `flex-direction: column;`}
+  flex-direction: ${({ $sliceText }) => ($sliceText ? "column" : "row")};
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding-top: 30px;
-    text-align: center;
-
-    ${({ $sliceText }) => $sliceText && `text-align: start;`}
+    text-align: ${({ $sliceText }) => ($sliceText ? "start" : "center")};
   }
 `;
 
 const Strong = styled(motion.strong)<{ $sliceText?: boolean }>`
-  margin: 0 0.8rem 0 0.8rem;
-  ${({ $sliceText }) => $sliceText && `margin: 0;`}
+  margin: ${({ $sliceText }) => ($sliceText ? "0" : "0 0.8rem")};
 `;
 
 const ImageContainer = styled.div`
@@ -110,41 +93,17 @@ const ProfileImage = styled(motion.img)<{ $isPhoto?: boolean }>`
   `}
 `;
 
-/**
- * HeroSideImageHead component displays a heading with animated middle text,
- * a subheading, and an image that scales on scroll.
- *
- * @component
- * @param {HeroSideImageHeadProps} props - The properties for the HeroSideImageHead component.
- * @param {string} props.heading - The main heading text.
- * @param {string} props.subHeading - The subheading text.
- * @param {string[]} props.middleHeading - An array of strings for the animated middle heading text.
- * @param {Object} props.image - The image object containing the URL.
- * @param {string} props.image.url - The URL of the image.
- * @param {boolean} props.sliceText - A flag to determine if the text should be sliced.
- * @param {string} props.endHeading - The ending part of the heading text.
- *
- * @returns {JSX.Element} The rendered HeroSideImageHead component.
- *
- * @example
- * <HeroSideImageHead
- *   heading="Welcome"
- *   subHeading="to my portfolio"
- *   middleHeading={["Developer", "Designer", "Creator"]}
- *   image={{ url: "path/to/image.jpg" }}
- *   sliceText={true}
- *   endHeading="!"
- * />
- *
- * @remarks
- * This component uses `useTransformOnScroll` to scale the image on scroll and `useMemo` to memoize the middle heading text.
- * The middle heading text changes every 3 seconds using `setInterval` and `useEffect`.
- */
-interface HeroSideImageHeadComponent extends React.FC<HeroSideImageHeadProps> {
-  Subheading: React.FC<{ subHeading: string }>;
+interface HeroSideImageHeadProps {
+  heading: string;
+  children: React.ReactNode;
+  middleHeading: string[];
+  image: { url: string };
+  sliceText?: boolean;
+  endHeading?: string;
+  isPhoto?: boolean;
 }
 
-const HeroSideImageHead: HeroSideImageHeadComponent = ({
+const HeroSideImageHead = ({
   heading,
   children,
   middleHeading,
@@ -152,11 +111,9 @@ const HeroSideImageHead: HeroSideImageHeadComponent = ({
   sliceText,
   endHeading,
   isPhoto,
-}) => {
+}: HeroSideImageHeadProps) => {
   const [middleHeadingIndex, setMiddleHeadingIndex] = useState(0);
-
   const size = isPhoto ? [0.5, 1.3] : [1, 1.7];
-
   const { y: yImage, ref } = useTransformOnScroll([0, 1], size);
 
   const memoizedMiddleHeading = useMemo(() => middleHeading, [middleHeading]);
@@ -171,6 +128,8 @@ const HeroSideImageHead: HeroSideImageHeadComponent = ({
     const interval = setInterval(updateMiddleHeadingIndex, 3000);
     return () => clearInterval(interval);
   }, [updateMiddleHeadingIndex]);
+
+  const profileImageStyle = useMemo(() => ({ scale: yImage }), [yImage]);
 
   return (
     <Container ref={ref}>
@@ -202,7 +161,7 @@ const HeroSideImageHead: HeroSideImageHeadComponent = ({
           <ProfileImage
             src={url}
             alt="Profile Photo"
-            style={{ scale: yImage }}
+            style={profileImageStyle}
             $isPhoto={isPhoto}
           />
         </WrapperFadeIn>
@@ -211,16 +170,17 @@ const HeroSideImageHead: HeroSideImageHeadComponent = ({
   );
 };
 
-HeroSideImageHead.Subheading = ({ subHeading }: { subHeading: string }) => {
-  return (
-    <WrapperFadeIn>
-      <SubHeading>{subHeading}</SubHeading>
-    </WrapperFadeIn>
-  );
-};
+HeroSideImageHead.Subheading = memo(
+  ({ subHeading }: { subHeading: string }) => {
+    return (
+      <WrapperFadeIn>
+        <SubHeading>{subHeading}</SubHeading>
+      </WrapperFadeIn>
+    );
+  }
+);
 
 HeroSideImageHead.Subheading.displayName = "HeroSideImageHeadSubheading";
-
 HeroSideImageHead.displayName = "HeroSideImageHead";
 
 export default HeroSideImageHead;
