@@ -1,9 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 :root {
   --custom-font-family: "Bebas Neue", sans-serif;
   --custom-letter-spacing: 0.1rem;
+}
+* {
+  scroll-behavior: smooth;
 }
 
 h1,
