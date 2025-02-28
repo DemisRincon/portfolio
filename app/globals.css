@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  --custom-font-family: "Bebas Neue", sans-serif;
+  --custom-letter-spacing: 0.1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--custom-font-family);
+  color: transparent;
+  text-shadow: 0 0 0 1px theme("colors.coal.700");
+  strong {
+    @supports (-webkit-text-stroke: 1px theme("colors.coal.700")) {
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 1px theme("colors.coal.700");
+    }
+  }
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: var(--custom-letter-spacing) !important;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+
+    button,
+    a,
+    p {
+      font-family: "Poppins", sans-serif;
+    }
+  }
+}
+
+.gradient-bg {
+  background: linear-gradient(
+    135deg,
+    var(--tw-color-primary-500),
+    var(--tw-color-secondary-500)
+  );
+}
