@@ -5,9 +5,9 @@ class IntersectionObserver {
     this.callback = callback;
     this.options = options;
   }
-  observe() {}
-  unobserve() {}
-  disconnect() {}
+  observe() { }
+  unobserve() { }
+  disconnect() { }
 }
 
 global.IntersectionObserver = IntersectionObserver;
