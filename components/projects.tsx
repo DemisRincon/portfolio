@@ -20,6 +20,9 @@ export interface ProjectsCollection {
 export interface ProjectItem {
   title: string;
   description: string;
+  enterpriseImage: {
+    url: string;
+  };
   image: {
     url: string;
   };
@@ -51,6 +54,16 @@ const Projects: FC<ProjectsProps> = ({
             <h3 className="text-2xl  mb-2 text-primary-900 dark:text-primary-100">
               {project.title}
             </h3>
+            {project.enterpriseImage.url && (
+              <Image
+                src={project.enterpriseImage.url}
+                alt={project.title}
+                width={150}
+                height={150}
+                className="object-cover my-6"
+                loading="lazy"
+              />
+            )}
             <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">
               {project.description}
             </p>

@@ -44,6 +44,9 @@ export async function getPage() {
                   urlCode
                   urlApp
                   urlPromotion
+                  enterpriseImage{
+                    url
+                  }
                   image {
                     url
                   }
