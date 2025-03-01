@@ -17,11 +17,11 @@ const Button: React.FC<ButtonLinkProps> = ({
 }) => {
   const btnColor = {
     darkBlue:
-      "text-white bg-primary-600 rounded-full hover:bg-primary-700 transition-colors duration-300 dark:bg-primary-700 dark:hover:bg-primary-600",
+      "text-white bg-primary-600 rounded-full hover:bg-primary-700 transition-colors duration-300  ",
     lightBlue:
-      "text-primary-900 bg-primary-100 rounded-full hover:bg-primary-200 transition-colors duration-300 dark:text-primary-100 dark:bg-primary-800 dark:hover:bg-primary-700",
+      "text-primary-900 bg-primary-100 rounded-full hover:bg-primary-200 transition-colors duration-300",
     black:
-      "text-white bg-coal-700 rounded-full hover:bg-gray-800 transition-colors duration-300 dark:bg-gray-800 dark:hover:bg-gray-700",
+      "text-white bg-coal-700 rounded-full hover:bg-gray-800 transition-colors duration-300",
   };
 
   if (!href) {

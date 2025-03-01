@@ -32,15 +32,13 @@ export function Navbar() {
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm"
-          : "bg-transparent"
+        scrolled ? "bg-white/95  backdrop-blur-md shadow-sm" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-6 py-6 flex items-center justify-between">
         <Link
           href="/"
-          className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          className="text-2xl font-bold tracking-tight text-gray-900 "
         >
           Portfolio
         </Link>
@@ -51,7 +49,7 @@ export function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-300"
+              className="text-sm font-medium text-gray-700 hover:text-gray-900  transition-colors duration-300"
             >
               {link.label}
             </Link>
@@ -61,7 +59,7 @@ export function Navbar() {
             download
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-2 text-sm font-medium text-white bg-gray-900 rounded-full hover:bg-gray-700 transition-colors duration-300 dark:bg-gray-700 dark:hover:bg-gray-600"
+            className="px-6 py-2 text-sm font-medium text-white bg-gray-900 rounded-full hover:bg-gray-700 transition-colors duration-300  "
           >
             Resume
           </a>
@@ -69,7 +67,7 @@ export function Navbar() {
 
         {/* Mobile Navigation Toggle */}
         <button
-          className="md:hidden p-2 rounded-md text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+          className="md:hidden p-2 rounded-md text-gray-700 hover:text-gray-900"
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
@@ -85,14 +83,14 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden absolute top-20 left-0 right-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700"
+            className="md:hidden absolute top-20 left-0 right-0 bg-white border-b border-gray-200 "
           >
             <nav className="container mx-auto px-6 py-8 flex flex-col space-y-6">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                  className="text-base font-medium text-gray-700 hover:text-gray-900  transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.label}
@@ -103,7 +101,7 @@ export function Navbar() {
                 download
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-2 text-sm font-medium text-white bg-gray-900 rounded-full hover:bg-gray-700 transition-colors duration-300 dark:bg-gray-700 dark:hover:bg-gray-600"
+                className="px-6 py-2 text-sm font-medium text-white bg-gray-900 rounded-full hover:bg-gray-700 transition-colors duration-300  "
               >
                 Resume
               </a>

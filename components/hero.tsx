@@ -30,17 +30,15 @@ const Hero = (props: HeroProps) => {
         <div className="w-full lg:w-1/2 space-y-8">
           <WrapperFadeIn>
             <div className="space-y-3">
-              <p className="text-gray-800 dark:text-secondary-400 font-medium">
-                {greet}
-              </p>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-coal-700  dark:text-primary-100">
+              <p className="text-gray-800 font-medium">{greet}</p>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-coal-700">
                 {name}
               </h1>
-              <h1 className="text-5xl md:text-6xl lg:text-6xl font-bold tracking-tight text-coal-700  dark:text-primary-100">
+              <h1 className="text-5xl md:text-6xl lg:text-6xl font-bold tracking-tight text-coal-700">
                 <StrongRoulete list={position} />
               </h1>
             </div>
-            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-xl leading-relaxed">
+            <p className="text-lg text-gray-600 max-w-xl leading-relaxed">
               {presentation}
             </p>
           </WrapperFadeIn>
@@ -58,7 +56,7 @@ const Hero = (props: HeroProps) => {
         </div>
         <div className="w-full lg:w-1/2 flex justify-center">
           <WrapperFadeIn delay={700}>
-            <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-coal-200 dark:border-primary-700">
+            <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-coal-200">
               <Image
                 src={imageUrl}
                 alt="Profile"

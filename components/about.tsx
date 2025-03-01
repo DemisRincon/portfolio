@@ -40,15 +40,13 @@ const About: FC<AboutProps> = ({
       <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
         <div className="space-y-8">
           <WrapperFadeIn>
-            <h3 className="text-3xl mb-6 text-primary-900 dark:text-primary-100">
-              {section1Title}
-            </h3>
+            <h3 className="text-3xl mb-6 text-primary-900">{section1Title}</h3>
           </WrapperFadeIn>
           {section1Content.map((content) => (
             <WrapperFadeIn key={content}>
               <p
                 key={content}
-                className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed"
+                className="text-lg text-gray-600 leading-relaxed"
               >
                 {content}
               </p>
@@ -58,20 +56,16 @@ const About: FC<AboutProps> = ({
 
         <div className="space-y-8">
           <WrapperFadeIn>
-            <h3 className="text-3xl  mb-6 text-primary-900 dark:text-primary-100">
-              {section2Title}
-            </h3>
+            <h3 className="text-3xl  mb-6 text-primary-900">{section2Title}</h3>
           </WrapperFadeIn>
 
           <div className="grid grid-cols-2 gap-6">
             {expertiseAreas.map((area, index) => (
               <WrapperFadeIn key={area.title} delay={index * 200}>
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
+                <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
                   <div className="flex items-center ">
-                    <area.icon className="h-8 w-8 text-primary-600 dark:text-primary-400 mr-3" />
-                    <h4 className="text-lg text-primary-900 dark:text-primary-100">
-                      {area.title}
-                    </h4>
+                    <area.icon className="h-8 w-8 text-primary-600 mr-3" />
+                    <h4 className="text-lg text-primary-900">{area.title}</h4>
                   </div>
                 </div>
               </WrapperFadeIn>

@@ -28,7 +28,7 @@ const Carousel: FC<CarouselProps> = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
-          className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg"
+          className="bg-white rounded-lg overflow-hidden shadow-lg"
         >
           <div className="relative h-64 md:h-96 w-full mt-6">
             <Image
@@ -43,14 +43,14 @@ const Carousel: FC<CarouselProps> = ({
       </AnimatePresence>
       <button
         onClick={handlePrev}
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-primary dark:bg-gray-800 p-2 rounded-full shadow-lg text-white hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-200"
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-primary p-2 rounded-full shadow-lg text-white hover:text-primary-800"
         aria-label="Previous project"
       >
         <ChevronLeft className="h-6 w-6" />
       </button>
       <button
         onClick={handleNext}
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-primary dark:bg-gray-800 p-2 rounded-full shadow-lg text-white hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-200"
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-primary p-2 rounded-full shadow-lg text-white hover:text-primary-800"
         aria-label="Next project"
       >
         <ChevronRight className="h-6 w-6" />

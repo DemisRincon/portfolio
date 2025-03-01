@@ -41,19 +41,15 @@ const Projects: FC<ProjectsProps> = ({
     <div className="container mx-auto px-6 flex flex-col items-center">
       <div className="max-w-4xl mx-auto text-center mb-10">
         <SectionTitle title={title} />
-        <p className="text-lg text-coal-700 dark:text-gray-400 max-w-2xl mx-auto">
-          {subTitle}
-        </p>
+        <p className="text-lg text-coal-700 max-w-2xl mx-auto">{subTitle}</p>
       </div>
       <div className="grid grdi-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[90%]">
         {projectsList.map((project, index) => (
           <WrappperScale
             key={index}
-            className="bg-white dark:bg-gray-800 p-6 rounded-lg flex flex-col cursor-pointer hover:shadow-lg relative shadow-2xl border border-gray-200 dark:border-gray-700"
+            className="bg-white p-6 rounded-lg flex flex-col cursor-pointer hover:shadow-lg relative shadow-2xl border border-gray-200"
           >
-            <h3 className="text-2xl  mb-2 text-primary-900 dark:text-primary-100">
-              {project.title}
-            </h3>
+            <h3 className="text-2xl  mb-2 text-primary-900">{project.title}</h3>
             {project.enterpriseImage.url && (
               <Image
                 src={project.enterpriseImage.url}
@@ -64,7 +60,7 @@ const Projects: FC<ProjectsProps> = ({
                 loading="lazy"
               />
             )}
-            <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">
+            <p className="text-gray-600 mb-4 flex-grow">
               {project.description}
             </p>
             <div className="flex flex-col h-80 relative">
@@ -82,7 +78,7 @@ const Projects: FC<ProjectsProps> = ({
               {project.urlApp && (
                 <Link
                   href={project.urlApp}
-                  className="flex items-center text-primary-600 hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-200 transition-colors duration-300"
+                  className="flex items-center text-primary-600 hover:text-primary-800  transition-colors duration-300"
                 >
                   <ExternalLink className="mr-2 h-4 w-4" />
                   Live App
@@ -91,7 +87,7 @@ const Projects: FC<ProjectsProps> = ({
               {project.urlCode && (
                 <Link
                   href={project.urlCode}
-                  className="flex items-center text-primary-600 hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-200 transition-colors duration-300"
+                  className="flex items-center text-primary-600 hover:text-primary-800  transition-colors duration-300"
                 >
                   <SiGithub className="mr-2 h-4 w-4" />
                   Code
@@ -100,7 +96,7 @@ const Projects: FC<ProjectsProps> = ({
               {project.urlPromotion && (
                 <Link
                   href={project.urlPromotion}
-                  className="flex items-center text-primary-600 hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-200 transition-colors duration-300"
+                  className="flex items-center text-primary-600 hover:text-primary-800  transition-colors duration-300"
                 >
                   <ExternalLink className="mr-2 h-4 w-4" />
                   Promotional Page
@@ -108,13 +104,13 @@ const Projects: FC<ProjectsProps> = ({
               )}
             </div>
 
-            <div className="absolute inset-0 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md flex flex-col justify-between items-center opacity-0 hover:opacity-100 transition-opacity duration-300 ">
+            <div className="absolute inset-0 bg-white p-6 rounded-lg shadow-md flex flex-col justify-between items-center opacity-0 hover:opacity-100 transition-opacity duration-300 ">
               <SkillWall skillList={project.technologies} />
               <div className="flex justify-between flex-row-reverse w-full mt-4">
                 {project.urlApp && (
                   <Link
                     href={project.urlApp}
-                    className="flex items-center text-primary-600 hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-200 transition-colors duration-300"
+                    className="flex items-center text-primary-600 hover:text-primary-800  transition-colors duration-300"
                   >
                     <ExternalLink className="mr-2 h-4 w-4" />
                     Live App
@@ -123,7 +119,7 @@ const Projects: FC<ProjectsProps> = ({
                 {project.urlCode && (
                   <Link
                     href={project.urlCode}
-                    className="flex items-center text-primary-600 hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-200 transition-colors duration-300"
+                    className="flex items-center text-primary-600 hover:text-primary-800  transition-colors duration-300"
                   >
                     <SiGithub className="mr-2 h-4 w-4" />
                     Code
@@ -132,7 +128,7 @@ const Projects: FC<ProjectsProps> = ({
                 {project.urlPromotion && (
                   <Link
                     href={project.urlPromotion}
-                    className="flex items-center text-primary-600 hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-200 transition-colors duration-300"
+                    className="flex items-center text-primary-600 hover:text-primary-800  transition-colors duration-300"
                   >
                     <ExternalLink className="mr-2 h-4 w-4" />
                     Promotional Page
