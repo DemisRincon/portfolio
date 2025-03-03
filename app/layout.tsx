@@ -63,6 +63,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <meta
+          name="google-site-verification"
+          content={process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION}
+        />
+      </Head>
       <body className={`font-sans ${bebasNeue.variable} ${poppins.variable}`}>
         <Navbar />
         {children}
