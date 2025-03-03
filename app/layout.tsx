@@ -66,7 +66,7 @@ export default function RootLayout({
       <Head>
         <meta
           name="google-site-verification"
-          content={process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION}
+          content="LTYcCzcKBQEGXW5HyZyQBT3WTz5pNr7_-7Q0fS9kj9M"
         />
       </Head>
       <body className={`font-sans ${bebasNeue.variable} ${poppins.variable}`}>
