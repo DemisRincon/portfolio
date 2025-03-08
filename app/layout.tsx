@@ -63,6 +63,9 @@ export const metadata: Metadata = {
 		url: process.env.SITE_URL || 'https://demisrincon.netlify.app',
 		type: 'website',
 	},
+	twitter: {
+		card: 'summary_large_image',
+	},
 };
 
 export default function RootLayout({
@@ -77,29 +80,6 @@ export default function RootLayout({
 					name="google-site-verification"
 					content="LTYcCzcKBQEGXW5HyZyQBT3WTz5pNr7_-7Q0fS9kj9M"
 				/>
-				<meta
-					name="viewport"
-					content="width=device-width, initial-scale=1.0"
-				/>
-				<meta name="author" content="Demis Rincon" />
-				<meta name="robots" content="index, follow" />
-				<meta name="googlebot" content="index, follow" />
-				<meta name="bingbot" content="index, follow" />
-				<meta name="yandex" content="index, follow" />
-				<meta property="og:title" content="Demis Rincon" />
-				<meta
-					property="og:description"
-					content="Portfolio of Demis Rincon"
-				/>
-				<meta
-					property="og:image"
-					content="https://demisrincon.netlify.app/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fclr5xx7aag53%2F43rtpf6p6EsHo8VHHvzJS2%2Fe1a1637b2426a9085f3c631d927c63d2%2Fphotoweb.webp&w=1080&q=75"
-				/>
-				<meta
-					property="og:url"
-					content="https://demisrincon.netlify.app/"
-				/>
-				<meta property="og:type" content="website" />
 			</Head>
 			<body
 				className={`font-sans ${bebasNeue.variable} ${poppins.variable}`}
