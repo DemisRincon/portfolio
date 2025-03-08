@@ -60,7 +60,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: 'Demis Rincon',
 		description: 'Portfolio of Demis Rincon',
-		url: 'https://demisrincon.netlify.app/',
+		url: process.env.SITE_URL || 'https://demisrincon.netlify.app',
 		type: 'website',
 	},
 };
