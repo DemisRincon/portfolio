@@ -20,6 +20,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+	metadataBase: new URL(
+		process.env.SITE_URL || 'https://demisrincon.netlify.app',
+	),
 	title: 'Demis Rincon',
 	description: 'Portfolio of Demis Rincon',
 	keywords: [
@@ -54,6 +57,12 @@ export const metadata: Metadata = {
 		'UI/UX',
 		'Tech',
 	],
+	openGraph: {
+		title: 'Demis Rincon',
+		description: 'Portfolio of Demis Rincon',
+		url: 'https://demisrincon.netlify.app/',
+		type: 'website',
+	},
 };
 
 export default function RootLayout({

@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next';
 export default function sitemap(): MetadataRoute.Sitemap {
 	const url =
 		process.env.NODE_ENV === 'production'
-			? 'https://demisrincon.netlify.app'
+			? process.env.SITE_URL || 'https://demisrincon.netlify.app'
 			: 'http://localhost:3000';
 	return [
 		{
