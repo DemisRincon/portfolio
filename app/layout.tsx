@@ -3,6 +3,7 @@ import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Bebas_Neue, Poppins } from "next/font/google";
+import ModalProvider from "@/lib/providers/ModalProvider";
 
 const bebasNeue = Bebas_Neue({
 	weight: "400",
@@ -78,15 +79,17 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body>
-				<Navbar />
-				<main
-					className={`${bebasNeue.variable} ${poppins.variable} font-sans`}
-					role="main"
-					aria-label="Main content"
-				>
-					{children}
-				</main>
-				<Footer />
+				<ModalProvider>
+					<Navbar />
+					<main
+						className={`${bebasNeue.variable} ${poppins.variable} font-sans`}
+						role="main"
+						aria-label="Main content"
+					>
+						{children}
+					</main>
+					<Footer />
+				</ModalProvider>
 			</body>
 		</html>
 	);

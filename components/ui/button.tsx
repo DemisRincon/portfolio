@@ -29,6 +29,7 @@ const Button: React.FC<ButtonLinkProps> = ({
 				className={`px-8 py-3 text-sm font-medium flex items-center ${btnColor[buttonColor]}`}
 				onClick={toggle}
 				aria-label={text}
+				type="button"
 			>
 				{text} {icon}
 			</button>
