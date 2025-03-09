@@ -62,9 +62,12 @@ export const metadata: Metadata = {
 		description: 'Portfolio of Demis Rincon',
 		url: process.env.SITE_URL || 'https://demisrincon.netlify.app',
 		type: 'website',
+		locale: 'en_US',
 	},
 	twitter: {
 		card: 'summary_large_image',
+		title: 'Demis Rincon',
+		description: 'Portfolio of Demis Rincon',
 	},
 };
 
