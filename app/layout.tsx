@@ -88,7 +88,7 @@ export default function RootLayout({
 				className={`font-sans ${bebasNeue.variable} ${poppins.variable}`}
 			>
 				<Navbar />
-				<main>{children}</main>
+				<main role="main">{children}</main>
 				<Footer />
 			</body>
 		</html>
