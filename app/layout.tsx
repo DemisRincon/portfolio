@@ -79,7 +79,6 @@ export default function RootLayout({
 		<html lang="en">
 			<body>
 				<Navbar />
-
 				<main
 					className={`${bebasNeue.variable} ${poppins.variable} font-sans`}
 					role="main"

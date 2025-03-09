@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function Navbar() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -14,8 +14,8 @@ export function Navbar() {
 			setScrolled(window.scrollY > 10);
 		};
 
-		window.addEventListener('scroll', handleScroll);
-		return () => window.removeEventListener('scroll', handleScroll);
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
 	const toggleMenu = () => {
@@ -23,18 +23,18 @@ export function Navbar() {
 	};
 
 	const navLinks = [
-		{ href: '#home', label: 'Home' },
-		{ href: '#about', label: 'About' },
-		{ href: '#projects', label: 'Projects' },
-		{ href: '#contact', label: 'Contact' },
+		{ href: "#home", label: "Home" },
+		{ href: "#about", label: "About" },
+		{ href: "#projects", label: "Projects" },
+		{ href: "#contact", label: "Contact" },
 	];
 
 	return (
 		<header
 			className={`fixed top-0 w-full z-50 transition-all duration-300 ${
 				scrolled
-					? 'bg-white/95  backdrop-blur-md shadow-sm'
-					: 'bg-transparent'
+					? "bg-white/95  backdrop-blur-md shadow-sm"
+					: "bg-transparent"
 			}`}
 		>
 			<div className="container mx-auto px-6 py-6 flex items-center justify-between">
@@ -42,6 +42,7 @@ export function Navbar() {
 					href="/"
 					className="text-2xl font-bold tracking-tight text-gray-900 "
 					data-testid="cypress-title"
+					aria-label="Portfolio Home"
 				>
 					Portfolio
 				</Link>
@@ -54,6 +55,7 @@ export function Navbar() {
 							href={link.href}
 							className="text-sm font-medium text-gray-700 hover:text-gray-900  transition-colors duration-300"
 							data-testid="cypress-nav-links"
+							aria-label={link.label}
 						>
 							{link.label}
 						</Link>
@@ -64,6 +66,7 @@ export function Navbar() {
 						target="_blank"
 						rel="noopener noreferrer"
 						className="px-6 py-2 text-sm font-medium text-white bg-gray-900 rounded-full hover:bg-gray-700 transition-colors duration-300  "
+						aria-label="Download Resume"
 					>
 						Resume
 					</a>
@@ -74,6 +77,8 @@ export function Navbar() {
 					className="md:hidden p-2 rounded-md text-gray-700 hover:text-gray-900"
 					onClick={toggleMenu}
 					aria-label="Toggle menu"
+					aria-expanded={isOpen}
+					aria-controls="mobile-menu"
 				>
 					{isOpen ? (
 						<X className="h-6 w-6" />
@@ -88,10 +93,13 @@ export function Navbar() {
 				{isOpen && (
 					<motion.div
 						initial={{ opacity: 0, height: 0 }}
-						animate={{ opacity: 1, height: 'auto' }}
+						animate={{ opacity: 1, height: "auto" }}
 						exit={{ opacity: 0, height: 0 }}
 						transition={{ duration: 0.3 }}
 						className="md:hidden absolute top-20 left-0 right-0 bg-white border-b border-gray-200 "
+						id="mobile-menu"
+						role="menu"
+						aria-label="Mobile Navigation"
 					>
 						<nav className="container mx-auto px-6 py-8 flex flex-col space-y-6">
 							{navLinks.map((link) => (
@@ -100,6 +108,8 @@ export function Navbar() {
 									href={link.href}
 									className="text-base font-medium text-gray-700 hover:text-gray-900  transition-colors"
 									onClick={() => setIsOpen(false)}
+									aria-label={link.label}
+									role="menuitem"
 								>
 									{link.label}
 								</Link>
@@ -110,6 +120,8 @@ export function Navbar() {
 								target="_blank"
 								rel="noopener noreferrer"
 								className="px-6 py-2 text-sm font-medium text-white bg-gray-900 rounded-full hover:bg-gray-700 transition-colors duration-300  "
+								aria-label="Download Resume"
+								role="menuitem"
 							>
 								Resume
 							</a>
