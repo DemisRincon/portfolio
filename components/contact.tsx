@@ -1,7 +1,6 @@
 "use client";
 
-import { Mail, Phone, MapPin } from "lucide-react";
-
+import { Mail, Phone } from "lucide-react";
 import SectionTitle from "./ui/sectionTitle";
 import ContactCard from "./ui/contactCard";
 import { FC } from "react";
@@ -14,7 +13,6 @@ interface ContactProps {
 	subTitle: string;
 	email: string;
 	phone: string;
-	location: string;
 	github: string;
 	linkedin: string;
 }
@@ -24,7 +22,6 @@ const Contact: FC<ContactProps> = ({
 	subTitle,
 	email,
 	phone,
-	location,
 	github,
 	linkedin,
 }) => {
