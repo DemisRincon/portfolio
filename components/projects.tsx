@@ -1,6 +1,7 @@
 import { FC } from "react";
 import ProjectCard from "./ui/projectCard";
 import SectionTitle from "./ui/sectionTitle";
+import WrapperFadeIn from "./ui/wrapperFadeIn";
 
 export interface ProjectsProps {
 	title: string;
@@ -40,9 +41,18 @@ const Projects: FC<ProjectsProps> = ({
 					{subTitle}
 				</p>
 			</div>
-			<div className="grid grdi-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-19/20">
+			<div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 				{projectsList.map((project, index) => (
-					<ProjectCard key={index} project={project} />
+					<WrapperFadeIn
+						className="w-full sm:w-9/10 bg-white p-6 rounded-lg flex flex-col cursor-pointer hover:shadow-lg relative shadow-2xl border border-gray-200"
+						transition={{
+							duration: 0.6,
+							delay: 0.1 * (index % 3),
+						}}
+						key={index}
+					>
+						<ProjectCard key={index} project={project} />
+					</WrapperFadeIn>
 				))}
 			</div>
 		</div>

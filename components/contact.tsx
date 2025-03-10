@@ -18,6 +18,7 @@ interface ContactProps {
 	github: string;
 	linkedin: string;
 }
+
 const Contact: FC<ContactProps> = ({
 	title,
 	subTitle,
@@ -27,6 +28,36 @@ const Contact: FC<ContactProps> = ({
 	github,
 	linkedin,
 }) => {
+	const contactData = [
+		{
+			href: `mailto:${email}`,
+			ariaLabel: `Send an email to ${email}`,
+			name: "Email",
+			text: email,
+			icon: <Mail className="h-7 w-7 text-primary-600" />,
+		},
+		{
+			href: `tel:${phone}`,
+			ariaLabel: `Call ${phone}`,
+			name: "Phone",
+			text: phone,
+			icon: <Phone className="h-7 w-7 text-primary-600" />,
+		},
+		{
+			href: github,
+			ariaLabel: "Visit Github profile",
+			name: "Github",
+			text: "",
+			icon: <BsGithub className="h-7 w-7 text-primary-600 " />,
+		},
+		{
+			href: linkedin,
+			ariaLabel: "Visit Linkedin profile",
+			name: "Linkedin",
+			text: "",
+			icon: <LiaLinkedin className="h-7 w-7 text-primary-600 " />,
+		},
+	];
 	return (
 		<div className="container mx-auto px-6">
 			<WrapperFadeIn>
@@ -37,53 +68,37 @@ const Contact: FC<ContactProps> = ({
 					</p>
 				</div>
 			</WrapperFadeIn>
-			<WrapperFadeIn>
-				<div className="grid  md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
-					<a
-						href={`mailto:${email}`}
-						className="cursor-pointer"
-						aria-label={`Send an email to ${email}`}
+			<div className="grid  md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
+				{contactData.map((contact, index) => (
+					<WrapperFadeIn
+						key={index}
+						transition={{ duration: 0.6, delay: 0.1 * index }}
 					>
-						<ContactCard name="Email" text={email}>
-							<Mail className="h-7 w-7 text-primary-600" />
-						</ContactCard>
-					</a>
-					<a
-						href={`tel:${phone}`}
-						className="cursor-pointer"
-						aria-label={`Call ${phone}`}
-					>
-						<ContactCard name="Phone" text={phone}>
-							<Phone className="h-7 w-7 text-primary-600" />
-						</ContactCard>
-					</a>
-					<a
-						href={github}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="cursor-pointer"
-						aria-label="Visit Github profile"
-					>
-						<ContactCard name="Github" text={""}>
-							<BsGithub className="h-7 w-7 text-primary-600 " />
-						</ContactCard>
-					</a>
-					<a
-						href={linkedin}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="cursor-pointer"
-						aria-label="Visit Linkedin profile"
-					>
-						<ContactCard name="Linkedin" text={""}>
-							<LiaLinkedin className="h-7 w-7 text-primary-600 " />
-						</ContactCard>
-					</a>
-					<ContactCard name="Location" text={location}>
-						<MapPin className="h-7 w-7 text-primary-600 " />
-					</ContactCard>
-				</div>
-			</WrapperFadeIn>
+						<a
+							href={contact.href}
+							target={
+								contact.href.startsWith("http")
+									? "_blank"
+									: undefined
+							}
+							rel={
+								contact.href.startsWith("http")
+									? "noopener noreferrer"
+									: undefined
+							}
+							className="cursor-pointer"
+							aria-label={contact.ariaLabel}
+						>
+							<ContactCard
+								name={contact.name}
+								text={contact.text}
+							>
+								{contact.icon}
+							</ContactCard>
+						</a>
+					</WrapperFadeIn>
+				))}
+			</div>
 		</div>
 	);
 };

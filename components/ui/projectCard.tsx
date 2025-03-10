@@ -1,6 +1,5 @@
 "use client";
 import React, { useContext } from "react";
-import WrapperScale from "./wrappperScale";
 import Image from "next/image";
 import { ModalContext } from "@/lib/providers/ModalProvider";
 import { ProjectItem } from "../projects";
@@ -30,7 +29,7 @@ const ProjectCard: React.FC<{ project: ProjectItem }> = ({
 		toggleDetailsModal();
 	};
 	return (
-		<WrapperScale className="bg-white p-6 rounded-lg flex flex-col cursor-pointer hover:shadow-lg relative shadow-2xl border border-gray-200">
+		<div>
 			<div onClick={handleClick} className="flex flex-col w-full h-full">
 				<h2 className="mb-2 text-primary-900 text-3xl font-bold">
 					{title}
@@ -61,7 +60,7 @@ const ProjectCard: React.FC<{ project: ProjectItem }> = ({
 					Click to see details
 				</h3>
 			</div>
-		</WrapperScale>
+		</div>
 	);
 };
 
