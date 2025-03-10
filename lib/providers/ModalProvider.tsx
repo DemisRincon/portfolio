@@ -1,10 +1,10 @@
 "use client";
 import { createContext, Dispatch, SetStateAction } from "react";
 import useProjectDetailsModal from "@/components/modals/ProjectDetailsModal";
-import { ProjectProps } from "@/components/ui/projectCard";
+import { ProjectItem } from "@/components/projects";
 interface ModalContextType {
 	toggleDetailsModal: () => void;
-	setDataProjectDetailsModal: Dispatch<SetStateAction<ProjectProps>>;
+	setDataProjectDetailsModal: Dispatch<SetStateAction<ProjectItem>>;
 }
 
 export const ModalContext = createContext<ModalContextType>({
