@@ -6,6 +6,8 @@ interface ButtonLinkProps {
 	text: string;
 	href?: string;
 	toggle?: () => void;
+	target?: string;
+	rel?: string;
 }
 
 const Button: React.FC<ButtonLinkProps> = ({
@@ -14,6 +16,8 @@ const Button: React.FC<ButtonLinkProps> = ({
 	buttonColor = "darkBlue",
 	href,
 	toggle,
+
+	...rest
 }) => {
 	const btnColor = {
 		darkBlue:
@@ -30,6 +34,7 @@ const Button: React.FC<ButtonLinkProps> = ({
 				onClick={toggle}
 				aria-label={text}
 				type="button"
+				{...rest}
 			>
 				{text} {icon}
 			</button>
@@ -40,6 +45,7 @@ const Button: React.FC<ButtonLinkProps> = ({
 			href={href}
 			className={`px-8 py-3 text-sm font-medium flex items-center ${btnColor[buttonColor]}`}
 			aria-label={text}
+			{...rest}
 		>
 			{text} {icon}
 		</Link>

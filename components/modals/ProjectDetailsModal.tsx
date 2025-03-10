@@ -84,6 +84,8 @@ const ModalView: React.FC<ModalViewProps> = ({ toggle, isOpen, data }) => {
 								buttonColor="lightBlue"
 								text="Visit Promotional Site"
 								href={urlPromotion}
+								target="_blank"
+								rel="noopener noreferrer"
 							/>
 						)}
 						{urlApp && (
@@ -91,6 +93,8 @@ const ModalView: React.FC<ModalViewProps> = ({ toggle, isOpen, data }) => {
 								buttonColor="lightBlue"
 								text="Visit Live App"
 								href={urlApp}
+								target="_blank"
+								rel="noopener noreferrer"
 							/>
 						)}
 						{urlCode && (
@@ -98,6 +102,8 @@ const ModalView: React.FC<ModalViewProps> = ({ toggle, isOpen, data }) => {
 								buttonColor="lightBlue"
 								text="View Code"
 								href={urlCode}
+								target="_blank"
+								rel="noopener noreferrer"
 							/>
 						)}
 						<Button

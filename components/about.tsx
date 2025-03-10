@@ -64,7 +64,7 @@ const About: FC<AboutProps> = ({
 						</h3>
 					</WrapperFadeIn>
 
-					<div className="grid grid-cols-2 gap-6">
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 						{expertiseAreas.map((area, index) => (
 							<WrapperFadeIn key={area.title} delay={index * 200}>
 								<div

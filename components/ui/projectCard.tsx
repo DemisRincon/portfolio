@@ -31,33 +31,35 @@ const ProjectCard: React.FC<{ project: ProjectItem }> = ({
 	};
 	return (
 		<WrapperScale className="bg-white p-6 rounded-lg flex flex-col cursor-pointer hover:shadow-lg relative shadow-2xl border border-gray-200">
-			<div
-				onClick={handleClick}
-				className="flex flex-col flex-grow w-full h-full"
-			>
-				<h3 className="text-2xl  mb-2 text-primary-900">{title}</h3>
-				{enterpriseImage.url && (
+			<div onClick={handleClick} className="flex flex-col w-full h-full">
+				<h2 className="mb-2 text-primary-900 text-3xl font-bold">
+					{title}
+				</h2>
+
+				<div className="flex items-center flex-col my-6 w-11/12">
 					<Image
 						src={enterpriseImage.url}
-						alt={`${title} enterprise image`}
+						alt={title}
 						width={150}
-						height={150}
-						className="object-cover my-6"
-						style={{ width: "auto", height: "auto" }}
-						loading="lazy"
-					/>
-				)}
-				<p className="text-gray-600 mb-4 flex-grow">{description}</p>
-				<div className="flex flex-col h-80 relative">
-					<Image
-						src={image.url}
-						alt={`${title} project image`}
-						fill
-						sizes="(max-width: 768px) 100vw, 50vw"
-						className="mb-4 rounded-lg object-contain"
+						height={100}
+						className="object-scale-down max-h-10"
 						loading="lazy"
 					/>
 				</div>
+
+				<div className="flex items-center flex-col my-6 w-11/12">
+					<Image
+						src={image.url}
+						alt={title}
+						width={300}
+						height={100}
+						className="object-scale-down"
+						loading="lazy"
+					/>
+				</div>
+				<h3 className="text-gray-600 mb-4 text-2xl">
+					Click to see details
+				</h3>
 			</div>
 		</WrapperScale>
 	);
