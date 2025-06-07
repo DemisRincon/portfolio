@@ -14,16 +14,14 @@ interface ImagesConfig {
 	remotePatterns: RemotePattern[];
 }
 
-interface WebpackDevMiddlewareConfig {
-	watchOptions: WatchOptions;
-}
-
 const nextConfig: NextConfig = {
-	webpackDevMiddleware: (config: WebpackDevMiddlewareConfig) => {
-		config.watchOptions = {
-			poll: 1000,
-			aggregateTimeout: 300,
-		} as WatchOptions;
+	webpack: (config, { dev, isServer }) => {
+		if (dev && !isServer) {
+			config.watchOptions = {
+				poll: 1000,
+				aggregateTimeout: 300,
+			};
+		}
 		return config;
 	},
 	images: {
