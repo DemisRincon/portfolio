@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 	metadataBase: new URL(
 		process.env.SITE_URL || "https://demisrincon.netlify.app",
 	),
-	title: "Demis Rincon - Full Stack Developer",
+	title: "Demis Rincon m - Full Stack Developer",
 	description:
 		"Portfolio of Demis Rincon, a Full Stack Developer specializing in React, Next.js, and TypeScript.",
 	keywords: [
