@@ -3,8 +3,9 @@
 import fetchTool, { FetchType } from "@/lib/contentful/fetchTool";
 
 export async function getPage() {
-  const data = await fetchTool(
-    `{
+  try {
+    const data = await fetchTool(
+      `{
   singlePageCollection(limit: 1, where: {slug: "homeSinglePage"}) {
     items {
       slug
@@ -75,7 +76,96 @@ export async function getPage() {
     }
   }
 }`,
-    FetchType.revalidatedData
-  );
-  return data.singlePageCollection.items[0].pagesCollection.items;
+      FetchType.revalidatedData
+    );
+
+    if (!data?.singlePageCollection?.items?.[0]?.pagesCollection?.items) {
+      throw new Error('Required data structure not found in Contentful response');
+    }
+
+    return data.singlePageCollection.items[0].pagesCollection.items;
+  } catch (error) {
+    console.error('Error fetching page data:', error);
+    // Return default/empty data structure to prevent the build from failing
+    return [
+      {
+        greet: '',
+        name: '',
+        position: '',
+        presentation: '',
+        profile: { url: '' }
+      },
+      {
+        title: '',
+        section1Title: '',
+        section2Title: '',
+        section1Content: '',
+        section2Content: ''
+      },
+      {
+        _id: '',
+        __typename: 'IconWall',
+        orderInPage: 1,
+        title: '',
+        slug: '',
+        collectionString: '',
+        name: '',
+        bgColor: '',
+        showName: false,
+        fontColor: ''
+      },
+      {
+        _id: '',
+        __typename: 'IconWall',
+        orderInPage: 2,
+        title: '',
+        slug: '',
+        collectionString: '',
+        name: '',
+        bgColor: '',
+        showName: false,
+        fontColor: ''
+      },
+      {
+        _id: '',
+        __typename: 'IconWall',
+        orderInPage: 3,
+        title: '',
+        slug: '',
+        collectionString: '',
+        name: '',
+        bgColor: '',
+        showName: false,
+        fontColor: ''
+      },
+      {
+        _id: '',
+        __typename: 'IconWall',
+        orderInPage: 4,
+        title: '',
+        slug: '',
+        collectionString: '',
+        name: '',
+        bgColor: '',
+        showName: false,
+        fontColor: ''
+      },
+      {
+        title: '',
+        subTitle: '',
+        projectsCollection: {
+          items: []
+        }
+      },
+      {
+        title: '',
+        subTitle: '',
+        email: '',
+        phone: '',
+        location: '',
+        linkedin: '',
+        github: ''
+      }
+    ];
+  }
 }
